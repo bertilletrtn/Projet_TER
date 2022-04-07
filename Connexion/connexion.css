@@ -1,5 +1,5 @@
 body{
-  background: #67BE4B;
+  background-image:url("../Ressource/background.jpg");
 }
 #container{
   width:400px;
@@ -32,8 +32,8 @@ input[type=text], input[type=password] {
 
 /* Set a style for all buttons */
 input[type=submit] {
-  background-color: #53af57;
-  color: white;
+  background-color: #ee5db6;
+  color: rgb(5, 5, 5);
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
@@ -41,7 +41,7 @@ input[type=submit] {
   width: 100%;
 }
 input[type=submit]:hover {
-  background-color: white;
-  color: #53af57;
-  border: 1px solid #53af57;
+  background-color: rgb(255, 255, 255);
+  color: #ee5db6;
+  border: 1px solid #080808;
 }
