@@ -1,0 +1,63 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-image:url("../Ressource/background.jpg");        
+    background-repeat: no-repeat;                           
+    font-family: Arial, Helvetica, sans-serif;              
+    height: 100vh;                                          
+    background-size: cover;           /*Prends l'entière de l'image*/
+    background-position: center;      
+    position: relative;               /*Le décalage n'a pas d'impact sur la position des éléments*/                  
+    overflow-x: hidden;               /*Le contenu est rogné afin de tenir horizontalement dans la boîte de remplissage (padding) et aucun ascenseur horizontal n'est affiché. */
+}
+
+#showcase{
+    text-align: center;
+}
+
+.container-first {          /*Bloc principal - Titre + bouton*/
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.container-btns{        /*Deplace que le bloc de bouton*/
+    position: relative;
+    top: 50px;
+}
+
+.btn-first {                /*Presentation des boutons*/
+   /* border: 5px solid black;    */
+    outline: dashed;                /*Ptit trait autour */
+    background: white;
+    font-size: 30px;
+    padding: 20px;
+    width: 300px;
+    color: black;
+    cursor: pointer;
+}
+
+.btn-first:nth-child(1){
+    margin-right: 50px;
+}
+
+.btn-first:hover {  /*Survoler les boutons*/
+    transition: all 0.5s ease-in-out;
+    background: red;
+    color: blue;
+}
+
+footer{
+    display: flex;
+    background:rgb(237, 128, 128);
+    position:absolute;
+    padding: 5px;
+    justify-content: center;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
