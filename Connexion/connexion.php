@@ -17,7 +17,7 @@
                 <input type="text" placeholder="Entrer un numéro de téléphone" pattern="[0-9]{10}" maxlength="10"  name="Num_Tel" required/> 
 
                 <label><b>Téléphone : </b></label>
-                <input type="password" placeholder="Entrer un mot de passe" maxlength="10" name="Mdp" required>
+                <input type="password" placeholder="Entrer un mot de passe" name="Mdp" required>
 
                 <input type="submit" id="submit" value="LOGIN">
                 <?php
