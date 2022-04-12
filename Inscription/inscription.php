@@ -1,48 +1,17 @@
-
-<!--
-<form method="post" action="form.php">
-    <fieldset>
-        <legend>Informations personnelles</legend>
-        <label>
-            Prénom : <input type="text" name="prenom" />
-        </label><br />
-        <label>
-            Nom : <input type="text" name="nom" />
-        </label><br />
-        <label>
-            Téléphone : <input type="tel"pattern="[0-9]{10}" maxlength="10"  name="tel" />
-        </label><br />
-        <label>
-           Ville : <input type="text" name="ville" />
-        </label><br />
-    </fieldset>
- 
-    <input type="submit" value="Envoyer" />
-    <input type="reset" value="Rétablir" />
-</form>
--->
-
-/*
-Nom : 
-prenom :
-pseudo :
-age :
-num tel : CLE DANS LA BDD - 0645 en mode collé
-ville :
-*/
-
-
 <!DOCTYPE html >
 <html>
 <head>
 <meta charset="UTF-8" />
+<link rel="stylesheet" href="inscription.css" media="screen" type="text/css" />
+
 <title>Inscription</title>
 </head>
 <body>
+    <div id= contenu>
 	<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="application/x-www-form-urlencoded">    <!--Voir a quoi ca sert plus tars-->
 		<fieldset>
 			<legend>
-				<b>Inscription</b>
+				<h1>Inscription</h1>
 			</legend>
 			<table>
 				<tr>
@@ -80,6 +49,7 @@ ville :
 			</table>
 		</fieldset>
 	</form>
+    </div>
 <?php
 include ("../BDD/connexionpdo.php");
 $idcom = connexpdo("Projet");
@@ -99,14 +69,17 @@ if (! empty($_POST['nom']) && ! empty($_POST['prenom']) && ! empty($_POST['tel']
         if ($nb != 1) {
             alert("Erreur : \"$idcom->errorCode()\"");
         } else {
-            alert("Modèle bien enregistré !");
+            // alert("Modèle bien enregistré !");
+            header('Location: ../Connexion/connexion.php');
+            exit();
+
         }
     } catch (PDOException $e) {
         displayException($e);
         exit();
     }
 } else {
-    echo "<h3>Formulaire à compléter!</h3>";
+    echo "<h3>Formulaire à compléter !</h3>";
 }
 ?>
 </body>
