@@ -13,6 +13,9 @@
                     $user = $_SESSION['Num_Tel'];
                     // afficher un message
                     echo "Bonjour $user, vous êtes connecté";
+                    // envoyer vers la page avec les annonces
+                    header('Location: ../Accueil/pageacceuil.html');
+                    exit();
                 }
             ?>
             
