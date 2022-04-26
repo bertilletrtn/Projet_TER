@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mer. 06 avr. 2022 à 10:18
+-- Généré le : mer. 13 avr. 2022 à 15:55
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.1
 
@@ -28,8 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `Annonces` (
+  `Ville` varchar(50) COLLATE utf8_bin NOT NULL,
   `Lieu` varchar(50) COLLATE utf8_bin NOT NULL,
-  `Heure` time(6) NOT NULL,
+  `Date` date NOT NULL,
+  `HeureDebut` time(4) NOT NULL,
+  `HeureFin` time(4) NOT NULL,
   `Theme` enum('musique','cinéma','sport','travail','alimentation','culture','bar','festival','autres') COLLATE utf8_bin NOT NULL,
   `Info_sup` varchar(500) COLLATE utf8_bin DEFAULT NULL,
   `Proprietaire` int(10) NOT NULL,
@@ -62,6 +65,15 @@ CREATE TABLE `Utilisateurs` (
   `Ville` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `Mdp` varchar(10) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `Utilisateurs`
+--
+
+INSERT INTO `Utilisateurs` (`Prenom`, `Nom`, `Pseudo`, `Age`, `Num_Tel`, `Ville`, `Mdp`) VALUES
+('bertille', 'trotin', 'btrotin', 20, 102030405, 'angers', 'santana'),
+('paul', 'trotro', '', 20, 1234567891, '', 'mdp'),
+('gfgjgg', 'ghhjhhjv', '', 18, 1234567897, '', '0000000');
 
 --
 -- Index pour les tables déchargées

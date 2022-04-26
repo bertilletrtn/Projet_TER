@@ -1,0 +1,41 @@
+body{
+    background-color: rgb(48, 102, 84);
+
+}
+
+ #contenu{
+    width:500px;
+    margin:0 auto;
+    margin-top:5%;
+    background-color: rgb(255, 255, 255);
+}
+
+h1{
+    background-color: rgb(71, 20, 211);
+    text-align: center;
+}
+
+/*
+input[type=submit], input[type=reset] {
+    background-color: rgb(192, 62, 62);
+    color: rgb(5, 5, 5);
+    padding: 20px 10px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+} */
+
+form#myform label { 
+    display:inline-block; 
+    width:100px; 
+}
+form#myform input {
+     display:inline-block; 
+}
+form#myform input[type=submit] {
+    color:#fff;
+    background-color:green; 
+}
+
+
