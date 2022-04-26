@@ -53,7 +53,7 @@
                 </select>
                 
                 <select name="theme2">
-                    <option value="not">  </option>
+                    <option value="not"> </option>
                     <option value="autres">Autres</option>
                     <option value="musique">Musique</option>
                     <option value="cinema">Cinéma</option>
@@ -66,7 +66,7 @@
                 </select>
 
                 <select name="theme3">
-                    <option value="not">  </option>
+                    <option value="not"> </option>
                     <option value="autres">Autres</option>
                     <option value="musique">Musique</option>
                     <option value="cinema">Cinéma</option>
@@ -131,12 +131,9 @@ $idcom = connexpdo("Projet");
         $theme3 = $idcom->quote($_POST['theme3']);
         $infosup = $idcom->quote($_POST['infosup']);
 
-            if (!('  ' == $_POST['theme2']) && !('  ' == $_POST['theme3']) && ! empty($_POST['infosup']) ) {
+        $not = "not";
 
-
-                // $theme2 = $idcom->quote($_POST['theme2']);
-                // $theme3 = $idcom->quote($_POST['theme3']);
-                // $infosup = $idcom->quote($_POST['infosup']);
+            if (!($not == $_POST['theme2']) && !($not == $_POST['theme3']) && ! empty($_POST['infosup']) ) {
 
 
                 $query = "INSERT INTO Annonces VALUES($ville,$lieu,$date,$hdebut,$hfin,$theme1,$theme2,$theme3,$infosup,$propri)";
@@ -148,7 +145,7 @@ $idcom = connexpdo("Projet");
                 }
             }
 
-            if (('  ' == $_POST['theme2']) && ('  ' == $_POST['theme3']) && empty($_POST['infosup']) ) {
+            if (($not == $_POST['theme2']) && ($not == $_POST['theme3']) && empty($_POST['infosup']) ) {
 
                     $query = "INSERT INTO Annonces VALUES($ville,$lieu,$date,$hdebut,$hfin,$theme1,NULL,NULL,NULL,$propri)";
                     $nb = $idcom->exec($query);
@@ -159,7 +156,7 @@ $idcom = connexpdo("Projet");
                     }
                 }
 
-            if (('  ' == $_POST['theme2']) && !('  ' == $_POST['theme3']) && ! empty($_POST['infosup']) ){
+            if (($not == $_POST['theme2']) && !($not == $_POST['theme3']) && ! empty($_POST['infosup']) ){
                     
                     $query = "INSERT INTO Annonces VALUES($ville,$lieu,$date,$hdebut,$hfin,$theme1,NULL,$theme3,$infosup,$propri)";
                     $nb = $idcom->exec($query);
@@ -170,7 +167,7 @@ $idcom = connexpdo("Projet");
                     }
                 }
 
-            if (!('  ' == $_POST['theme2']) && ('  ' == $_POST['theme3']) && ! empty($_POST['infosup']) ){
+            if (!($not == $_POST['theme2']) && ($not == $_POST['theme3']) && ! empty($_POST['infosup']) ){
                     
                     $query = "INSERT INTO Annonces VALUES($ville,$lieu,$date,$hdebut,$hfin,$theme1,$theme2,NULL,$infosup,$propri)";
                     $nb = $idcom->exec($query);
@@ -181,7 +178,7 @@ $idcom = connexpdo("Projet");
                     }
                 }
 
-            if (!('  ' == $_POST['theme2']) && !('  ' == $_POST['theme3']) && empty($_POST['infosup']) ){
+            if (!($not == $_POST['theme2']) && !($not == $_POST['theme3']) && empty($_POST['infosup']) ){
                     
                     $query = "INSERT INTO Annonces VALUES($ville,$lieu,$date,$hdebut,$hfin,$theme1,$theme2,$theme3,NULL,$propri)";
                     $nb = $idcom->exec($query);
@@ -192,7 +189,7 @@ $idcom = connexpdo("Projet");
                     }
                 }
                 
-            if (('  ' == $_POST['theme2']) && ('  ' == $_POST['theme3']) && ! empty($_POST['infosup']) ){
+            if (($not == $_POST['theme2']) && ($not == $_POST['theme3']) && ! empty($_POST['infosup']) ){
                     
                     $query = "INSERT INTO Annonces VALUES($ville,$lieu,$date,$hdebut,$hfin,$theme1,NULL,NULL,$infosup,$propri)";
                     $nb = $idcom->exec($query);
@@ -203,7 +200,7 @@ $idcom = connexpdo("Projet");
                     }
                 }
 
-            if (('  ' == $_POST['theme2']) && !('  ' == $_POST['theme3']) && empty($_POST['infosup']) ){
+            if (($not == $_POST['theme2']) && !($not == $_POST['theme3']) && empty($_POST['infosup']) ){
                     
                     $query = "INSERT INTO Annonces VALUES($ville,$lieu,$date,$hdebut,$hfin,$theme1,NULL,$theme3,NULL,$propri)";
                     $nb = $idcom->exec($query);
@@ -214,7 +211,7 @@ $idcom = connexpdo("Projet");
                     }
                 }
 
-            if (!('  ' == $_POST['theme2']) && ('  ' == $_POST['theme3']) && empty($_POST['infosup']) ){
+            if (!($not == $_POST['theme2']) && ($not == $_POST['theme3']) && empty($_POST['infosup']) ){
                     
                     $query = "INSERT INTO Annonces VALUES($ville,$lieu,$date,$hdebut,$hfin,$theme1,$theme2,NULL,NULL,$propri)";
                     $nb = $idcom->exec($query);
