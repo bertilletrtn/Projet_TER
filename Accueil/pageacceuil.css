@@ -1,61 +1,62 @@
-*, ::before, ::after {
-    /*box-sizing: border-box;*/
-    margin: 0;
-    padding: 0;
-}
+/**, ::before, ::after {
+    box-sizing: border-box;
+    padding: 15%;
+}*/
 
 body{
-    line-height: 1.6;
-   /* background-repeat: no-repeat;     */                      
+    
     font-family: Arial, Helvetica, sans-serif;              
-   
-
-   /*  position: relative;              Le décalage n'a pas d'impact sur la position des éléments
-    overflow-x: hidden;              Le contenu est rogné afin de tenir horizontalement dans la boîte de remplissage (padding) et aucun ascenseur horizontal n'est affiché. */
-}
-
-#showcase{    
     background-image:url("../Ressource/background.jpg");        
+    /*Le décalage n'a pas d'impact sur la position des éléments/*
+    /*Le contenu est rogné afin de tenir horizontalement dans la boîte de remplissage (padding) et aucun ascenseur horizontal n'est affiché. */         
+    position: center;     
     text-align: center;
     height: 100vh;    
-    background-position: center;                                      
-    background-size: cover;           /*Prends l'entière de l'image*/
+    background-position: center;            
+    /*Prends l'entière de l'image*/                          
+    background-size: cover;           
     display: flex;
     flex-direction: column;
+    /*mettre tout au centre*/
     justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 20px;
-    
 }
+    /*Bloc principal - Titre + bouton*/
 
-.container-first {          /*Bloc principal - Titre + bouton*/
+/* .container-first {          
     position: absolute;
     top: 30%;
     left: 30%;
-}
+} */
+
 
 h1 {
     text-transform: uppercase;
-    font-size: 50px;
+    font-size: 350%;
     color: #000000;
     font-family: Abril fatface, sans-serif;
-
-    position:center;
-
 }
+
+
+
+ 
+
+ 
+
 h1 span {
     position: relative;
 }
 
-/*.container-btns{        /*Deplace que le bloc de bouton*/
+/*.container-btns{        
+    /*Deplace que le bloc de bouton*/
    /* position: relative;
     top: 50px;
 }*/
 
-.btn-first {                /*Presentation des boutons*/
+.btn-first {               
+     /*Presentation des boutons*/
    /* border: 5px solid black;    
-    outline: dashed;                /*Ptit trait autour */
+    outline: dashed;                
+    /*Ptit trait autour */
     background: white;
     font-size: 30px;
    /* padding: 20px;
@@ -68,19 +69,36 @@ h1 span {
     margin-right: 50px;
 }
 
-.btn-first:hover {  /*Survoler les boutons*/
+.btn-first:hover {  
+    /*Survoler les boutons*/
     transition: all 0.5s ease-in-out;
     background: red;
     color: blue;
 }
 
 footer{
+    position: fixed;
     display: flex;
     background:rgb(237, 128, 128);
-    position:absolute;
     padding: 5px;
     justify-content: center;
-    bottom: 0px;
+    bottom: 0;
     left: 0px;
     right: 0px;
+    padding-top:50px;
+}
+
+
+
+
+
+footer{
+    display: flex;
+    background:rgb(237, 128, 128);
+    padding: 5px;
+    justify-content: center;
+    bottom: 0;
+    left: 0px;
+    right: 0px;
+    padding-top:50px;
 }
