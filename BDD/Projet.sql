@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mer. 13 avr. 2022 à 15:55
+-- Généré le : mar. 26 avr. 2022 à 11:18
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.1
 
@@ -34,10 +34,23 @@ CREATE TABLE `Annonces` (
   `HeureDebut` time(4) NOT NULL,
   `HeureFin` time(4) NOT NULL,
   `Theme` enum('musique','cinéma','sport','travail','alimentation','culture','bar','festival','autres') COLLATE utf8_bin NOT NULL,
+  `theme2` enum('musique','cinema','sport','travail','alimentation','culture','bar','festival','autres') COLLATE utf8_bin DEFAULT NULL,
+  `theme3` enum('autres','musique','cinema','sport','travail','alimentation','culture','bar','festival') COLLATE utf8_bin DEFAULT NULL,
   `Info_sup` varchar(500) COLLATE utf8_bin DEFAULT NULL,
   `Proprietaire` int(10) NOT NULL,
-  `Num-id` int(10) NOT NULL
+  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `Annonces`
+--
+
+INSERT INTO `Annonces` (`Ville`, `Lieu`, `Date`, `HeureDebut`, `HeureFin`, `Theme`, `theme2`, `theme3`, `Info_sup`, `Proprietaire`, `id`) VALUES
+('angers', 'patinoire', '2022-04-27', '09:00:00.0000', '11:00:00.0000', 'travail', 'sport', 'alimentation', 'Informations supplémentaires ? ', 1234567891, 1),
+('le mans', 'bu', '2022-04-26', '09:00:00.0000', '12:00:00.0000', 'travail', NULL, NULL, NULL, 1234567891, 2),
+('sdfg', 'dfbg', '2022-04-26', '09:00:00.0000', '20:00:00.0000', 'sport', NULL, NULL, NULL, 1234567891, 3),
+('sdfg', 'sggrhehtet', '2022-04-26', '09:00:00.0000', '10:00:00.0000', 'sport', 'alimentation', 'cinema', NULL, 1234567891, 5),
+('test', 'letest', '2022-04-27', '09:00:00.0000', '15:00:00.0000', 'sport', 'alimentation', 'musique', NULL, 1234567891, 7);
 
 -- --------------------------------------------------------
 
@@ -83,8 +96,8 @@ INSERT INTO `Utilisateurs` (`Prenom`, `Nom`, `Pseudo`, `Age`, `Num_Tel`, `Ville`
 -- Index pour la table `Annonces`
 --
 ALTER TABLE `Annonces`
-  ADD KEY `Proprietaire` (`Proprietaire`),
-  ADD KEY `Num-id` (`Num-id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `Proprietaire` (`Proprietaire`);
 
 --
 -- Index pour la table `Participation`
@@ -101,6 +114,16 @@ ALTER TABLE `Utilisateurs`
   ADD KEY `Num_Tel` (`Num_Tel`);
 
 --
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `Annonces`
+--
+ALTER TABLE `Annonces`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- Contraintes pour les tables déchargées
 --
 
@@ -114,8 +137,7 @@ ALTER TABLE `Annonces`
 -- Contraintes pour la table `Participation`
 --
 ALTER TABLE `Participation`
-  ADD CONSTRAINT `Participation_ibfk_1` FOREIGN KEY (`Participant`) REFERENCES `Utilisateurs` (`Num_Tel`),
-  ADD CONSTRAINT `Participation_ibfk_2` FOREIGN KEY (`Annonce`) REFERENCES `Annonces` (`Num-id`);
+  ADD CONSTRAINT `Participation_ibfk_1` FOREIGN KEY (`Participant`) REFERENCES `Utilisateurs` (`Num_Tel`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
