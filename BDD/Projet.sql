@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mar. 26 avr. 2022 à 11:18
+-- Généré le : jeu. 28 avr. 2022 à 08:47
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.1
 
@@ -31,26 +31,27 @@ CREATE TABLE `Annonces` (
   `Ville` varchar(50) COLLATE utf8_bin NOT NULL,
   `Lieu` varchar(50) COLLATE utf8_bin NOT NULL,
   `Date` date NOT NULL,
-  `HeureDebut` time(4) NOT NULL,
-  `HeureFin` time(4) NOT NULL,
-  `Theme` enum('musique','cinéma','sport','travail','alimentation','culture','bar','festival','autres') COLLATE utf8_bin NOT NULL,
-  `theme2` enum('musique','cinema','sport','travail','alimentation','culture','bar','festival','autres') COLLATE utf8_bin DEFAULT NULL,
+  `HeureDebut` time(2) NOT NULL,
+  `HeureFin` time(2) NOT NULL,
+  `Theme` enum('musique','cinéma','sport','travail','alimentation','culture','bar','festival','loisir','autres') COLLATE utf8_bin NOT NULL,
+  `theme2` enum('musique','cinema','sport','travail','alimentation','culture','bar','festival','loisir','autres') COLLATE utf8_bin DEFAULT NULL,
   `theme3` enum('autres','musique','cinema','sport','travail','alimentation','culture','bar','festival') COLLATE utf8_bin DEFAULT NULL,
   `Info_sup` varchar(500) COLLATE utf8_bin DEFAULT NULL,
   `Proprietaire` int(10) NOT NULL,
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `Titre` varchar(100) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `Annonces`
 --
 
-INSERT INTO `Annonces` (`Ville`, `Lieu`, `Date`, `HeureDebut`, `HeureFin`, `Theme`, `theme2`, `theme3`, `Info_sup`, `Proprietaire`, `id`) VALUES
-('angers', 'patinoire', '2022-04-27', '09:00:00.0000', '11:00:00.0000', 'travail', 'sport', 'alimentation', 'Informations supplémentaires ? ', 1234567891, 1),
-('le mans', 'bu', '2022-04-26', '09:00:00.0000', '12:00:00.0000', 'travail', NULL, NULL, NULL, 1234567891, 2),
-('sdfg', 'dfbg', '2022-04-26', '09:00:00.0000', '20:00:00.0000', 'sport', NULL, NULL, NULL, 1234567891, 3),
-('sdfg', 'sggrhehtet', '2022-04-26', '09:00:00.0000', '10:00:00.0000', 'sport', 'alimentation', 'cinema', NULL, 1234567891, 5),
-('test', 'letest', '2022-04-27', '09:00:00.0000', '15:00:00.0000', 'sport', 'alimentation', 'musique', NULL, 1234567891, 7);
+INSERT INTO `Annonces` (`Ville`, `Lieu`, `Date`, `HeureDebut`, `HeureFin`, `Theme`, `theme2`, `theme3`, `Info_sup`, `Proprietaire`, `id`, `Titre`) VALUES
+('angers', 'patinoire', '2022-04-27', '09:00:00.00', '11:00:00.00', 'sport', 'sport', 'alimentation', 'Informations supplémentaires ? ', 1234567891, 1, 'Patinoire entre pote'),
+('le mans', 'bu', '2022-04-26', '09:00:00.00', '12:00:00.00', 'travail', NULL, NULL, NULL, 1234567891, 2, 'travail '),
+('Nantes', 'Cinema', '2022-05-11', '14:00:00.00', '17:30:00.00', 'cinéma', NULL, NULL, 'Voir \"Le seigneur des anneaux\" - mon film pas préféré', 1234567891, 8, 'Seigneur des anneaux'),
+('Montpellier', 'Starbucks', '2022-04-27', '10:02:00.00', '12:00:00.00', 'bar', NULL, NULL, 'Boire un chocolat chaud', 687526594, 9, 'Matin tranquillou'),
+('Madrid', 'Bowling', '2022-08-09', '14:00:00.00', '20:00:00.00', 'loisir', NULL, NULL, 'Je propose de faire trois parties de Bowling (réservé pour les étudiants)', 785423652, 10, 'Bowling ');
 
 -- --------------------------------------------------------
 
@@ -85,8 +86,9 @@ CREATE TABLE `Utilisateurs` (
 
 INSERT INTO `Utilisateurs` (`Prenom`, `Nom`, `Pseudo`, `Age`, `Num_Tel`, `Ville`, `Mdp`) VALUES
 ('bertille', 'trotin', 'btrotin', 20, 102030405, 'angers', 'santana'),
-('paul', 'trotro', '', 20, 1234567891, '', 'mdp'),
-('gfgjgg', 'ghhjhhjv', '', 18, 1234567897, '', '0000000');
+('Emma', 'Faucheux', 'Emmatest2', 21, 687526594, 'Angers', 'testeur'),
+('Granier', 'Lea', 'Racoon', 22, 785423652, 'Nimes', 'racoon'),
+('paul', 'trotro', '', 20, 1234567891, '', 'mdp');
 
 --
 -- Index pour les tables déchargées
@@ -121,7 +123,7 @@ ALTER TABLE `Utilisateurs`
 -- AUTO_INCREMENT pour la table `Annonces`
 --
 ALTER TABLE `Annonces`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Contraintes pour les tables déchargées
