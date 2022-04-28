@@ -1,0 +1,19 @@
+html {
+    font-family: "calibri", sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    margin-top: 60px;
+    height: auto;
+    background-color: #E7B1CC;
+}
+

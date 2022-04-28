@@ -1,0 +1,6 @@
+footer {
+    width: 100%;
+    background-color: rgb(169, 228, 169);
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,21 @@
+header {
+    width: 100%;
+    background-color: #CCE7FF;
+    padding: 20px;
+    display: flex;
+    position: fixed;
+    height: 20px;
+    justify-content: space-between;
+}
+header ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 32px;
+    padding-inline-start: 0;
+}
+
+header li {
+    margin: 0 10px;
+    list-style: none;
+}
