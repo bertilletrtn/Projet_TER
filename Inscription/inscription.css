@@ -3,7 +3,7 @@ body{
   }
 
 #contenu{
-    width:500px;
+    width:510px;
     margin:0 auto;
     margin-top:5%;
   }
@@ -18,7 +18,7 @@ fieldset{
 }
 
 td{
-    color: #fa007d;
+    color: #f10b0b;
 }
 
 input[type=submit], input[type=reset] {

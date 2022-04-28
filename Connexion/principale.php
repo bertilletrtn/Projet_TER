@@ -14,7 +14,7 @@
                     // afficher un message
                     echo "Bonjour $user, vous êtes connecté";
                     // envoyer vers la page avec les annonces
-                    header('Location: ../Accueil/pageacceuil.html');
+                    header('Location: ../Site/site.php');
                     exit();
                 }
             ?>
