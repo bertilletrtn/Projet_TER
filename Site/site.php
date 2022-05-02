@@ -89,9 +89,10 @@
 
                  </div>";
                  
-                 $annonce = $pdo->query("SELECT id FROM ANNONCES");
                  if (isset($_POST['bouton-participer']))
                  {
+                    $annonce = $pdo->query("SELECT id FROM ANNONCES");
+
                     if($_SESSION['Num_Tel'] !== ""){
                         $participant = $_SESSION['Num_Tel'];
                          // afficher un message
