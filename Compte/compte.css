@@ -1,6 +1,7 @@
 html {
     font-family: "calibri", sans-serif;
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -17,3 +18,11 @@ main {
     background-color: #E7B1CC;
 }
 
+#menu-list{
+    margin-right: 50px;;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+
+}
