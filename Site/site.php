@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 
 <html lang="fr">
@@ -22,7 +25,7 @@
     <header>
         <a href="../Site/site.php" class="logo">Join and Enjoy</a>
         <ul class="bar">
-            <li><a href="" >Les Annonces</a></li>
+            <li><a href="../Site/formulaireannonce.php" >Les Annonces</a></li>
             <li><a href="" onclick="formulaireannonce.php">Poster</a></li>
             <li><a href="../Compte/Compte.html" class="btn-compte">Compte</a></li>
         </ul>
@@ -36,6 +39,9 @@
 
         <div id="annonces">
             <?php
+
+            var_dump($_SESSION);
+
             try {
                 require_once("connexpdo.inc.php");
 
@@ -89,18 +95,18 @@
 
                  </div>";
                  
-                 $annonce = $pdo->query("SELECT id FROM ANNONCES");
-                 if (isset($_POST['bouton-participer']))
-                 {
-                    if($_SESSION['Num_Tel'] !== ""){
-                        $participant = $_SESSION['Num_Tel'];
-                         // afficher un message
-                        echo "Bonjour $participant, vous êtes connecté";
+            //      $annonce = $pdo->query("SELECT id FROM ANNONCES");
+            //      if (isset($_POST['bouton-participer']))
+            //      {
+            //         if($_SESSION['Num_Tel'] !== ""){
+            //             $participant = $_SESSION['Num_Tel'];
+            //              // afficher un message
+            //             echo "Bonjour $participant, vous êtes connecté";
                         
-                        // exit();
-                        }
-                    $query = "INSERT INTO Participation VALUES($participant,$annonce)";
-                }
+            //             // exit();
+            //             }
+            //         $query = "INSERT INTO Participation VALUES($participant,$annonce)";
+            //     }
                  
 
                 }
