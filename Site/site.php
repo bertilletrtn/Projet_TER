@@ -20,11 +20,11 @@
 <body>
     <form method="post">
     <header>
-        <a href="#" class="logo">TitreDuSite</a>
+        <a href="../Site/site.php" class="logo">Join and Enjoy</a>
         <ul class="bar">
             <li><a href="" >Les Annonces</a></li>
             <li><a href="" onclick="formulaireannonce.php">Poster</a></li>
-            <li><a href="" class="btn-compte">Compte</a></li>
+            <li><a href="../Compte/Compte.html" class="btn-compte">Compte</a></li>
         </ul>
     </header>
 
