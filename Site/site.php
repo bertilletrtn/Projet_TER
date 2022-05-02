@@ -18,7 +18,7 @@
 
 
 <body>
-
+    <form method="post">
     <header>
         <a href="#" class="logo">TitreDuSite</a>
         <ul class="bar">
@@ -38,6 +38,9 @@
             <?php
             try {
                 require_once("connexpdo.inc.php");
+
+
+                //session_start();
                 $pdo = connexpdo("Projet");
 
                 $sql = "SELECT *, a.ville AS villeAnnonce FROM Annonces a JOIN Utilisateurs u ON a.Proprietaire = u.Num_Tel ORDER BY Date DESC";
@@ -62,7 +65,7 @@
                     // echo "</pre>";
 
 
-
+                   	
 
                     echo "<div class='elementannonce'>
                     <div id='gauche'>
@@ -76,15 +79,30 @@
    
                     <div id='droite'>
 
-                        <img src='../Ressource/$theme.webp' alt='$theme' width='250px' height='auto'>
+                        <img src='../Ressource/$theme.webp' alt='$theme' width='250px' height='auto' />
 
                         <div id='bouton'>
-                        <input type='button' id='bouton-participer' value='participer'/>
+                        <input type='submit' id='bouton-participer' value='participer'/>
                         <input type='button' id='bouton-commenter' value='Commenter'/>
                         </div>
                     </div>
 
                  </div>";
+                 
+                 $annonce = $pdo->query("SELECT id FROM ANNONCES");
+                 if (isset($_POST['bouton-participer']))
+                 {
+                    if($_SESSION['Num_Tel'] !== ""){
+                        $participant = $_SESSION['Num_Tel'];
+                         // afficher un message
+                        echo "Bonjour $participant, vous êtes connecté";
+                        
+                        // exit();
+                        }
+                    $query = "INSERT INTO Participation VALUES($participant,$annonce)";
+                }
+                 
+
                 }
             } catch (PDOException $e) {
                 echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
@@ -100,7 +118,7 @@
     <footer>
         <p> © 2022 - Bertille & Emma</p>
     </footer>
-
+    </form>
 </body>
 
 </html>
