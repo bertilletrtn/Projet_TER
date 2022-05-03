@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 
 <html lang="fr">
@@ -16,14 +19,13 @@
 </head>
 
 
-
 <body>
-    <form method="post">
+<form method="post">
     <header>
         <a href="../Site/site.php" class="logo">Join and Enjoy</a>
         <ul class="bar">
-            <li><a href="" >Les Annonces</a></li>
-            <li><a href="" onclick="formulaireannonce.php">Poster</a></li>
+            <li><a href="../Site/formulaireannonce.php">Les Annonces</a></li>
+            <li><a href="../Site/formulaireannonce.php">Poster</a></li>
             <li><a href="../Compte/Compte.html" class="btn-compte">Compte</a></li>
         </ul>
     </header>
@@ -36,6 +38,7 @@
 
         <div id="annonces">
             <?php
+
             try {
                 require_once("connexpdo.inc.php");
 
@@ -43,42 +46,41 @@
                 //session_start();
                 $pdo = connexpdo("Projet");
 
-                $sql = "SELECT *, a.ville AS villeAnnonce FROM Annonces a JOIN Utilisateurs u ON a.Proprietaire = u.Num_Tel ORDER BY Date DESC";
-                $reponse = $pdo->query($sql);
+                $sql = "SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel ORDER BY date DESC";
+                $reponse = $pdo -> query($sql);
 
-                $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+                $tableau = $reponse -> fetchAll(PDO::FETCH_OBJ);
 
 
-                foreach ($tableau as $item) {
-                    $arr_heure_debut = explode(":", $item->HeureDebut);
+                foreach($tableau as $item) {
+                    /*
+                    echo "<pre>";
+                    var_dump($item);
+                    echo "</pre>";
+                    */
+
+                    $arr_heure_debut = explode(":", $item -> HeureDebut);
                     $heure_debut = $arr_heure_debut[0] . ":" . $arr_heure_debut[1];
 
-                    $theme = $item->Theme;
+                    $theme = $item -> theme;
 
-                    $Pseudo = $item->Pseudo;
-                    if ($item->Pseudo == "") {
-                        $Pseudo = $item->Prenom;
+                    $Pseudo = $item -> Pseudo;
+                    if($item -> Pseudo === "") {
+                        $Pseudo = $item -> Prenom;
                     }
 
-                    // echo "<pre>";
-                    // var_dump($item);
-                    // echo "</pre>";
-
-
-                   	
 
                     echo "<div class='elementannonce'>
                     <div id='gauche'>
                             <h1>{$item->Titre}</h1>
                             <p1>{$Pseudo} propose </p1>
-                            <p2>{$item->villeAnnonce} {$item->Lieu}</p2>
+                            <p2>{$item->villeannonce} {$item->Lieu}</p2>
                             <p3>Le {$item->Date} à {$heure_debut}</p3>
                             <h5>{$item->Info_sup}</h5>
                     </div>
                 
    
                     <div id='droite'>
-
                         <img src='../Ressource/$theme.webp' alt='$theme' width='250px' height='auto' />
 
                         <div id='bouton'>
@@ -88,38 +90,37 @@
                     </div>
 
                  </div>";
-                 
-                 if (isset($_POST['bouton-participer']))
-                 {
-                    $annonce = $pdo->query("SELECT id FROM ANNONCES");
 
-                    if($_SESSION['Num_Tel'] !== ""){
-                        $participant = $_SESSION['Num_Tel'];
-                         // afficher un message
-                        echo "Bonjour $participant, vous êtes connecté";
-                        
-                        // exit();
-                        }
-                    $query = "INSERT INTO Participation VALUES($participant,$annonce)";
-                }
-                 
+                    //      $annonce = $pdo->query("SELECT id FROM ANNONCES");
+                    //      if (isset($_POST['bouton-participer']))
+                    //      {
+                    //         if($_SESSION['Num_Tel'] !== ""){
+                    //             $participant = $_SESSION['Num_Tel'];
+                    //              // afficher un message
+                    //             echo "Bonjour $participant, vous êtes connecté";
+
+                    //             // exit();
+                    //             }
+                    //         $query = "INSERT INTO Participation VALUES($participant,$annonce)";
+                    //     }
+
 
                 }
-            } catch (PDOException $e) {
-                echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
+            } catch(PDOException $e) {
+                echo 'Impossible de traiter les données. Erreur : ' . $e -> getMessage();
             }
             ?>
         </div>
 
 
-        <a href="#top" id="scrollUp"><img src="../Ressource/to_top.png" /></a>
+        <a href="#top" id="scrollUp"><img src="../Ressource/to_top.png"/></a>
 
     </main>
 
     <footer>
         <p> © 2022 - Bertille & Emma</p>
     </footer>
-    </form>
+</form>
 </body>
 
 </html>
