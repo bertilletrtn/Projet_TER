@@ -15,7 +15,7 @@
     
     
         <div class="container-first">
-            <h1><span>Titre</span></h1>
+            <h1><span>Join and Enjoy</span></h1>
             <div class="container-btns">
                 <input class="btn-first b1" type=button onclick=window.location.href='../Connexion/connexion.php'; value=Connexion />     
                 <input class="btn-first b2" type=button onclick=window.location.href='../Inscription/inscription.php'; value=Inscription />

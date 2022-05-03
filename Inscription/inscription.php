@@ -23,7 +23,7 @@ include("../header.php");
             <table>
                 <tr>
                     <td>Nom :</td>
-                    <td><input type="text" name="nom" size="40" maxlength="50" required/></td>
+                    <td><input type="text" name="nom" pattern="[a-zA-Z]{3,}" size="40" maxlength="50" required/></td>
                 </tr>
                 <tr>
                     <td>Prenom :</td>
@@ -35,7 +35,7 @@ include("../header.php");
                 </tr>
                 <tr>
                     <td>Téléphone :</td>
-                    <td><input type="tel" pattern="[0-9]{10}" maxlength="10" name="tel" required /></td>
+                    <td><input type="tel" pattern="{10}" maxlength="10" name="tel" required /></td>
                 </tr>
                 <tr>
                     <td>Ville :</td>
@@ -79,7 +79,7 @@ if(!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['tel']) &&
             return;
         }
 
-        $query = "INSERT INTO Utilisateurs VALUES($nom,$prenom,$pseudo,$age,$tel,$ville,$mdp)";
+        $query = "INSERT INTO utilisateurs VALUES($nom,$prenom,$pseudo,$age,$tel,$ville,$mdp)";
         $nb = $idcom -> exec($query);
         if($nb != 1) {
             alert("Erreur : \"$idcom->errorCode()\"");

@@ -21,6 +21,8 @@ session_start();
 
 <body>
 <form method="post">
+
+
     <header>
         <a href="../Site/site.php" class="logo">Join and Enjoy</a>
         <ul class="bar">

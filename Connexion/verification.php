@@ -17,7 +17,7 @@ if(isset($_POST['Num_Tel']) && isset($_POST['Mdp']))
     
     if($username !== "" && $password !== "")
     {
-        $requete = "SELECT count(*) FROM Utilisateurs where 
+        $requete = "SELECT count(*) FROM utilisateurs where 
               Num_Tel = '".$username."' and Mdp = '".$password."' ";
         $exec_requete = mysqli_query($db,$requete);
         $reponse      = mysqli_fetch_array($exec_requete);
