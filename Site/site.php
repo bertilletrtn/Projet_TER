@@ -15,7 +15,7 @@ session_start();
     <link rel="stylesheet" href="../footer.css">
 
 
-    <title>Site principal</title>
+    <title>Join and Enjoy</title>
 </head>
 
 
@@ -23,14 +23,9 @@ session_start();
 <form method="post">
 
 
-    <header>
-        <a href="../Site/site.php" class="logo">Join and Enjoy</a>
-        <ul class="bar">
-            <li><a href="../Site/formulaireannonce.php">Les Annonces</a></li>
-            <li><a href="../Site/formulaireannonce.php">Poster</a></li>
-            <li><a href="../Compte/Compte.html" class="btn-compte">Compte</a></li>
-        </ul>
-    </header>
+    <?php
+        include("../header.php");
+    ?>
 
     <main>
 
