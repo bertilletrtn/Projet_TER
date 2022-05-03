@@ -42,4 +42,3 @@ else
    header('Location: connexion.php');
 }
 mysqli_close($db); // fermer la connexion
-?>
