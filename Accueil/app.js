@@ -1,3 +1,6 @@
+/*Cette page sert pour faire une animatino textuel du Titre principal de la Fac*/
+
+
 const titreSpans = document.querySelectorAll('h1 span');
 const btns = document.querySelectorAll('.btn-first');
 const btns1 = document.querySelectorAll('.btn-first:nth-child(1)');
