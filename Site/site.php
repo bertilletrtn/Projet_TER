@@ -1,4 +1,5 @@
 <?php
+include('../Helpers/Text.php');
 session_start();
 ?>
 <!DOCTYPE html>
@@ -7,11 +8,13 @@ session_start();
 
 <?php
         require_once("connexpdo.inc.php");
+
+
+        //session_start();
         $pdo = connexpdo("Projet");
 
-
         $page = $_GET['page'] ?? 1;
-        if (!filter_var($page, FILTER_VALIDATE_INT)){
+        if (!filter_var($page, FILTER_VALIDATE_INT)) {
             throw new Exception('Numéro de page invalide');
         }
 
@@ -34,6 +37,13 @@ session_start();
         }
 
         $offset = $perPage * ($currentPage - 1);
+
+
+        $sql = ("SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel ORDER BY date DESC LIMIT $perPage OFFSET $offset");
+        $reponse = $pdo->query($sql);
+
+        $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+
 ?>
 
 
@@ -150,88 +160,35 @@ session_start();
 
                 <!-- <div class="event_Mois">mettre le mois </div> -->
 
-                <?php
-
-                try {
-                    require_once("connexpdo.inc.php");
-
-
-                    //session_start();
-                    $pdo = connexpdo("Projet");
-
-                    $sql = ("SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel ORDER BY date DESC LIMIT $perPage OFFSET $offset");
-                    $reponse = $pdo->query($sql);
-
-                    $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
-
-
-                    foreach ($tableau as $item) {
-                        /*
-                    echo "<pre>";
-                    var_dump($item);
-                    echo "</pre>";
-                    */
-
+                <?php try {  ?>
+                    <?php foreach ($tableau as $item) : ?>
+                    <?php
                         $arr_heure_debut = explode(":", $item->HeureDebut);
                         $heure_debut = $arr_heure_debut[0] . ":" . $arr_heure_debut[1];
-
+                
                         $arr_date_debut = explode("-", $item->Date);
                         $datee = $arr_date_debut[1] . "-" . $arr_date_debut[2];
-
+                
                         $theme = $item->theme;
-
+                
                         $Pseudo = $item->Pseudo;
                         if ($item->Pseudo === "") {
                             $Pseudo = $item->Prenom;
                         }
+                    ?>
 
+                        <div style="flex:center" class='elementannonce'>
 
-                        echo "<div style='flex::center;' class='elementannonce'>
+                            <div class='event_date'> <?= $datee ?> à <?= $heure_debut ?></div>
+                            <div class='event_titre'>
+                                <a href='#'> <?= htmlentities(Text::excerpt($item->Titre)) ?> </a>
+                            </div>
+                            <div class='event_nbr_participant'> ??? </div>
+                            <div class='event_organisateur'> <?= $Pseudo ?> </div>
+                        </div>
 
-                                <div class='event_date'>{$datee} à {$heure_debut}</div>
-                                <div class='event_titre'>
-                                    <a href=''>{$item->Titre}</a>
-                                </div>
-                                <div class='event_nbr_participant'> ??? </div>
-                                <div class='event_organisateur'> {$Pseudo} </div>
-                              </div>";
-
-
-                        //<div id='droite'>
-                        //     <div id='bouton'>
-                        //     <input type='submit' id='bouton-participer' value='participer'/>
-                        //     <input type='button' id='bouton-commenter' value='Commenter'/>
-                        //     </div>
-                        // </div>
-
-                        // <img src='../Ressource/$theme.webp' alt='$theme' width='250px' height='auto' />
-
-
-                        // <h1>{$item->Titre}</h1>
-                        // <p1>{$Pseudo} propose </p1>
-                        // <p2>{$item->villeannonce} {$item->Lieu}</p2>
-                        // <p3>Le {$item->Date} à {$heure_debut}</p3>
-                        // <h5>{$item->Info_sup}</h5>
-
-
-
-
-                        //      $annonce = $pdo->query("SELECT id FROM ANNONCES");
-                        //      if (isset($_POST['bouton-participer']))
-                        //      {
-                        //         if($_SESSION['Num_Tel'] !== ""){
-                        //             $participant = $_SESSION['Num_Tel'];
-                        //              // afficher un message
-                        //             echo "Bonjour $participant, vous êtes connecté";
-
-                        //             // exit();
-                        //             }
-                        //         $query = "INSERT INTO Participation VALUES($participant,$annonce)";
-                        //     }
-
-
-                    }
-                } catch (PDOException $e) {
+                    <?php endforeach ?>
+                <?php } catch (PDOException $e) {
                     echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
                 }
                 ?>
@@ -240,11 +197,11 @@ session_start();
                 <div class="d-flex justify-content-between my-4">
                     <?php if ($currentPage > 1) : ?>
                         <?php
-                            $link = "site.php";
-                            if($currentPage > 2) $link .= '?page=' . ($currentPage -1);
-                            ?>
+                        $link = "site.php";
+                        if ($currentPage > 2) $link .= '?page=' . ($currentPage - 1);
+                        ?>
                         <a href="<?= $link ?>" class="btn btn-prmiary">&laquo; Page précédente</a>
-                        <?php endif ?>
+                    <?php endif ?>
                     <?php if ($currentPage < $pages) : ?>
                         <a href="site.php?page=<?= $currentPage + 1 ?>" class="btn btn-prmiary ml-auto">Page suivante &raquo;</a>
                     <?php endif ?>
@@ -264,3 +221,17 @@ session_start();
 </body>
 
 </html>
+
+
+
+
+
+
+<!-- //<div id='droite'>
+                        //     <div id='bouton'>
+                        //     <input type='submit' id='bouton-participer' value='participer'/>
+                        //     <input type='button' id='bouton-commenter' value='Commenter'/>
+                        //     </div>
+                        // </div>
+
+                        // <img src='../Ressource/$theme.webp' alt='$theme' width='250px' height='auto' /> -->
