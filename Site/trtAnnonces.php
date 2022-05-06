@@ -7,6 +7,8 @@ Conf::show_tables();
 
 var_dump($_SESSION);
 
+
+
 $sql = "
     INSERT INTO annonces(ville, lieu, date, heuredebut, heurefin, theme, theme2, theme3, info_sup, titre, proprietaire) 
     VALUES (:ville, :lieu, :date, :hdebut, :hfin, :theme1, :theme2, :theme3, :infosup, :titre, :proprietaire)

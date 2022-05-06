@@ -5,6 +5,37 @@ session_start();
 
 <html lang="fr">
 
+<?php
+        require_once("connexpdo.inc.php");
+        $pdo = connexpdo("Projet");
+
+
+        $page = $_GET['page'] ?? 1;
+        if (!filter_var($page, FILTER_VALIDATE_INT)){
+            throw new Exception('Numéro de page invalide');
+        }
+
+        // if ($page == '1'){
+        //     header('Location: site.php');
+        //     http_response_code(301);
+        //     exit();
+        // }
+
+        $currentPage = (int)$page;
+        if ($currentPage <= 0) {
+            throw new Exception('Numero de page invalide');
+        }
+
+        $count = (int)$pdo->query('SELECT COUNT(id) FROM annonces')->fetch(PDO::FETCH_NUM)[0];
+        $perPage = 5;
+        $pages = ceil($count / $perPage);
+        if ($currentPage > $pages) {
+            throw new Exception('Cett page n\'existe pas');
+        }
+
+        $offset = $perPage * ($currentPage - 1);
+?>
+
 
 <head>
     <meta charset="UTF-8">
@@ -20,102 +51,216 @@ session_start();
 
 
 <body>
-<form method="post">
+    <form method="post">
 
 
-    <?php
+        <?php
         include("../header.php");
-    ?>
+        //include("trtFiltre.php");
+        ?>
 
-    <main>
+        <main>
 
-        <div id="filtres">
-            FILTRE
-        </div>
+            <div id="filtres">
 
-        <div id="annonces">
-            <?php
+                <form>
+                    <div class="controls">
 
-            try {
-                require_once("connexpdo.inc.php");
+                        <fieldset>
+                            <legend>Titre :</legend>
+                            <input type="text" id="titreFiltre" pattern="{a-zA-Z}" name="titre" size="10">
+                        </fieldset>
+                        <fieldset>
+                            <legend>Ville :</legend>
+                            <input type="text" id="villeFiltre" pattern="{a-zA-Z}" name="ville" size="10">
+                        </fieldset>
+                        <fieldset>
+                            <legend>Lieu :</legend>
+                            <input type="text" id="lieuFiltre" pattern="{a-zA-Z}" name="lieu" size="10">
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Date :</legend>
+                            <input type="date" id="dateFiltre" name="dateFiltre">
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Quels thèmes :</legend>
+                            <div>
+                                <input type="checkbox" id="coding" name="musiqueFiltre" value="musique">
+                                <label for="coding">Musique</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="music" name="cinemaFiltre" value="cinema">
+                                <label for="music">Cinéma</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="music" name="sportFiltre" value="sport">
+                                <label for="music">Sport</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="music" name="travailFiltre" value="travail">
+                                <label for="music">Travail</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="music" name="alimentationFiltre" value="alimentation">
+                                <label for="music">Alimentation</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="music" name="cultureFiltre" value="culture">
+                                <label for="music">Culture</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="music" name="barFiltre" value="bar">
+                                <label for="music">Bar</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="music" name="festivalFiltre" value="festival">
+                                <label for="music">Festival</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="music" name="loisirFiltre" value="loisir">
+                                <label for="music">Loisir</label>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Heure de Début :</legend>
+                            </label>
+                            <input id="appt-time" type="time" name="appt-time" min="00:00" max="23:59">
+                            <span class="validity">
+                        </fieldset>
+
+                        <input type="reset" value="Oups je veux recommencer">
+                        <input type="submit" value="Zzeee partyyy">
+
+                    </div>
+                </form>
 
 
-                //session_start();
-                $pdo = connexpdo("Projet");
+            </div>
 
-                $sql = "SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel ORDER BY date DESC";
-                $reponse = $pdo -> query($sql);
+            <div id="annonces">
+                <div class="event">
+                    <div class="eventDate"> Date </div>
+                    <div class="eventTitre"> Titre </div>
+                    <div class="eventParticipant"> Participant </div>
+                    <div class="eventOrganisateur"> Organisateur </div>
+                </div>
 
-                $tableau = $reponse -> fetchAll(PDO::FETCH_OBJ);
+                <!-- <div class="event_Mois">mettre le mois </div> -->
+
+                <?php
+
+                try {
+                    require_once("connexpdo.inc.php");
 
 
-                foreach($tableau as $item) {
-                    /*
+                    //session_start();
+                    $pdo = connexpdo("Projet");
+
+                    $sql = ("SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel ORDER BY date DESC LIMIT $perPage OFFSET $offset");
+                    $reponse = $pdo->query($sql);
+
+                    $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+
+
+                    foreach ($tableau as $item) {
+                        /*
                     echo "<pre>";
                     var_dump($item);
                     echo "</pre>";
                     */
 
-                    $arr_heure_debut = explode(":", $item -> HeureDebut);
-                    $heure_debut = $arr_heure_debut[0] . ":" . $arr_heure_debut[1];
+                        $arr_heure_debut = explode(":", $item->HeureDebut);
+                        $heure_debut = $arr_heure_debut[0] . ":" . $arr_heure_debut[1];
 
-                    $theme = $item -> theme;
+                        $arr_date_debut = explode("-", $item->Date);
+                        $datee = $arr_date_debut[1] . "-" . $arr_date_debut[2];
 
-                    $Pseudo = $item -> Pseudo;
-                    if($item -> Pseudo === "") {
-                        $Pseudo = $item -> Prenom;
+                        $theme = $item->theme;
+
+                        $Pseudo = $item->Pseudo;
+                        if ($item->Pseudo === "") {
+                            $Pseudo = $item->Prenom;
+                        }
+
+
+                        echo "<div style='flex::center;' class='elementannonce'>
+
+                                <div class='event_date'>{$datee} à {$heure_debut}</div>
+                                <div class='event_titre'>
+                                    <a href=''>{$item->Titre}</a>
+                                </div>
+                                <div class='event_nbr_participant'> ??? </div>
+                                <div class='event_organisateur'> {$Pseudo} </div>
+                              </div>";
+
+
+                        //<div id='droite'>
+                        //     <div id='bouton'>
+                        //     <input type='submit' id='bouton-participer' value='participer'/>
+                        //     <input type='button' id='bouton-commenter' value='Commenter'/>
+                        //     </div>
+                        // </div>
+
+                        // <img src='../Ressource/$theme.webp' alt='$theme' width='250px' height='auto' />
+
+
+                        // <h1>{$item->Titre}</h1>
+                        // <p1>{$Pseudo} propose </p1>
+                        // <p2>{$item->villeannonce} {$item->Lieu}</p2>
+                        // <p3>Le {$item->Date} à {$heure_debut}</p3>
+                        // <h5>{$item->Info_sup}</h5>
+
+
+
+
+                        //      $annonce = $pdo->query("SELECT id FROM ANNONCES");
+                        //      if (isset($_POST['bouton-participer']))
+                        //      {
+                        //         if($_SESSION['Num_Tel'] !== ""){
+                        //             $participant = $_SESSION['Num_Tel'];
+                        //              // afficher un message
+                        //             echo "Bonjour $participant, vous êtes connecté";
+
+                        //             // exit();
+                        //             }
+                        //         $query = "INSERT INTO Participation VALUES($participant,$annonce)";
+                        //     }
+
+
                     }
-
-
-                    echo "<div class='elementannonce'>
-                    <div id='gauche'>
-                            <h1>{$item->Titre}</h1>
-                            <p1>{$Pseudo} propose </p1>
-                            <p2>{$item->villeannonce} {$item->Lieu}</p2>
-                            <p3>Le {$item->Date} à {$heure_debut}</p3>
-                            <h5>{$item->Info_sup}</h5>
-                    </div>
-                
-   
-                    <div id='droite'>
-                        <img src='../Ressource/$theme.webp' alt='$theme' width='250px' height='auto' />
-                        <div id='bouton'>
-                        <input type='submit' id='bouton-participer' value='participer'/>
-                        <input type='button' id='bouton-commenter' value='Commenter'/>
-                        </div>
-                    </div>
-                 </div>";
-
-                    //      $annonce = $pdo->query("SELECT id FROM ANNONCES");
-                    //      if (isset($_POST['bouton-participer']))
-                    //      {
-                    //         if($_SESSION['Num_Tel'] !== ""){
-                    //             $participant = $_SESSION['Num_Tel'];
-                    //              // afficher un message
-                    //             echo "Bonjour $participant, vous êtes connecté";
-
-                    //             // exit();
-                    //             }
-                    //         $query = "INSERT INTO Participation VALUES($participant,$annonce)";
-                    //     }
-
-
+                } catch (PDOException $e) {
+                    echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
                 }
-            } catch(PDOException $e) {
-                echo 'Impossible de traiter les données. Erreur : ' . $e -> getMessage();
-            }
-            ?>
-        </div>
+                ?>
 
 
-        <a href="#top" id="scrollUp"><img src="../Ressource/to_top.png"/></a>
+                <div class="d-flex justify-content-between my-4">
+                    <?php if ($currentPage > 1) : ?>
+                        <?php
+                            $link = "site.php";
+                            if($currentPage > 2) $link .= '?page=' . ($currentPage -1);
+                            ?>
+                        <a href="<?= $link ?>" class="btn btn-prmiary">&laquo; Page précédente</a>
+                        <?php endif ?>
+                    <?php if ($currentPage < $pages) : ?>
+                        <a href="site.php?page=<?= $currentPage + 1 ?>" class="btn btn-prmiary ml-auto">Page suivante &raquo;</a>
+                    <?php endif ?>
+                </div>
 
-    </main>
+            </div>
 
-    <footer>
-        <p> © 2022 - Bertille & Emma</p>
-    </footer>
-</form>
+
+            <a href="#top" id="scrollUp"><img src="../Ressource/to_top.png" /></a>
+
+        </main>
+
+        <footer>
+            <p> © 2022 - Bertille & Emma</p>
+        </footer>
+    </form>
 </body>
 
 </html>
