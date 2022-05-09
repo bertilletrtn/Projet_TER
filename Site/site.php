@@ -181,7 +181,8 @@ session_start();
 
                             <div class='event_date'> <?= $datee ?> à <?= $heure_debut ?></div>
                             <div class='event_titre'>
-                                <a href='#'> <?= htmlentities(Text::excerpt($item->Titre)) ?> </a>
+                                <a href='#'> <?= htmlentities($item->Titre) ?> </a>
+                                
                             </div>
                             <div class='event_nbr_participant'> ??? </div>
                             <div class='event_organisateur'> <?= $Pseudo ?> </div>
