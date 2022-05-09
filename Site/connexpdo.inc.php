@@ -18,5 +18,3 @@ function connexpdo(string $db)
     }
 
 }
-
-?>
