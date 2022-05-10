@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="header.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>Join and Enjoy</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#icon').click(function () {
+                $('ul').toggleClass('show');
+            })
+        })
+    </script>
+</head>
+
+<body>
+
+
+
+    <nav>
+        <label href="../Site/site.php" class="logo">Join and Enjoy</label>
+        <ul class="menuhaut">
+            <li><a class="active" href="../Compte/Compte.php">Mon Compte</a></li>
+            <li><a href="../Site/formulaireannonce.html">Poster</a></li>
+            <li><a href="#">Mes Annonces</a></li>
+            <li><a href="../Site/logout.php">Deconnexion</a></li>
+        </ul>
+        <label id="icon">
+            <i class="fas fa-bars"></i>
+        </label>
+    </nav>_
+
+
+</body>
+
+</html>

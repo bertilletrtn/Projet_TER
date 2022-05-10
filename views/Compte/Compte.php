@@ -1,21 +1,21 @@
-<html lang="en">
+<?php
+include "../layouts/header.html";
+session_start();
+?>
+
+
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="compte.css">
-    <link rel="stylesheet" href="../header.css">
-    <link rel="stylesheet" href="../footer.css">
-
     <title>Compte</title>
 </head>
 
 <body>
 
-    <?php
-    include("../header.php");
-    ?>
     <main>
 
         <div id="menu">
@@ -27,46 +27,46 @@
 
             <div id="annonces">
                 <div id="annonces-gauche">
-                <h3>Mes annonces : </h3>
+                    <h3>Mes annonces : </h3>
 
-                <?php
+                    <?php
 
-                session_start();
-
-
-                try {
-                    require_once("../Site/connexpdo.inc.php");
-
-                    $pdo = connexpdo("Projet");
-
-                    if ($_SESSION['Num_Tel'] !== "") {
-                        $proprietaire = $_SESSION['Num_Tel'];
-                    }
-
-                    $sql = "SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel WHERE u.num_tel='$proprietaire' ORDER BY date DESC";
-                    $reponse = $pdo->query($sql);
-
-                    $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+                    session_start();
 
 
-                    foreach ($tableau as $item) {
-                        /*
+                    try {
+                        require_once("../Site/Connexion.php");
+
+                        $pdo = connexpdo("Projet");
+
+                        if ($_SESSION['Num_Tel'] !== "") {
+                            $proprietaire = $_SESSION['Num_Tel'];
+                        }
+
+                        $sql = "SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel WHERE u.num_tel='$proprietaire' ORDER BY date DESC";
+                        $reponse = $pdo->query($sql);
+
+                        $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+
+
+                        foreach ($tableau as $item) {
+                            /*
                     echo "<pre>";
                     var_dump($item);
                     echo "</pre>";
                     */
 
-                        $arr_heure_debut = explode(":", $item->HeureDebut);
-                        $heure_debut = $arr_heure_debut[0] . ":" . $arr_heure_debut[1];
+                            $arr_heure_debut = explode(":", $item->HeureDebut);
+                            $heure_debut = $arr_heure_debut[0] . ":" . $arr_heure_debut[1];
 
-                        $theme = $item->theme;
+                            $theme = $item->theme;
 
-                        $Pseudo = $item->Pseudo;
-                        if ($item->Pseudo === "") {
-                            $Pseudo = $item->Prenom;
-                        }
+                            $Pseudo = $item->Pseudo;
+                            if ($item->Pseudo === "") {
+                                $Pseudo = $item->Prenom;
+                            }
 
-                        echo "<div class='elementannonce'>
+                            echo "<div class='elementannonce'>
                     <div id='gauche'>
                             <h1>{$item->Titre}</h1>
                             <p1>{$Pseudo} propose </p1>
@@ -84,23 +84,23 @@
                         </div>
                     </div>
         </div>";
+                        }
+                    } catch (PDOException $e) {
+                        echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
                     }
-                } catch (PDOException $e) {
-                    echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
-                }
-                ?>
+                    ?>
                 </div>
                 <div id="annonces-droite">
 
                     <h3>Les participation à mes annonces : </h3>
-                    <?php 
-                    
+                    <?php
+
                     $sql = "SELECT * FROM participation p JOIN utilisateurs u ON u.num_tel = p.Participant JOIN annonces a ON a.id = p.Annonce WHERE p.Participant='$proprietaire'";
-                    $reponse = $pdo->query($sql);  
-                    
+                    $reponse = $pdo->query($sql);
+
                     $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
 
-                    foreach ($tableau as $item){
+                    foreach ($tableau as $item) {
 
                         $Pseudo = $item->Pseudo;
                         if ($item->Pseudo === "") {
@@ -111,9 +111,8 @@
                         <p3>{$item->id}    </p3>
                         
                         ";
-
                     }
-                    
+
                     ?>
 
                 </div>
@@ -169,12 +168,11 @@
 
 
         </div>
+        <?php require "../layouts/footer.php"; ?>
 
     </main>
 
-    <footer>
-        <p> Â© 2022 - Bertille & Emma</p>
-    </footer>
+
 
 
 </body>

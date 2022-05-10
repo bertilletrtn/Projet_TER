@@ -1,59 +1,59 @@
 <?php
-include('../Helpers/Text.php');
+
+require "../../src/Helpers/Text.php";
+require "../layouts/header.html";
 session_start();
 ?>
-<!DOCTYPE html>
-
-<html lang="fr">
+<!--JQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <?php
-        require_once("connexpdo.inc.php");
+require_once("connexpdo.inc.php");
 
 
-        //session_start();
-        $pdo = connexpdo("Projet");
+//session_start();
+$pdo = connexpdo("Projet");
 
-        $page = $_GET['page'] ?? 1;
-        if (!filter_var($page, FILTER_VALIDATE_INT)) {
-            throw new Exception('Numéro de page invalide');
-        }
+$page = $_GET['page'] ?? 1;
+if (!filter_var($page, FILTER_VALIDATE_INT)) {
+    throw new Exception('Numéro de page invalide');
+}
 
-        // if ($page == '1'){
-        //     header('Location: site.php');
-        //     http_response_code(301);
-        //     exit();
-        // }
+// if ($page == '1'){
+//     header('Location: site.php');
+//     http_response_code(301);
+//     exit();
+// }
 
-        $currentPage = (int)$page;
-        if ($currentPage <= 0) {
-            throw new Exception('Numero de page invalide');
-        }
+$currentPage = (int)$page;
+if ($currentPage <= 0) {
+    throw new Exception('Numero de page invalide');
+}
 
-        $count = (int)$pdo->query('SELECT COUNT(id) FROM annonces')->fetch(PDO::FETCH_NUM)[0];
-        $perPage = 5;
-        $pages = ceil($count / $perPage);
-        if ($currentPage > $pages) {
-            throw new Exception('Cett page n\'existe pas');
-        }
+$count = (int)$pdo->query('SELECT COUNT(id) FROM annonces')->fetch(PDO::FETCH_NUM)[0];
+$perPage = 8;
+$pages = ceil($count / $perPage);
+if ($currentPage > $pages) {
+    throw new Exception('Cett page n\'existe pas');
+}
 
-        $offset = $perPage * ($currentPage - 1);
+$offset = $perPage * ($currentPage - 1);
 
 
-        $sql = ("SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel ORDER BY date DESC LIMIT $perPage OFFSET $offset");
-        $reponse = $pdo->query($sql);
+$sql = ("SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel ORDER BY date DESC LIMIT $perPage OFFSET $offset");
+$reponse = $pdo->query($sql);
 
-        $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+$tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
 
 ?>
 
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="site.css">
-    <link rel="stylesheet" href="../header.css">
-    <link rel="stylesheet" href="../footer.css">
+    <link rel="stylesheet" href="../layouts/header.css">
+    <link rel="stylesheet" href="../layouts/footer.css">
 
 
     <title>Join and Enjoy</title>
@@ -62,12 +62,6 @@ session_start();
 
 <body>
     <form method="post">
-
-
-        <?php
-        include("../header.php");
-        //include("trtFiltre.php");
-        ?>
 
         <main>
 
@@ -97,39 +91,39 @@ session_start();
                         <fieldset>
                             <legend>Quels thèmes :</legend>
                             <div>
-                                <input type="checkbox" id="coding" name="musiqueFiltre" value="musique">
+                                <input type="checkbox" id="musique" name="musiqueFiltre" value="product_check">
                                 <label for="coding">Musique</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="music" name="cinemaFiltre" value="cinema">
+                                <input type="checkbox" id="cinema" name="cinemaFiltre" value="product_check">
                                 <label for="music">Cinéma</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="music" name="sportFiltre" value="sport">
+                                <input type="checkbox" id="sport" name="sportFiltre" value="product_check">
                                 <label for="music">Sport</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="music" name="travailFiltre" value="travail">
+                                <input type="checkbox" id="travail" name="travailFiltre" value="product_check">
                                 <label for="music">Travail</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="music" name="alimentationFiltre" value="alimentation">
+                                <input type="checkbox" id="alimentation" name="alimentationFiltre" value="product_check">
                                 <label for="music">Alimentation</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="music" name="cultureFiltre" value="culture">
+                                <input type="checkbox" id="culture" name="cultureFiltre" value="product_check">
                                 <label for="music">Culture</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="music" name="barFiltre" value="bar">
+                                <input type="checkbox" id="bar" name="barFiltre" value="product_check">
                                 <label for="music">Bar</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="music" name="festivalFiltre" value="festival">
+                                <input type="checkbox" id="festival" name="festivalFiltre" value="product_check">
                                 <label for="music">Festival</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="music" name="loisirFiltre" value="loisir">
+                                <input type="checkbox" id="loisir" name="loisirFiltre" value="product_check">
                                 <label for="music">Loisir</label>
                             </div>
                         </fieldset>
@@ -162,29 +156,32 @@ session_start();
 
                 <?php try {  ?>
                     <?php foreach ($tableau as $item) : ?>
-                    <?php
+                        <?php
                         $arr_heure_debut = explode(":", $item->HeureDebut);
                         $heure_debut = $arr_heure_debut[0] . ":" . $arr_heure_debut[1];
-                
+
                         $arr_date_debut = explode("-", $item->Date);
                         $datee = $arr_date_debut[1] . "-" . $arr_date_debut[2];
-                
+
                         $theme = $item->theme;
-                
+
                         $Pseudo = $item->Pseudo;
                         if ($item->Pseudo === "") {
                             $Pseudo = $item->Prenom;
                         }
-                    ?>
+
+                        $id = $item->id;
+
+                        ?>
 
                         <div style="flex:center" class='elementannonce'>
 
                             <div class='event_date'> <?= $datee ?> à <?= $heure_debut ?></div>
                             <div class='event_titre'>
-                                <a href='#'> <?= htmlentities($item->Titre) ?> </a>
-                                
+                                <a href='siteannonce.php?<?=$id?>'> <?= htmlentities(Text::excerpt($item->Titre)) ?> </a>
+
                             </div>
-                            <div class='event_nbr_participant'> ??? </div>
+                            <div class='event_nbr_participant'> <?= $id ?> </div>
                             <div class='event_organisateur'> <?= $Pseudo ?> </div>
                         </div>
 
@@ -211,15 +208,17 @@ session_start();
             </div>
 
 
-            <a href="#top" id="scrollUp"><img src="../Ressource/to_top.png" /></a>
+            <a href="#top" id="scrollUp"><img src="../../Ressource/to_top.png" /></a>
 
         </main>
-
-        <footer>
-            <p> © 2022 - Bertille & Emma</p>
-        </footer>
     </form>
+    <?php require "../layouts/footer.php"; ?>
+
+    <!-- <script type="text/javascript" src="../js//app.js"></script> -->
+
 </body>
+
+
 
 </html>
 

@@ -1,5 +1,5 @@
 <?php
-include("../BDD/connexionpdo.php");
+include("../../BDD/connexionpdo.php");
 $idcom = connexpdo("Projet");
 if(!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['tel']) && !empty($_POST['age']) && !empty($_POST['mdp'])) {
     try {
