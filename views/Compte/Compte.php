@@ -31,7 +31,7 @@ session_start();
 
                     <?php
 
-                    session_start();
+                    // session_start();
 
 
                     try {
@@ -77,8 +77,10 @@ session_start();
             
 
                     <div id='droite'>
-                        <img src='../Ressource/$theme.webp' alt='$theme' width='250px' height='auto' />
+                       
+                        <img src='../../Ressource/$item->theme.webp' alt='theme' width='250px' height='auto' />
                         <div id='bouton'>
+
                             <input type='button' name='bouton-participer' value='participations' />
                             <input type='button' name='bouton-commenter' value='commentaires' />
                         </div>
@@ -169,6 +171,7 @@ session_start();
                             }
                             $i = $i + 1;
                         }
+                    }
                     } catch (PDOException $e) {
                         echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
                     }
@@ -211,8 +214,8 @@ session_start();
                     </div>
 
                     <div id='droite2'>
-                        <img src='../Ressource/$theme.webp' alt='$theme' width='250px' height='auto' />
-                        <div id='bouton'>
+                    <img src='../../Ressource/$item->theme.webp' alt='theme' width='250px' height='auto' />
+                    <div id='bouton'>
                             <input type='button' name='bouton-participer' value='annuler participation' />
                             <input type='button' name='bouton-commenter' value='commentaires' />
                         </div>
