@@ -27,46 +27,46 @@
 
             <div id="annonces">
                 <div id="annonces-gauche">
-                <h3>Mes annonces : </h3>
+                    <h3>Mes annonces : </h3>
 
-                <?php
+                    <?php
 
-                session_start();
-
-
-                try {
-                    require_once("../Site/connexpdo.inc.php");
-
-                    $pdo = connexpdo("Projet");
-
-                    if ($_SESSION['Num_Tel'] !== "") {
-                        $proprietaire = $_SESSION['Num_Tel'];
-                    }
-
-                    $sql = "SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel WHERE u.num_tel='$proprietaire' ORDER BY date DESC";
-                    $reponse = $pdo->query($sql);
-
-                    $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+                    session_start();
 
 
-                    foreach ($tableau as $item) {
-                        /*
+                    try {
+                        require_once("../Site/connexpdo.inc.php");
+
+                        $pdo = connexpdo("Projet");
+
+                        if ($_SESSION['Num_Tel'] !== "") {
+                            $proprietaire = $_SESSION['Num_Tel'];
+                        }
+
+                        $sql = "SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel WHERE u.num_tel='$proprietaire' ORDER BY date DESC";
+                        $reponse = $pdo->query($sql);
+
+                        $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+
+
+                        foreach ($tableau as $item) {
+                            /*
                     echo "<pre>";
                     var_dump($item);
                     echo "</pre>";
                     */
 
-                        $arr_heure_debut = explode(":", $item->HeureDebut);
-                        $heure_debut = $arr_heure_debut[0] . ":" . $arr_heure_debut[1];
+                            $arr_heure_debut = explode(":", $item->HeureDebut);
+                            $heure_debut = $arr_heure_debut[0] . ":" . $arr_heure_debut[1];
 
-                        $theme = $item->theme;
+                            $theme = $item->theme;
 
-                        $Pseudo = $item->Pseudo;
-                        if ($item->Pseudo === "") {
-                            $Pseudo = $item->Prenom;
-                        }
+                            $Pseudo = $item->Pseudo;
+                            if ($item->Pseudo === "") {
+                                $Pseudo = $item->Prenom;
+                            }
 
-                        echo "<div class='elementannonce'>
+                            echo "<div class='elementannonce'>
                     <div id='gauche'>
                             <h1>{$item->Titre}</h1>
                             <p1>{$Pseudo} propose </p1>
@@ -84,36 +84,88 @@
                         </div>
                     </div>
         </div>";
+                        }
+                    } catch (PDOException $e) {
+                        echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
                     }
-                } catch (PDOException $e) {
-                    echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
-                }
-                ?>
+                    ?>
                 </div>
                 <div id="annonces-droite">
 
                     <h3>Les participation à mes annonces : </h3>
-                    <?php 
-                    
-                    $sql = "SELECT * FROM participation p JOIN utilisateurs u ON u.num_tel = p.Participant JOIN annonces a ON a.id = p.Annonce WHERE p.Participant='$proprietaire'";
-                    $reponse = $pdo->query($sql);  
-                    
-                    $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+                    <?php
 
-                    foreach ($tableau as $item){
+                    try {
 
-                        $Pseudo = $item->Pseudo;
-                        if ($item->Pseudo === "") {
-                            $Pseudo = $item->Prenom;
+                        // $sql = "SELECT * FROM participation p JOIN annonces a ON a.id = p.Annonce JOIN utilisateurs u ON u.num_tel = a.Proprietaire WHERE a.Proprietaire='$proprietaire'";
+
+
+                        $sql = "SELECT p.Participant FROM participation p JOIN annonces a ON a.id = p.Annonce JOIN utilisateurs u ON u.num_tel = a.Proprietaire WHERE a.Proprietaire='$proprietaire'";
+
+
+                        $reponse = $pdo->query($sql);
+
+
+                        $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+
+
+                        $liste_id = array();
+
+                        $result = $pdo->query("SELECT id FROM annonces WHERE Proprietaire='$proprietaire'");
+                        while (list($id) = $result->fetch(PDO::FETCH_NUM)) {
+                            // echo "id: $id \n";
+
+
+                            array_push($liste_id, $id);
                         }
 
-                        echo "
-                        <p3>{$item->id}    </p3>
+                        // print_r($liste_id[0]);
+                        // print_r($liste_id[1]);
+                        // print_r($liste_id[2]);
+
+
+                        $taille_liste = (count($liste_id));
+                        // echo $taille_liste;
+
+                        for ($i = 0; $i < $taille_liste; $i++) {
+                            // print_r($liste_id[$i]);
+
+                        }
+                        $i = 0;
+
+
+                        while ($i < $taille_liste) {
+
+                            $liste_participant = array();
+
+                            echo "
+                            <table>
+                            <thead>
+                                <tr>
+                                    <th>Les participant a l'annonce $liste_id[$i] </th>
+                                </tr>
+                            </thead>";
+
+                            $requette =  $pdo->query("SELECT u.Prenom FROM participation p JOIN annonces a ON a.id = p.Annonce JOIN utilisateurs u ON p.Participant = u.Num_Tel WHERE a.Proprietaire='$proprietaire' and p.Annonce='$liste_id[$i]'");
+
+                            while (list($participant) = $requette->fetch(PDO::FETCH_NUM)) {
+
+                            echo "
+                            <tbody>
+                                <tr>
+                                    <td>$participant</td>
+                                </tr>
+                            </tbody>
+                        </table>
                         
                         ";
-
+                            }
+                            $i = $i + 1;
+                        }
+                    } catch (PDOException $e) {
+                        echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
                     }
-                    
+
                     ?>
 
                 </div>
@@ -154,7 +206,7 @@
                     <div id='droite2'>
                         <img src='../Ressource/$theme.webp' alt='$theme' width='250px' height='auto' />
                         <div id='bouton'>
-                            <input type='button' name='bouton-participer' value='participations' />
+                            <input type='button' name='bouton-participer' value='annuler participation' />
                             <input type='button' name='bouton-commenter' value='commentaires' />
                         </div>
                     </div>
