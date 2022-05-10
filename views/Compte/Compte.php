@@ -1,21 +1,21 @@
-<html lang="en">
+<?php
+include "../layouts/header.html";
+session_start();
+?>
+
+
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="compte.css">
-    <link rel="stylesheet" href="../header.css">
-    <link rel="stylesheet" href="../footer.css">
-
     <title>Compte</title>
 </head>
 
 <body>
 
-    <?php
-    include("../header.php");
-    ?>
     <main>
 
         <div id="menu">
@@ -96,6 +96,13 @@
                     <?php
 
                     try {
+
+                    $sql = "SELECT * FROM participation p JOIN utilisateurs u ON u.num_tel = p.Participant JOIN annonces a ON a.id = p.Annonce WHERE p.Participant='$proprietaire'";
+                    $reponse = $pdo->query($sql);
+
+                    $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+
+                    foreach ($tableau as $item) {
 
                         // $sql = "SELECT * FROM participation p JOIN annonces a ON a.id = p.Annonce JOIN utilisateurs u ON u.num_tel = a.Proprietaire WHERE a.Proprietaire='$proprietaire'";
 
@@ -221,12 +228,11 @@
 
 
         </div>
+        <?php require "../layouts/footer.php"; ?>
 
     </main>
 
-    <footer>
-        <p> Â© 2022 - Bertille & Emma</p>
-    </footer>
+
 
 
 </body>

@@ -1,0 +1,130 @@
+body {
+    font-family: 'Fira sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    width: 100%;
+}
+
+nav {
+    width: 100%;
+    height: 60px;
+    background-color: greenyellow;
+    flex-direction: row;
+}
+
+label.logo {
+    margin: 0;
+    padding: 0;
+    font-size: 32px;
+    font-weight: bold;
+    color: black;
+    padding: 0 50px;
+    line-height: 60px;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    float: right;
+    margin-right: 40px;
+    line-height: 60px;
+    z-index: 1;
+}
+
+nav li {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 8px;
+    line-height: 10px;
+}
+
+nav a {
+    color: black;
+    font-size: 18px;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    padding: 7px 10px;
+    border-radius: 3px;
+    ;
+}
+
+
+nav a:hover {
+    height: 5px;
+    bottom: 0;
+    z-index: 0;
+    background: deepskyblue;
+    border-radius: 7px;
+    transition: all .5s ease 0;
+}
+
+
+nav #icon {
+    color: white;
+    font-size: 30px;
+    line-height: 60px;
+    float: right;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+
+
+@media(max-width: 1200px) {
+    label.logo {
+        font-size: 32px;
+        font-weight: bold;
+        color: black;
+        padding: 0 50px;
+        line-height: 60px;
+    }
+
+    nav ul {
+        margin-right: 10px;
+    }
+
+    nav a {
+        font-size: 17px;
+    }
+}
+
+@media(max-width: 1000px) {
+    nav #icon {
+        display: block;
+    }
+
+    nav ul {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: orchid;
+        top: 60px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+    }
+
+    nav li {
+        display: block;
+        margin: 50px 0;
+        line-height: 30px;
+    }
+
+    nav a {
+        font-size: 17px;
+    }
+
+    li a.active,
+    a:hover {
+        border: none;
+        color: burlywood;
+    }
+
+    nav ul.show {
+        left: 0;
+    }
+}

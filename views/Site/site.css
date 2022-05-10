@@ -18,18 +18,20 @@ ul {
 
 }
 
+
 main {
+    height: 100%;
+    padding: 10px;
+    margin-top: -20px;;
     display: flex;
     flex-direction: row;
-    margin-top: 60px;
-    height: auto;
     background-color: #E7B1CC;
 }
 
 #filtres {
     width: 300px;
-    height: 100%;
     background-color: #E7B1CC;
+
 }
 
 #annonces {

@@ -1,0 +1,62 @@
+html {
+    font-family: "calibri", sans-serif;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    margin-top: 60px;
+    height: auto;
+    background-color: #E7B1CC;
+}
+.elementannonce{
+    background-color: #E7C689;
+    display: flex;
+    flex-direction: row;
+    margin: 25px;
+    border-radius: 8%;
+    justify-content: space-between;
+}
+
+
+
+#bouton input{
+    background-color: #E6A06B;
+    border-radius: 40%;
+    border: solid black 2px;
+    width: 100px;
+    padding: 9px;
+    margin: 9px 9px 0 9px;
+}
+
+#bouton{
+    justify-content: right;
+    display: flex;
+}
+
+#bouton input:hover{
+    cursor: pointer;
+}
+
+
+#gauche{
+    display: flex;
+    flex-direction: column;
+    margin: 32px;
+    align-items: center;
+}
+
+#droite{
+    display: flex;
+    flex-direction: column;
+    margin: 32px;
+}
+

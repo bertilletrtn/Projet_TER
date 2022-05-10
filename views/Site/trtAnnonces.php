@@ -10,8 +10,8 @@ var_dump($_SESSION);
 
 
 $sql = "
-    INSERT INTO annonces(ville, lieu, date, heuredebut, heurefin, theme, theme2, theme3, info_sup, titre, proprietaire) 
-    VALUES (:ville, :lieu, :date, :hdebut, :hfin, :theme1, :theme2, :theme3, :infosup, :titre, :proprietaire)
+    INSERT INTO annonces(ville, lieu, date, heuredebut, heurefin, theme, theme2, theme3, info_sup, proprietaire, titre) 
+    VALUES (:ville, :lieu, :date, :hdebut, :hfin, :theme1, :theme2, :theme3, :infosup,  :proprietaire, :titre)
     ";
 $rqt = $pdo -> prepare($sql);
 $tableau = [
@@ -24,12 +24,14 @@ $tableau = [
     'theme2' => $_POST['theme2'] === "not" ? NULL : $_POST['theme2'],
     'theme3' => $_POST['theme3'] === "not" ? NULL : $_POST['theme3'],
     'infosup' => empty($_POST['infosup']) ? '' : $_POST['infosup'],
-    'titre' => $_POST['titre'],
     'proprietaire' => $_SESSION['Num_Tel'],
+    'titre' => $_POST['titre'],
 ];
-/*echo "<pre>";
+echo "<pre>";
 var_dump($tableau);
-echo "</pre>";*/
+echo "</pre>";
+
 
 $rqt -> execute($tableau);
 header("Location:site.php");
+?>
