@@ -61,7 +61,7 @@ $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
 
 
 <body>
-    <form method="post">
+<form action="trtCompte.php" method="post" enctype="application/x-www-form-urlencoded">
 
         <main>
 

@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : mar. 03 mai 2022 à 09:58
--- Version du serveur : 5.7.36
--- Version de PHP : 8.1.0
+-- Hôte : localhost
+-- Généré le : mer. 11 mai 2022 à 16:23
+-- Version du serveur : 10.4.22-MariaDB
+-- Version de PHP : 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `projet`
+-- Base de données : `Projet`
 --
 
 -- --------------------------------------------------------
@@ -27,8 +27,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `annonces`
 --
 
-DROP TABLE IF EXISTS `annonces`;
-CREATE TABLE IF NOT EXISTS `annonces` (
+CREATE TABLE `annonces` (
   `Ville` varchar(50) COLLATE utf8_bin NOT NULL,
   `Lieu` varchar(50) COLLATE utf8_bin NOT NULL,
   `Date` date NOT NULL,
@@ -39,11 +38,9 @@ CREATE TABLE IF NOT EXISTS `annonces` (
   `theme3` enum('autres','musique','cinema','sport','travail','alimentation','culture','bar','festival') COLLATE utf8_bin DEFAULT NULL,
   `Info_sup` varchar(500) COLLATE utf8_bin DEFAULT NULL,
   `Proprietaire` int(10) NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Titre` varchar(100) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `Proprietaire` (`Proprietaire`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `id` int(11) NOT NULL,
+  `Titre` varchar(100) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `annonces`
@@ -64,16 +61,40 @@ INSERT INTO `annonces` (`Ville`, `Lieu`, `Date`, `HeureDebut`, `HeureFin`, `them
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `commentaires`
+--
+
+CREATE TABLE `commentaires` (
+  `num_annonce` int(11) NOT NULL,
+  `id_utilisateur` int(10) NOT NULL,
+  `commentaire` varchar(500) COLLATE utf8_bin NOT NULL,
+  `date` datetime NOT NULL,
+  `id-commentaire` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `participation`
 --
 
-DROP TABLE IF EXISTS `participation`;
-CREATE TABLE IF NOT EXISTS `participation` (
+CREATE TABLE `participation` (
   `Participant` int(10) NOT NULL,
-  `Annonce` int(10) NOT NULL,
-  KEY `Participant` (`Participant`),
-  KEY `Annonce` (`Annonce`)
+  `Annonce` int(11) NOT NULL,
+  `id_participant` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `participation`
+--
+
+INSERT INTO `participation` (`Participant`, `Annonce`, `id_participant`) VALUES
+(785423652, 2, 22),
+(102030405, 8, 23),
+(687526594, 1, 24),
+(1234567891, 14, 47),
+(1234567891, 16, 48),
+(1234567891, 10, 49);
 
 -- --------------------------------------------------------
 
@@ -81,17 +102,14 @@ CREATE TABLE IF NOT EXISTS `participation` (
 -- Structure de la table `utilisateurs`
 --
 
-DROP TABLE IF EXISTS `utilisateurs`;
-CREATE TABLE IF NOT EXISTS `utilisateurs` (
+CREATE TABLE `utilisateurs` (
   `Prenom` varchar(50) COLLATE utf8_bin NOT NULL,
   `Nom` varchar(50) COLLATE utf8_bin NOT NULL,
   `Pseudo` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `Age` int(3) NOT NULL,
   `Num_Tel` int(10) NOT NULL,
   `Ville` varchar(50) COLLATE utf8_bin DEFAULT NULL,
-  `Mdp` varchar(10) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`Num_Tel`),
-  KEY `Num_Tel` (`Num_Tel`)
+  `Mdp` varchar(10) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -108,6 +126,64 @@ INSERT INTO `utilisateurs` (`Prenom`, `Nom`, `Pseudo`, `Age`, `Num_Tel`, `Ville`
 ('paul', 'trotro', '', 20, 1234567891, '', 'mdp');
 
 --
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `annonces`
+--
+ALTER TABLE `annonces`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `Proprietaire` (`Proprietaire`),
+  ADD KEY `id` (`id`);
+
+--
+-- Index pour la table `commentaires`
+--
+ALTER TABLE `commentaires`
+  ADD PRIMARY KEY (`id-commentaire`),
+  ADD KEY `num-annonce` (`num_annonce`),
+  ADD KEY `id-utilisateur` (`id_utilisateur`),
+  ADD KEY `num_annonce` (`num_annonce`);
+
+--
+-- Index pour la table `participation`
+--
+ALTER TABLE `participation`
+  ADD PRIMARY KEY (`id_participant`),
+  ADD KEY `Participant` (`Participant`),
+  ADD KEY `Annonce` (`Annonce`);
+
+--
+-- Index pour la table `utilisateurs`
+--
+ALTER TABLE `utilisateurs`
+  ADD PRIMARY KEY (`Num_Tel`),
+  ADD KEY `Num_Tel` (`Num_Tel`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `annonces`
+--
+ALTER TABLE `annonces`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT pour la table `commentaires`
+--
+ALTER TABLE `commentaires`
+  MODIFY `id-commentaire` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `participation`
+--
+ALTER TABLE `participation`
+  MODIFY `id_participant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
 -- Contraintes pour les tables déchargées
 --
 
@@ -116,6 +192,13 @@ INSERT INTO `utilisateurs` (`Prenom`, `Nom`, `Pseudo`, `Age`, `Num_Tel`, `Ville`
 --
 ALTER TABLE `annonces`
   ADD CONSTRAINT `Annonces_ibfk_1` FOREIGN KEY (`Proprietaire`) REFERENCES `utilisateurs` (`Num_Tel`);
+
+--
+-- Contraintes pour la table `commentaires`
+--
+ALTER TABLE `commentaires`
+  ADD CONSTRAINT `c2` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`Num_Tel`),
+  ADD CONSTRAINT `commentaires_ibfk_1` FOREIGN KEY (`num_annonce`) REFERENCES `annonces` (`id`);
 
 --
 -- Contraintes pour la table `participation`

@@ -62,40 +62,43 @@ try {
 </head>
 
 <body>
-    <div style="flex:center" class='elementannonce'>
+    <!-- <form action="trtCommentaire.php" method="post" enctype="application/x-www-form-urlencoded"> -->
+    <from method="post">
 
-        <div id='gauche'>
-            <h1><?php echo "$item->Ville" ?></h1>
-            <p1><?php echo "$item->Lieu" ?> </p1>
-            <p2><?php echo "$item->Titre" ?></p2>
-            <p3>Le <?php echo "$item->Date" ?> à <?php echo "$heure_debut" ?> et finir vers <?php echo "$heure_fin" ?></p3>
-            <h3><?php echo "$item->Info_sup" ?></h3>
-        </div>
+        <div style="flex:center" class='elementannonce'>
+            <!-- <form action="trtParticipation.php" method="post" enctype="application/x-www-form-urlencoded"> -->
 
-
-        <div id='droite'>
-            <img src='../../Ressource/<?php echo "$item->theme" ?>.webp' alt='theme' width='250px' height='auto' />
-            <div id='bouton'>
-                <input type='button' name='bouton-participer' value='participations' />
-                <input type='button' name='bouton-commenter' value='commentaires' />
+            <div id='gauche'>
+                <h1><?php echo "$item->Ville" ?></h1>
+                <p1><?php echo "$item->Lieu" ?> </p1>
+                <p2><?php echo "$item->Titre" ?></p2>
+                <p3>Le <?php echo "$item->Date" ?> à <?php echo "$heure_debut" ?> et finir vers <?php echo "$heure_fin" ?></p3>
+                <h3><?php echo "$item->Info_sup" ?></h3>
             </div>
-        </div> <?php
 
-                //     echo "
-                // $item->Ville
-                // $item->Lieu
-                // $datee
-                // $heure_debut
-                // $item->HeureFin
-                // $item->theme
-                // $item->theme2
-                // $item->theme3
-                // $item->Info_sup
-                // $item->Proprietaire
-                // $item->id
-                // $item->Titre
-                // "
-                ?>
-    </div>
-    </div>
+
+            <div id='droite'>
+                <img src='../../Ressource/<?php echo "$item->theme" ?>.webp' alt='theme' width='250px' height='auto' />
+                <div id='bouton'>
+                    <p> <a href='trtParticipation.php?<?= $id ?>'> Participation </a></p><br>
+
+                    <!-- <p><a href='trtCommentaire.php?<?= $id ?>'> Commentaires </a></p> -->
+                    <input type='submit' name='submit' value='commentaires' />
+                </div>
+            </div>
+        </div>
+        </div>
+    </from>
 </body>
+
+<?php 
+if(isset($_POST['submit'])) {
+    echo("dans le if");
+
+}else{
+    echo("dans le else");
+}
+
+
+
+?>
