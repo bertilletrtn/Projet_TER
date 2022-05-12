@@ -1,29 +1,46 @@
 /*CSS de la page de Connexion*/
 
-body{
-  background-image:url("../Ressource/background.jpg");
-}
-#container{
-  width:400px;
-  margin:0 auto;
-  margin-top:10%;
-}
-/* Bordered form */
-form {
-  width:100%;
-  padding: 30px;
-  border: 1px solid #f1f1f1;
-  background: #fff;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-#container h1{
-  width: 38%;
-  margin: 0 auto;
-  padding-bottom: 10px;
+:root{
+  --bleuc:#3498DB;
+  --bleuf: 
 }
 
-/* Full-width inputs */
-input[type=text], input[type=password] {
+html {
+  background-image: url("../../Ressource/triangles.png");
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#container {
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 10%;
+}
+
+form {
+  width: 100%;
+  padding: 30px;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2), 0 10px 10px 0 rgba(0, 0, 0, 0.24);
+}
+
+#container h1 {
+  width: 38%;
+  padding-bottom: 10px;
+  font-size: xxx-large;
+}
+
+b{
+  font-size: 20px;
+}
+
+/* inputs */
+input[type=text],
+input[type=password] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -32,18 +49,32 @@ input[type=text], input[type=password] {
   box-sizing: border-box;
 }
 
-/* Set a style for all buttons */
+/* POUR LE BOUTON */
 input[type=submit] {
-  background-color: #ee5db6;
-  color: rgb(5, 5, 5);
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
+  padding: 6px 0px;
+  margin: 10px 40px;
+  width: 80%;
+  position: relative;
+  display: flex;
+  border-radius: 10px;
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #3498DB;
+  border-bottom: 5px solid #2980B9;
+  text-shadow: 0px -2px #2980B9;
+  transition: all 0.1s;
   cursor: pointer;
-  width: 100%;
+  box-shadow: 0 0 10px 0 black, 0 5px 5px 0 black;
+  font-size: 30px;
+  font-family: 'Pacifico', cursive;
+
 }
+
 input[type=submit]:hover {
-  background-color: rgb(255, 255, 255);
-  color: #ee5db6;
-  border: 1px solid #080808;
+  transition: all 0.s ease-in-out;
+  background: #3498DB;
+  color: #3498DB;
+  background-color: white;
+  border-bottom: 5px solid white;
+  text-shadow: 0px -2px #3498DB;
 }

@@ -1,101 +1,172 @@
 /*CSS de la Page d'Accueil*/
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-body{
-    
-    font-family: Arial, Helvetica, sans-serif;              
-    background-image:url("../Ressource/background.jpg");        
-    /*Le décalage n'a pas d'impact sur la position des éléments/*
-    /*Le contenu est rogné afin de tenir horizontalement dans la boîte de remplissage (padding) et aucun ascenseur horizontal n'est affiché. */         
-    position: center;     
-    text-align: center;
-    height: 100vh;    
-    background-position: center;            
-    /*Prends l'entière de l'image*/                          
-    background-size: cover;           
-    display: flex;
-    flex-direction: column;
-    /*mettre tout au centre*/
-    justify-content: center;
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-    /*Bloc principal - Titre + bouton*/
-
-/* .container-first {          
-    position: absolute;
-    top: 30%;
-    left: 30%;
-} */
 
 
-h1 {
+.container {
+    width: 100%;
+    background: transparent;
+    color: royalblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.container h2 {
+    font-size: 70px;
+    font-weight: 400;
+}
+
+/*POUR LES BOUTONS*/
+
+.btn-first {
+    height: 100%;
+}
+
+.btns {
+    width: 100%;
+}
+
+
+.btn-first {
+    padding: 10px 40px;
+    float: left;
+    border-radius: 10px;
+    font-family: 'Pacifico', cursive;
+    font-size: 40px;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #3498DB;
+    border-bottom: 5px solid #2980B9;
+    text-shadow: 0px -2px #2980B9;
+    transition: all 0.1s;
+    -webkit-transition: all 0.1s;
+    cursor: pointer;
+    box-shadow: 0 0 20px 0 black, 0 5px 5px 0 black;
+}
+
+
+
+.action-button:active {
+    transform: translate(0px,5px);
+    -webkit-transform: translate(0px,5px);
+    border-bottom: 1px solid;
+}
+
+
+.btn-first:nth-child(1) {
+    margin-right: 50px;
+}
+
+.btn-first:hover {
+    /*Survoler les boutons*/
+    transition: all 0.s ease-in-out;
+    background: #3498DB;
+    color: #3498DB;
+    background-color: white;
+    border-bottom: 5px solid #3498DB;
+    text-shadow: 0px -2px #3498DB;
+}
+
+
+
+/*POUR LE TITRE ET ENVIE DE BLABLABLA*/
+
+.titre {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+}
+
+.titre h1 {
+    margin: auto auto;
+    text-align: center;
+    font-size: 150px;
+}
+
+h2 {
     text-transform: uppercase;
-    font-size: 350%;
+    font-size: 30px;
+    font-weight: 400;
     color: #000000;
     font-family: Abril fatface, sans-serif;
 }
 
+.container span {
+    color: aqua;
+}
 
 
- 
-
- 
-
-h1 span {
+/*DIV CONTIENT*/
+.contient {
     position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
 }
 
-/*.container-btns{        
-    /*Deplace que le bloc de bouton*/
-   /* position: relative;
-    top: 50px;
-}*/
+.contient section {
+    min-width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("../../Ressource/triangles.png");
+    background-position: center;
+    background-size: cover;
 
-.btn-first {               
-     /*Presentation des boutons*/
-   /* border: 5px solid black;    
-    outline: dashed;                
-    /*Ptit trait autour */
-    background: white;
-    font-size: 30px;
-   /* padding: 20px;
-    width: 300px;*/
-    color: black;
+}
+
+
+.contient section .content {
+    text-align: center;
+}
+
+.contient {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+/*POUR LICONE QUI VA VERS LE BAS*/
+#icOn {
+    width: 50px;
     cursor: pointer;
-}
-
-.btn-first:nth-child(1){
-    margin-right: 50px;
-}
-
-.btn-first:hover {  
-    /*Survoler les boutons*/
-    transition: all 0.5s ease-in-out;
-    background: red;
-    color: blue;
-}
-
-footer{
+    color: white;
     position: fixed;
-    display: flex;
-    background:rgb(237, 128, 128);
-    padding: 5px;
-    justify-content: center;
-    bottom: 0;
-    left: 0px;
-    right: 0px;
-    padding-top:50px;
+    bottom: 20px;
+    left: 47%;
+
+    animation-name: go-down;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes go-down {
+    from {
+        margin-bottom: 0;
+    }
+
+    50% {
+        margin-bottom: 20px;
+    }
+
+    to {
+        margin-bottom: 0;
+    }
 }
 
 
 
-
-
-footer{
-    display: flex;
-    background:rgb(237, 128, 128);
-    padding: 5px;
-    justify-content: center;
-    bottom: 0;
-    left: 0px;
-    right: 0px;
-    padding-top:50px;
-}
