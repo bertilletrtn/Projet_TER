@@ -17,7 +17,6 @@ session_start();
 <body>
 
     <main>
-
         <div id="menu">
             <div id="menu-list">
                 <a href="#annonces">Mes annonces</a>
@@ -82,8 +81,8 @@ session_start();
                         <div id='bouton'>
 
                             <input type='button' name='bouton-participer' value='participations' />
-                            <input type='button' name='bouton-commenter' value='commentaires' />
-                        </div>
+                            <a href='../Site/siteannonce.php?$item->id' > commentaire </a>
+                            </div>
                     </div>
         </div>";
                         }
@@ -99,12 +98,12 @@ session_start();
 
                     try {
 
-                    $sql = "SELECT * FROM participation p JOIN utilisateurs u ON u.num_tel = p.Participant JOIN annonces a ON a.id = p.Annonce WHERE p.Participant='$proprietaire'";
-                    $reponse = $pdo->query($sql);
+                        $sql = "SELECT * FROM participation p JOIN utilisateurs u ON u.num_tel = p.Participant JOIN annonces a ON a.id = p.Annonce WHERE p.Participant='$proprietaire'";
+                        $reponse = $pdo->query($sql);
 
-                    $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+                        $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
 
-                    foreach ($tableau as $item) {
+                        // foreach ($tableau as $item) {
 
                         // $sql = "SELECT * FROM participation p JOIN annonces a ON a.id = p.Annonce JOIN utilisateurs u ON u.num_tel = a.Proprietaire WHERE a.Proprietaire='$proprietaire'";
 
@@ -159,7 +158,7 @@ session_start();
 
                             while (list($participant) = $requette->fetch(PDO::FETCH_NUM)) {
 
-                            echo "
+                                echo "
                             <tbody>
                                 <tr>
                                     <td>$participant</td>
@@ -171,7 +170,7 @@ session_start();
                             }
                             $i = $i + 1;
                         }
-                    }
+                        //}
                     } catch (PDOException $e) {
                         echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
                     }
@@ -203,6 +202,10 @@ session_start();
                             $Pseudo = $item->Prenom;
                         }
 
+
+                        $_SESSION['id'] = $id;
+
+
                         echo "<div class='elementParticipation'>
                     <div id='gauche2'>
                     <h1>{$Pseudo} participe </h1>
@@ -216,8 +219,8 @@ session_start();
                     <div id='droite2'>
                     <img src='../../Ressource/$item->theme.webp' alt='theme' width='250px' height='auto' />
                     <div id='bouton'>
-                            <input type='button' name='bouton-participer' value='annuler participation' />
-                            <input type='button' name='bouton-commenter' value='commentaires' />
+                        <a href='trtCompte.php?$item->id' > annuler participation </a>
+                        <a href='../Site/siteannonce.php?$item->id' > commentaire </a>
                         </div>
                     </div>
         </div>";
@@ -232,12 +235,7 @@ session_start();
 
         </div>
         <?php require "../layouts/footer.php"; ?>
-
     </main>
-
-
-
-
 </body>
 
 </html>

@@ -1,30 +1,52 @@
 <?php
 session_start();
 
- require_once("connexpdo.inc.php");
+require_once("connexpdo.inc.php");
 
- $pdo = connexpdo("Projet");
+$pdo = connexpdo("Projet");
 
 if ($_SESSION['Num_Tel'] !== "") {
     $participant = $_SESSION['Num_Tel'];
-    // afficher un message
-    echo "Bonjour $participant, vous êtes connecté";
-    
 }
 
+$tab_participant = array();
+array_push($tab_participant, $participant);
 
-if (isset($_POST['bouton-participer'])) {
-    $id_annonce = "1";
-    $query = "INSERT INTO participation VALUES($participant,$id_annonce)";
-    $nb = $pdo->exec($query);
-    
-    if ($nb != 1) {
-        alert("Erreur : \"$pdo->errorCode()\"");
+$url = $_SERVER['REQUEST_URI'];
+$theid = substr($url, strrpos($url, "?"), strlen($url));
+
+$primary = explode("?", $theid);
+$cle = $primary[1];
+
+$requete = "SELECT * FROM participation WHERE Participant='$participant' AND Annonce='$cle'";
+$reponse = $pdo->query($requete);
+
+$ligne = $reponse->fetchAll(PDO::FETCH_OBJ);
+
+if ($ligne == array()) {
+
+    $requete2 = "SELECT Proprietaire FROM annonces WHERE id='$cle' ";
+    $reponse2 = $pdo->query($requete2);
+
+    $ligne2 = $reponse2->fetchAll(PDO::FETCH_NUM);
+
+    if ($ligne2[0] == $tab_participant) {
+        header("Refresh:0.5; url=site.php");
+        alert("Vous ne pouvez pas vous inscrire à votre propre annonce");
     } else {
-        alert("Modèle bien enregistré !");
-        header('Location: site.php');
-        exit();
+        $sql = "INSERT INTO participation (Participant, Annonce) 
+                VALUES (:participant, :annonce) ";
+        $rqt = $pdo->prepare($sql);
+        $tableau = [
+            'participant' => $participant,
+            'annonce' => $cle,
+        ];
+
+        $rqt->execute($tableau);
+        header("Refresh:0.5; url=site.php");
+        alert("votre inscription à bien été prise en compte ! Merci");
     }
-}else{
-    echo(" on entre pas dans le if");
+} else {
+    header("Refresh:0.5; url=site.php");
+    alert("Vous êtes déjà inscrit pour participer à cette activité ! ");
 }
