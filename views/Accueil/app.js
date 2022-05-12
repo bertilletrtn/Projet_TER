@@ -11,7 +11,7 @@ window.addEventListener('load', () => {
 
 function descendre() {
     var icOn = document.getElementById('icOn');
-    var x = 830;
+    var x = 900;
     window.scrollBy({
         top: x,
         behavior: "smooth"

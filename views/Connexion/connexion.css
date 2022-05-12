@@ -1,11 +1,15 @@
 /*CSS de la page de Connexion*/
 
-body {
+html {
   background-image: url("../../Ressource/triangles.png");
-  height: 100vh;
+  height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 
 #container {
   width: 400px;
@@ -17,15 +21,17 @@ body {
 form {
   width: 100%;
   padding: 30px;
-  border: 1px solid #f1f1f1;
-  background: #fff;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2), 0 10px 10px 0 rgba(0, 0, 0, 0.24);
 }
 
 #container h1 {
   width: 38%;
-  margin: 0 auto;
   padding-bottom: 10px;
+  font-size: xxx-large;
+}
+
+b{
+  font-size: 20px;
 }
 
 /* Full-width inputs */
@@ -42,23 +48,22 @@ input[type=password] {
 /* POUR LE BOUTON */
 input[type=submit] {
   padding: 6px 0px;
-  margin: 8px 0;
-  border: none;
+  margin: 10px 40px;
   width: 80%;
-
-  float: left;
+  position: relative;
+  display: flex;
   border-radius: 10px;
-  font-family: 'Pacifico', cursive;
-  font-size: 40px;
   color: #ffffff;
   text-decoration: none;
   background-color: #3498DB;
   border-bottom: 5px solid #2980B9;
   text-shadow: 0px -2px #2980B9;
   transition: all 0.1s;
-  -webkit-transition: all 0.1s;
   cursor: pointer;
-  box-shadow: 0 0 20px 0 black, 0 5px 5px 0 black;
+  box-shadow: 0 0 10px 0 black, 0 5px 5px 0 black;
+  font-size: 30px;
+  font-family: 'Pacifico', cursive;
+
 }
 
 input[type=submit]:hover {
