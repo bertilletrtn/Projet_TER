@@ -10,7 +10,9 @@
 <body>
     <div id="container">
         <form action="verification.php" method="POST">
-            <h1>Connexion</h1>
+            <legend>
+                <h1>Connexion</h1>
+            </legend>
 
             <label><b>Téléphone : </b></label>
             <input type="text" placeholder="Entrer un numéro de téléphone" pattern="[0-9]{10}" maxlength="10" name="Num_Tel" required />

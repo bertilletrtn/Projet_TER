@@ -1,5 +1,10 @@
 /*CSS de la page de Connexion*/
 
+:root{
+  --bleuc:#3498DB;
+  --bleuf: 
+}
+
 html {
   background-image: url("../../Ressource/triangles.png");
   height: 100%;
@@ -17,7 +22,6 @@ html {
   margin-top: 10%;
 }
 
-/* Bordered form */
 form {
   width: 100%;
   padding: 30px;
@@ -34,7 +38,7 @@ b{
   font-size: 20px;
 }
 
-/* Full-width inputs */
+/* inputs */
 input[type=text],
 input[type=password] {
   width: 100%;

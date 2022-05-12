@@ -31,7 +31,4 @@ if(!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['tel']) &&
         displayException($e);
         exit();
     }
-} else {
-    echo "<h3>Formulaire à compléter !</h3>";
 }
-?>
