@@ -6,6 +6,7 @@ session_start();
 ?>
 <!--JQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="test/javascript" src="filter.js"></script>
 
 <?php
 require_once("connexpdo.inc.php");
@@ -155,42 +156,7 @@ $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
 
                 <!-- <div class="event_Mois">mettre le mois </div> -->
 
-                <?php try {  ?>
-                    <?php foreach ($tableau as $item) : ?>
-                        <?php
-                        $arr_heure_debut = explode(":", $item->HeureDebut);
-                        $heure_debut = $arr_heure_debut[0] . ":" . $arr_heure_debut[1];
-
-                        $arr_date_debut = explode("-", $item->Date);
-                        $datee = $arr_date_debut[1] . "-" . $arr_date_debut[2];
-
-                        $theme = $item->theme;
-
-                        $Pseudo = $item->Pseudo;
-                        if ($item->Pseudo === "") {
-                            $Pseudo = $item->Prenom;
-                        }
-
-                        $id = $item->id;
-
-                        ?>
-
-                        <div style="flex:center" class='elementannonce'>
-
-                            <div class='event_date'> <?= $datee ?> à <?= $heure_debut ?></div>
-                            <div class='event_titre'>
-                                <a href='siteannonce.php?<?= $id ?>'> <?= htmlentities(Text::excerpt($item->Titre)) ?> </a>
-
-                            </div>
-                            <div class='event_nbr_participant'> <?= $id ?> </div>
-                            <div class='event_organisateur'> <?= $Pseudo ?> </div>
-                        </div>
-
-                    <?php endforeach ?>
-                <?php } catch (PDOException $e) {
-                    echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
-                }
-                ?>
+                <?php require_once('afficherannonce.php'); ?>
 
 
                 <div class="d-flex justify-content-between my-4">
@@ -245,10 +211,10 @@ $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
 
         </main>
     </form>
-    <?php require "../layouts/footer.php"; ?>
+    <?php require "../layouts/footer.html"; ?>
 
     <!-- <script type="text/javascript" src="../js//app.js"></script> -->
-
+    <script type="test/javascript" src="filter.js"></script>
 </body>
 
 

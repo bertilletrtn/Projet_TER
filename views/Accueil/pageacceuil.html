@@ -1,35 +1,68 @@
 <!DOCTYPE html>
-    <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Page d'accueil</title>
-        <link rel="stylesheet" href="pageacceuil.css">
-    </head>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'accueil</title>
+    <link rel="stylesheet" href="pageacceuil.css">
+    <link rel="import" href="../layouts/footer.html">
+
+</head>
 
 
 
-    <body>
-    
-    
-        <div class="container-first">
-            <h1><span>Join and Enjoy</span></h1>
-            <div class="container-btns">
-                <input class="btn-first b1" type=button onclick=window.location.href='../Connexion/connexion.php'; value=Connexion />     
-                <input class="btn-first b2" type=button onclick=window.location.href='../Inscription/inscription.php'; value=Inscription />
+<body>
+
+    <div class="contient">
+        <section>
+            <div class="content">
+                <div class="first">
+                    <div class="titre">
+                        <h1><span>Join </span><span>and </span><span>Enjoy</span></h1>
+                    </div>
+                    <div class="icon">
+                        <img id="icOn" src="../../Ressource/arrow.png" onclick="descendre()">
+                    </div>
+                </div>
+        </section>
+        <section>
+            <div class="content">
+                <div class="container">
+                    <h2>Envie de <span class="type"></span></h2>
+                </div>
             </div>
-        </div>
-    
-    
-    <div id="footer">
-        <p> © 2022 - Bertille & Emma</p>
-    </div>
-    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
-        <script src="app.js"></script>
-    </body>
-    
-    
+        </section>
+        <section>
+            <div class="content">
+                <div class="btns">
 
-    </html>
-    
+                    <input class="btn-first b1" type=button onclick=window.location.href='../Connexion/connexion.php' ;
+                        value=Connexion />
+                    <input class="btn-first b2" type=button
+                        onclick=window.location.href='../Inscription/inscription.php' ; value=Inscription />
+                </div>
+            </div>
+        </section>
+    </div>
+
+    /*SCRIPT POUR LA FONCTION QUI PERMET DE FAIRE DEFILER LES MOTS*/
+    <script>
+        var typed = new Typed(".type", {
+            strings: ["Partage", "Découverte", "Rencontre"],
+            typeSpeed: 100,
+            backSpeed: 100,
+            loop: true
+        })
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script src="app.js"></script>
+    <script src="skrollr.js"></script>
+</body>
+
+
+
+</html>
