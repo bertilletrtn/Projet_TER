@@ -25,27 +25,27 @@
                 <table>
                     <tr>
                         <td>Nom :</td>
-                        <td><input type="text" name="nom" pattern="[a-zA-Z]{3,}" size="40" maxlength="50" required /></td>
+                        <td><input type="text" name="nom" pattern="[a-zA-Z]{2,}" size="40" maxlength="50" required /></td>
                     </tr>
                     <tr>
                         <td>Prenom :</td>
-                        <td><input type="text" name="prenom" size="40" maxlength="50" required /></td>
+                        <td><input type="text" name="prenom" pattern="[a-zA-Z]{3,}" size="40" maxlength="50" required /></td>
                     </tr>
                     <tr>
                         <td>Pseudo :</td>
-                        <td><input type="text" name="pseudo" size="40" maxlength="50" /></td>
+                        <td><input type="text" name="pseudo" pattern="[a-zA-Z]{3,}" size="40" maxlength="50" /></td>
                     </tr>
                     <tr>
                         <td>Téléphone :</td>
-                        <td><input type="tel" pattern="{10}" maxlength="10" name="tel" required /></td>
+                        <td><input type="tel" pattern="[0-9]{10}"" maxlength="10" name="tel" required /></td>
                     </tr>
                     <tr>
                         <td>Ville :</td>
-                        <td><input type="text" name="ville" size="40" maxlength="50" /></td>
+                        <td><input type="text" name="ville" pattern="[a-zA-Z]{2,}" size="40" maxlength="50" /></td>
                     </tr>
                     <tr>
                         <td>Age :</td>
-                        <td><input type="text" name="age" size="40" maxlength="50" required /></td>
+                        <td><input type="text" name="age" size="40"pattern="[0-9]{2}" maxlength="50" required /></td>
                     </tr>
                     <tr>
                         <td>Mot de passe :</td>
