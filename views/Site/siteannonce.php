@@ -18,7 +18,7 @@ $reponse = $pdo->query($sql);
 $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
 
 try {
-    foreach ($tableau as $item) :
+    foreach ($tableau as $item) {
         $arr_heure_debut = explode(":", $item->HeureDebut);
         $heure_debut = $arr_heure_debut[0] . ":" . $arr_heure_debut[1];
 
@@ -36,16 +36,18 @@ try {
         // }
 
         $id = $item->id;
-
-?>
-    <?php endforeach ?>
-<?php } catch (PDOException $e) {
+    }
+} catch (PDOException $e) {
     echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
 }
 
-// echo '<pre>';
-// var_dump($tableau);
-// echo '</pre>';
+$requete = ("SELECT *, u.Prenom FROM commentaires c JOIN utilisateurs u ON c.id_utilisateur=u.Num_Tel WHERE c.num_annonce=$cle ORDER BY date DESC");
+
+$result = $pdo->query($requete);
+
+$liste = $result->fetchAll(PDO::FETCH_OBJ);
+
+
 
 
 ?>
@@ -63,10 +65,7 @@ try {
 
 <body>
     <!-- <form action="trtCommentaire.php" method="post" enctype="application/x-www-form-urlencoded"> -->
-    <from method="post">
-
         <div style="flex:center" class='elementannonce'>
-            <!-- <form action="trtParticipation.php" method="post" enctype="application/x-www-form-urlencoded"> -->
 
             <div id='gauche'>
                 <h1><?php echo "$item->Ville" ?></h1>
@@ -83,22 +82,65 @@ try {
                     <p> <a href='trtParticipation.php?<?= $id ?>'> Participation </a></p><br>
 
                     <!-- <p><a href='trtCommentaire.php?<?= $id ?>'> Commentaires </a></p> -->
-                    <input type='submit' name='submit' value='commentaires' />
+
                 </div>
             </div>
         </div>
+        <div style="flex:center" class='commentaires'>
+            <form action='trtCommentaire.php?<?= $id ?>' method="post" enctype="application/x-www-form-urlencoded">
+
+                <div class='postercommentaire'>
+                    <textarea style="resize: none;" maxlength="499" name="commentaire" cols=80 rows=3> Commenter </textarea>
+                    <input type='submit' name='submit' value='Poster' />
+                </div>
+
+                <div class='listecommentaire'>
+                    <div class="event">
+                        <div class="eventechange"> Les commentaires déjà en ligne :  </div>
+                    </div>
+
+                    <?php
+                    try {
+                        foreach ($liste as $elem) : ?>
+
+                        <?php
+
+                            $num_annonce = $elem->num_annonce;
+
+                            $commentaire = $elem->commentaire;
+
+                            $trtdate = explode(" ", $elem->date);
+                            $date = $trtdate[0];
+
+                            $trttime = explode(":", $trtdate[1]);
+                            $time = $trttime[0] . ":" . $trttime[1];
+
+
+                            // $arr_date_debut = explode("-", $elem->date);
+                            // $datee = $arr_date_debut[1] . "-" . $arr_date_debut[2];
+
+                            // $datee = $elem->date;
+
+                            $id_commentaire = $elem->id_commentaire;
+
+                            $prenom = $elem->Prenom;
+
+                            ?>
+                        
+                        <div style="flex:center" class='elementlistecommentaire'>
+
+                            <div class='date_com'>Le <?= $date ?> à <?= $time ?> <?= $prenom ?> à dit : </div>
+                            <div class='com'> <?= $commentaire ?> </div>
+
+                        </div>
+                        <?php endforeach ?>
+                    <?php } catch (PDOException $e) {
+                        echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
+                    }
+                    ?>
+                </div>
+            </from>
         </div>
-    </from>
+
+        
 </body>
-
-<?php 
-if(isset($_POST['submit'])) {
-    echo("dans le if");
-
-}else{
-    echo("dans le else");
-}
-
-
-
-?>
