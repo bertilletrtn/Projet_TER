@@ -1,20 +1,3 @@
-
-<html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="siteannonce.css">
-
-        <?php require('siteannonce1.php'); ?>
-
-        <title>Annonce</title>
-    </head>
-    
-    <body>
-        <div style="flex:center" class='elementannonce'>
-    
 <?php
 // require "../layouts/header.html";
 require_once("connexpdo.inc.php");
@@ -138,7 +121,7 @@ $liste = $result->fetchAll(PDO::FETCH_OBJ);
 
                             // $datee = $elem->date;
 
-                            $id_commentaire = $elem->id_commentaire;
+                            // $id_commentaire = $elem->id_commentaire;
 
                             $prenom = $elem->Prenom;
 

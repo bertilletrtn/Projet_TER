@@ -234,7 +234,7 @@ session_start();
 
 
         </div>
-        <?php require "../layouts/footer.php"; ?>
+     <?php require "../layouts/footer.html"; ?>
     </main>
 </body>
 
