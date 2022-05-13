@@ -1,5 +1,5 @@
 <?php
-include "../layouts/header.html";
+include("../layouts/header.html");
 session_start();
 ?>
 
@@ -10,7 +10,10 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="compte.css">
+    <link rel="stylesheet" href="../layouts/header.css">
+    <link rel="stylesheet" href="../Compte/compte.css">
+
+
     <title>Compte</title>
 </head>
 
@@ -234,7 +237,8 @@ session_start();
 
 
         </div>
-        <?php require "../layouts/footer.php"; ?>
+        <!-- A CORRIGER -->
+        <!-- <?php require "../layouts/footer.html"; ?> -->
     </main>
 </body>
 

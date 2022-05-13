@@ -48,15 +48,22 @@ CREATE TABLE `annonces` (
 
 INSERT INTO `annonces` (`Ville`, `Lieu`, `Date`, `HeureDebut`, `HeureFin`, `theme`, `theme2`, `theme3`, `Info_sup`, `Proprietaire`, `id`, `Titre`) VALUES
 ('angers', 'patinoire', '2022-04-27', '09:00:00.00', '11:00:00.00', 'sport', 'sport', 'alimentation', 'Informations supplémentaires ? ', 1234567891, 1, 'Patinoire entre pote'),
-('le mans', 'bu', '2022-04-26', '09:00:00.00', '12:00:00.00', 'travail', NULL, NULL, NULL, 1234567891, 2, 'travail '),
+('le mans', 'bu', '2022-04-26', '09:00:00.00', '12:00:00.00', 'travail', NULL, NULL, NULL, 1234567891, 2, 'travail mécanique du point '),
 ('Nantes', 'Cinema', '2022-05-11', '14:00:00.00', '17:30:00.00', 'cinéma', NULL, NULL, 'Voir \"Le seigneur des anneaux\" - mon film pas préféré', 1234567891, 8, 'Seigneur des anneaux'),
 ('Montpellier', 'Starbucks', '2022-04-27', '10:02:00.00', '12:00:00.00', 'bar', NULL, NULL, 'Boire un chocolat chaud', 687526594, 9, 'Matin tranquillou'),
 ('Madrid', 'Bowling', '2022-08-09', '14:00:00.00', '20:00:00.00', 'loisir', NULL, NULL, 'Je propose de faire trois parties de Bowling (réservé pour les étudiants)', 785423652, 10, 'Bowling '),
-('lll', 'kk', '2022-05-05', '09:00:00.00', '20:00:00.00', 'autres', NULL, NULL, '', 689573440, 13, 'mmm'),
-('angers', 'ags', '2022-05-02', '15:00:00.00', '20:00:00.00', 'alimentation', NULL, NULL, '', 689573440, 14, 'cafe'),
+('angers', 'la cour', '2022-05-02', '15:00:00.00', '20:00:00.00', 'alimentation', NULL, NULL, '', 689573440, 14, 'cafe à \"la cour\"'),
 ('Angers', 'ags', '2023-02-02', '09:00:00.00', '20:00:00.00', 'culture', 'cinema', NULL, '', 689573440, 15, 'Tennis'),
-('kgkj', 'egkj', '2022-05-05', '09:00:00.00', '20:00:00.00', 'loisir', NULL, NULL, '', 689573440, 16, 'fksjg'),
-('efzlk', 'ezflk', '9999-09-09', '09:00:00.00', '20:00:00.00', 'festival', NULL, NULL, 'LOEOFK', 689573440, 17, 'FESTIIIIIIIIIIIIIIVAL');
+('efzlk', 'ezflk', '9999-09-09', '09:00:00.00', '20:00:00.00', 'festival', NULL, NULL, 'LOEOFK', 689573440, 17, 'FESTIIIIIIIIIIIIIIVAL'),
+('RU', 'RU angers', '2022-06-18', '09:00:00.00', '20:00:00.00', 'alimentation', 'bar', NULL, '', 689573440, 18, 'Manger le midi'),
+('lyon', 'lyon', '2022-07-05', '09:00:00.00', '20:00:00.00', 'travail', 'musique', NULL, 'Travailler Php car j\'ai du mal avec les variables', 689573440, 19, 'On apprends php'),
+('angers', 'bureau', '2022-05-17', '12:00:00.00', '15:00:00.00', 'travail', NULL, NULL, '', 689573440, 20, 'Reunion entre copain'),
+('Angé', 'la fac', '2022-05-05', '23:00:00.00', '22:01:00.00', 'bar', 'cinema', 'musique', 'ouaiiiis', 632730869, 21, 'Minizinc in love'),
+('Mozé', 'Chez moi', '1789-02-21', '17:00:00.00', '23:59:00.00', 'bar', 'loisir', NULL, 'Il faut boire un maximum ! je peux écrire autant de caractère que je veux, j\'espère vraiment que se serait cool de faire ça !\r\nFranchement go faire une grosse soirée ça fait giga longtemps! Bon maintenant je vais retourner bosser ais c\'est remis de tous ça', 632730869, 22, 'Grosse race'),
+('Angers', 'Chez Bryan', '2022-05-15', '09:00:00.00', '20:00:00.00', 'musique', NULL, NULL, '', 689573440, 23, 'Session guitare'),
+('Angers', 'Bibliothèque', '2022-07-18', '09:00:00.00', '10:00:00.00', 'culture', NULL, NULL, 'Lecture en groupe à voix haute :)', 689573440, 24, 'Lecture à la bibliothèque'),
+('Lyon', 'Bibliothèque du centre ville', '2022-05-10', '10:16:00.00', '19:23:00.00', 'travail', NULL, NULL, 'Faire des recherches pousser et intéressantes concernant la nouvelle science de Newton ', 637474866, 25, 'Faire des recherches sur la nouvelle science de Newton'),
+('ttt', 'llll', '2016-02-16', '09:00:00.00', '20:00:00.00', 'culture', NULL, NULL, '', 689573440, 26, 'Test');
 
 -- --------------------------------------------------------
 
@@ -117,13 +124,22 @@ CREATE TABLE `utilisateurs` (
 --
 
 INSERT INTO `utilisateurs` (`Prenom`, `Nom`, `Pseudo`, `Age`, `Num_Tel`, `Ville`, `Mdp`) VALUES
-('coucou emma...', 'en vrai grave chiant de refaire', 'oui oui l\'idee est cool ^^', 23, 0, 'en vrai j\'espere que tu passera une bonne journÃ©e', 'm'),
 ('bertille', 'trotin', 'btrotin', 20, 102030405, 'angers', 'santana'),
+('fft', 'Test', 'testpseudo', 25, 123457899, 'angers', 'test'),
+('huj', 'huj', 'hujuju', 18, 485956236, 'gyhuh', 'kol'),
+('Bouvier', 'Marge', 'Espace', 38, 523468575, 'Springfields', 'marge'),
+('klm', 'klm', 'klm', 25, 562586246, 'klm', 'klm'),
+('klm', 'klm', 'klm', 56, 586548658, 'jkl', 'lko'),
+('azerty', 'Hyddro', 'Hydro', 25, 632730869, 'Angers', 'bb'),
 ('Eliott', 'Barbet', 'eliott', 21, 637474866, 'Montpellier', 'test'),
 ('Emma', 'Faucheux', 'Emmatest2', 21, 687526594, 'Angers', 'testeur'),
 ('Fcx', 'Emma', 'EmmaPseudo', 21, 689573440, 'Angers', 'testeur'),
+('ahufzei', 'bghj', 'haha', 56, 698545235, 'Lyon', 'lol'),
+('Macron', 'Emmanuel', 'Manu', 48, 752984623, 'Paris', 'manu'),
+('Fcx', 'Camille', 'Mimi', 18, 765125892, 'Nantes', 'lol'),
 ('Granier', 'Lea', 'Racoon', 22, 785423652, 'Nimes', 'racoon'),
 ('paul', 'trotro', '', 20, 1234567891, '', 'mdp');
+
 
 --
 -- Index pour les tables déchargées
