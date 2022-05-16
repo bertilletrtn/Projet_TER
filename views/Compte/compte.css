@@ -1,31 +1,29 @@
 /*CSS de la page Compte*/
 
 html {
-    font-family: "calibri", sans-serif;
     scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
 }
 
 body {
     display: flex;
     flex-direction: column;
     margin: 0;
+    width: 100%
 }
 
 main {
     display: flex;
     flex-direction: row;
-    margin-top: 60px;
-    height: auto;
     background-color: #E7B1CC;
 }
 
-#menu-list{
-    margin-right: 50px;;
+#menu-list {
+    margin-right: 50px;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: baseline;
     text-decoration: none;
+    justify-content: space-evenly;
 
 }
 
@@ -37,62 +35,57 @@ main {
 }
 
 
-.annonces-gauche{
+#annonces-gauche {
     display: flex;
     flex-direction: column;
     margin: 32px;
-    align-items: center;
+    align-items: left;
+    width: 50%;
 }
 
-.annonces-droite{
+#annonces-droite {
     display: flex;
     flex-direction: column;
     margin: 32px;
 }
- 
 
-
-.elementannonce{
-    background-color: #E7C689;
+#menu-list a {
+    color: black;
+    text-decoration: none;
     display: flex;
     flex-direction: row;
-    margin: 25px;
-    border-radius: 8%;
     justify-content: space-between;
 }
 
-
-
-#bouton input{
-    background-color: #E6A06B;
-    border-radius: 40%;   
-    border: solid black 2px;
-    width: 100px;
-    padding: 9px;
-    margin: 9px 9px 0 9px;
+#menu-list a:hover {
+    color: red;
+    text-decoration: none;
 }
 
-#bouton{
-    justify-content: right;
+
+
+.elementannonce {
+    background-color: #E7C689;
     display: flex;
+    flex-direction: row;
+    border-radius: 8%;
+    justify-content: space-between;
+    margin-bottom: 12px;
 }
 
-#bouton input:hover{
-    cursor: pointer;
-}
-
-
-#gauche{
+#gauche {
     display: flex;
     flex-direction: column;
-    margin: 32px;
-    align-items: center;
+    padding: 30px 0px;
+    align-items: flex-start;
+    margin-left: 25px;
 }
 
-#droite{
+#droite {
     display: flex;
     flex-direction: column;
-    margin: 32px;
+    margin: 13px;
+    padding: 3px 15px;
 }
 
 #participation {
@@ -100,7 +93,7 @@ main {
     background-color: #BDC6EF;
 }
 
-.elementParticipation{
+.elementParticipation {
     background-color: #E7C689;
     display: flex;
     flex-direction: row;
@@ -109,15 +102,94 @@ main {
     justify-content: space-between;
 }
 
-#gauche2{
+#gauche2 {
     display: flex;
     flex-direction: column;
     margin: 32px;
     align-items: center;
 }
 
-#droite2{
+#droite2 {
     display: flex;
     flex-direction: column;
     margin: 32px;
+}
+
+input[type=button] {
+    padding: 6px 0px;
+    margin: 10px 40px;
+    width: 80%;
+    position: relative;
+    display: flex;
+    border-radius: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #3498DB;
+    border-bottom: 5px solid #2980B9;
+    text-shadow: 0px -2px #2980B9;
+    transition: all 0.1s;
+    cursor: pointer;
+    box-shadow: 0 0 10px 0 black, 0 5px 5px 0 black;
+    font-size: 20px;
+    font-family: 'Pacifico', cursive;
+
+}
+
+input[type=button]:hover {
+    transition: all 0.s ease-in-out;
+    background: #3498DB;
+    color: #3498DB;
+    background-color: white;
+    border-bottom: 5px solid white;
+    text-shadow: 0px -2px #3498DB;
+}
+
+#droite a:hover {
+    transition: all 0.s ease-in-out;
+    background: #3498DB;
+    color: #3498DB;
+    background-color: white;
+    border-bottom: 5px solid white;
+    text-shadow: 0px -2px #3498DB;
+}
+
+#droite a {
+    padding: 6px 0px;
+    margin: 10px 40px;
+    width: 80%;
+    position: relative;
+    display: flex;
+    border-radius: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #3498DB;
+    border-bottom: 5px solid #2980B9;
+    text-shadow: 0px -2px #2980B9;
+    transition: all 0.1s;
+    cursor: pointer;
+    box-shadow: 0 0 10px 0 black, 0 5px 5px 0 black;
+    font-size: 20px;
+    font-family: 'Pacifico', cursive;
+    justify-content: center;
+}
+
+#bouton {
+    display: flex;
+    flex-direction: row;
+    margin-left: -39px;
+    margin-right: -43px;
+    margin-bottom: 5px;
+}
+
+#image {
+    margin: auto;
+}
+
+
+
+#scrollUp {
+    position: fixed;
+    bottom: 2px;
+    right: 10px;
+    opacity: 0.5;
 }

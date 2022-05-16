@@ -14,7 +14,7 @@ session_start();
     <link rel="stylesheet" href="../Compte/compte.css">
 
 
-    <title>Compte</title>
+    <title>Annonces</title>
 </head>
 
 <body>
@@ -22,8 +22,9 @@ session_start();
     <main>
         <div id="menu">
             <div id="menu-list">
-                <a href="#annonces">Mes annonces</a>
-                <a href="#participation">Mes participations</a>
+                <a href="#annonces">Mes annonces </a>
+                <a href="#participation">Mes participations </a>
+                <a href="#particicpantannonce">Participants de mes annonces </a>
 
             </div>
 
@@ -80,7 +81,7 @@ session_start();
 
                     <div id='droite'>
                        
-                        <img src='../../Ressource/$item->theme.webp' alt='theme' width='250px' height='auto' />
+                        <img src='../../Ressource/$item->theme.webp' id='image' alt='theme' width='250px' height='auto' />
                         <div id='bouton'>
 
                             <input type='button' name='bouton-participer' value='participations' />
@@ -95,8 +96,9 @@ session_start();
                     ?>
                 </div>
                 <div id="annonces-droite">
-
-                    <h3>Les participation à mes annonces : </h3>
+                    <div id="particicpantannonce">
+                        <h3>Les participations à mes annonces : </h3>
+                    </div>
                     <?php
 
                     try {
@@ -130,18 +132,9 @@ session_start();
                             array_push($liste_id, $id);
                         }
 
-                        // print_r($liste_id[0]);
-                        // print_r($liste_id[1]);
-                        // print_r($liste_id[2]);
-
 
                         $taille_liste = (count($liste_id));
-                        // echo $taille_liste;
 
-                        for ($i = 0; $i < $taille_liste; $i++) {
-                            // print_r($liste_id[$i]);
-
-                        }
                         $i = 0;
 
 
@@ -153,7 +146,7 @@ session_start();
                             <table>
                             <thead>
                                 <tr>
-                                    <th>Les participant a l'annonce $liste_id[$i] </th>
+                                    <th>Les participants à l'annonce $liste_id[$i] </th>
                                 </tr>
                             </thead>";
 
@@ -234,6 +227,7 @@ session_start();
 
                 ?>
             </div>
+            <a href="#top" id="scrollUp"><img src="../../Ressource/to_top.png" /></a>
 
 
         </div>

@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="connexion.css" media="screen" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
+    </style>
     <title>Connexion</title>
 </head>
 
@@ -17,8 +20,14 @@
             <label><b>Téléphone : </b></label>
             <input type="text" placeholder="Entrer un numéro de téléphone" pattern="[0-9]{10}" maxlength="10" name="Num_Tel" required />
 
-            <label><b>Mot de passe : </b></label>
-            <input type="password" placeholder="Entrer un mot de passe" name="Mdp" required>
+
+            <tr>
+                <td><label><b>Mot de passe : </b></label></td>
+                <td style="display: block ruby">
+                    <input type="password" id="motdepasse" placeholder="Entrer un mot de passe" name="Mdp" required>
+                    <!-- <input type="checkbox" onclick="Afficher()"> -->
+                </td>
+            </tr>
 
             <input type="submit" id="submit" value="Connexion">
 

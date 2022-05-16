@@ -16,4 +16,7 @@ function descendre() {
         top: x,
         behavior: "smooth"
     })
+   
+    
+      
 }

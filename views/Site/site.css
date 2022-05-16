@@ -26,18 +26,20 @@ main {
     ;
     display: flex;
     flex-direction: row;
-    background-color: #E7B1CC;
+    background-image: url("../../Ressource/triangles.png");
+    background-position: center;
+    background-size: cover;
 }
 
 #filtres {
     width: 300px;
-    background-color: #E7B1CC;
+    background-color: rgb(43, 167, 199) ;
 
 }
 
 #annonces {
     width: 50%;
-    background-color: #BDC6EF;
+    background-color: transparent;
 }
 
 #scrollUp {
@@ -48,7 +50,7 @@ main {
 }
 
 .elementannonce {
-    background-color: #E7C689;
+    background-color: rgb(219, 161, 129);
     display: flex;
     flex-direction: row;
     margin: 25px;

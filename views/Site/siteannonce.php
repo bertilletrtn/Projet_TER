@@ -1,5 +1,5 @@
 <?php
-// require "../layouts/header.html";
+require "../layouts/header.html";
 require_once("connexpdo.inc.php");
 $pdo = connexpdo("Projet");
 
@@ -60,6 +60,8 @@ $liste = $result->fetchAll(PDO::FETCH_OBJ);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="siteannonce.css">
+    <link rel="stylesheet" href="../layouts/header.css">
+    
     <title>Annonce</title>
 </head>
 
@@ -90,7 +92,7 @@ $liste = $result->fetchAll(PDO::FETCH_OBJ);
             <form action='trtCommentaire.php?<?= $id ?>' method="post" enctype="application/x-www-form-urlencoded">
 
                 <div class='postercommentaire'>
-                    <textarea style="resize: none;" maxlength="499" name="commentaire" cols=80 rows=3> Commenter </textarea>
+                    <textarea  style="resize: none"  maxlength="499" name="commentaire"   cols=80 rows=3 placeholder="Ecrire un commentaire"> </textarea>
                     <input type='submit' name='submit' value='Poster' />
                 </div>
 
