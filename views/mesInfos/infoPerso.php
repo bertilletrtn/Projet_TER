@@ -29,25 +29,43 @@ foreach ($tableau as $item) :
     $ville = $item->Ville;
     $mdp = $item->Mdp;
 ?>
-    <div style="flex:center" class='elementmesinfos'>
-        Nom : <?= $nom ?>
-        <br>
-        Prénom : <?= $prenom ?>
-        <br>
-        Pseudo : <?= $pseudo ?>
-        <br>
-        Age : <?= $age ?>
-        <br>
-        Numéro de téléphone  : <?= $num_tel ?>
-        <br>
-        Ville : <?= $ville ?>
-    </div>
-    <div style="flex:center" class='modifiéinfo'>
-        <from action='trtinfoperso.php' method="post" enctype="application/x-www-form-urlencoded">
-            <input type="submit" name=modifinfo value="Modifier mes informations" />
+
+    <html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../layouts/header.css">
+        <link rel="stylesheet" href="../layouts/footer.css">
+        <title>Mon compte</title>
+    </head>
+
+    <body>
+    <form action='trtinfoperso.php' method="post" enctype="application/x-www-form-urlencoded">
+
+
+            <div style="flex:center" class='elementmesinfos'>
+                Nom : <?= $nom ?>
+                <br>
+                Prénom : <?= $prenom ?>
+                <br>
+                Pseudo : <?= $pseudo ?>
+                <br>
+                Age : <?= $age ?>
+                <br>
+                Numéro de téléphone : <?= $num_tel ?>
+                <br>
+                Ville : <?= $ville ?>
+            </div>
+
+            <!-- <div style="flex:center" class='modifieinfo'> -->
+                <input type="submit" name="modifinfo" value="Modifier mes informations">
+            <!-- </div> -->
         </from>
-    </div>
 
-    <?php endforeach ?>
+    </body>
+
+    </html>
 
 
+
+<?php endforeach ?>
