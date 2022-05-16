@@ -1,8 +1,32 @@
-/*CSS de la page Inscription*/
+.db_tables {
+  margin: 16px;
+}
 
-:root{
-  --bleuc:#3498DB;
-  --bleuf:#2980B9;
+.db_row {
+  display: flex;
+  flex-direction: row;
+}
+
+.db_ibox {
+  background-color: #a4a4a4;
+  display: flex;
+  flex-direction: column;
+  border: black 1px solid;
+  padding: 8px;
+}
+
+.db_box {
+  display: flex;
+  flex-direction: column;
+  border: black 1px solid;
+  padding: 8px;
+  width: 128px;
+}
+
+
+:root {
+  --bleuc: #3498DB;
+  --bleuf: #2980B9;
 }
 
 
@@ -17,11 +41,11 @@ html {
   right: 100px;
 }
 
-body{
-  display: flex;
+body {
+  display: contents;
   flex-direction: column;
   right: 100px;
-  margin-right:250px;
+  margin-right: 250px;
 
 }
 
@@ -30,26 +54,26 @@ body{
   margin-top: 8%;
 }
 
-td{
+td {
   font-size: 20px;
-  font-weight:bold;
+  font-weight: bold;
 }
 
 form {
-  width: 160%;
+  /* width: 129%; */
   padding: 30px;
+  margin: 1%;
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2), 0 10px 10px 0 rgba(0, 0, 0, 0.24);
 }
 
- h1 {
-  width: 38%;
+h1 {
+  width: 100%;
   padding-bottom: 10px;
   font-size: xxx-large;
-  color: black;
   font-family: 'Oleo Script Swash Caps', cursive;
 }
 
-b{
+b {
   font-size: 20px;
 }
 
@@ -65,8 +89,8 @@ input[type=password] {
 }
 
 /* POUR LE BOUTON */
-input[type=submit]{
-  padding: 6px 0px;
+input[type=submit] {
+  padding: 3px 0px;
   margin: 10px 40px;
   width: 80%;
   position: relative;
@@ -82,17 +106,18 @@ input[type=submit]{
   box-shadow: 0 0 10px 0 black, 0 5px 5px 0 black;
   font-size: 30px;
   font-family: 'Pacifico', cursive;
+  padding-bottom: 1%;
 }
 
 
 input[type=reset] {
-  padding: 6px 0px;
+  padding: 3px 0px;
   margin: 10px 40px;
   width: 80%;
   position: relative;
   display: flex;
   border-radius: 10px;
-  color:var(--bleuc);
+  color: var(--bleuc);
   text-decoration: none;
   background-color: white;
   border-bottom: 5px solid white;
@@ -102,6 +127,7 @@ input[type=reset] {
   box-shadow: 0 0 10px 0 black, 0 5px 5px 0 black;
   font-size: 30px;
   font-family: 'Pacifico', cursive;
+  padding-bottom: 1%;
 }
 
 
@@ -120,7 +146,7 @@ input[type=reset]:hover {
   transition: all 0.s ease-in-out;
   background: white;
   color: white;
-  background-color:var(--bleuc);
+  background-color: var(--bleuc);
   border-bottom: 5px solid var(--bleuf);
   text-shadow: 0px -2px var(--bleuc);
 }

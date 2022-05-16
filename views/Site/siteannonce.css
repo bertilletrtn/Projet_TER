@@ -69,12 +69,12 @@ main {
 
 .commentaires {
     margin-top: 0px;
-    /* background-color: #E7B1CC; */
+    background-color: transparent;
 
 }
 
 .postercommentaire {
-    background-color: #dba181;
+    background-color:transparent;
     padding: 10px 10px;
     padding-left: 25px;
     border-radius: 10%;
