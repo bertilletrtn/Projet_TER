@@ -27,13 +27,13 @@ foreach ($tableau as $item) :
     $ville = $item->Ville;
     $mdp = $item->Mdp;
 
-    if (($pseudo == "")) {
-        $pseudo = "vide";
-    }
+    // if (($pseudo == "")) {
+    //     $pseudo = "";
+    // }
 
-    if (($ville == "")) {
-        $ville = "vide";
-    }
+    // if (($ville == "")) {
+    //     $ville = "vide";
+    // }
 
 ?>
 
@@ -51,19 +51,35 @@ foreach ($tableau as $item) :
             </tr>
             <tr>
                 <td>Pseudo :</td>
-                <td><input type="text" name="pseudo" pattern="[a-zA-Z]{3,}" size="40" maxlength="50" value=<?= $pseudo ?> /></td>
+                <td><input type="text" name="pseudo" pattern="[a-zA-Z]{3,}" size="40" maxlength="50" value=<?= $pseudo ?>></td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td>Téléphone :</td>
                 <td><input type="tel" pattern="[0-9]{10}"" maxlength=" 10" name="tel" value=<?= $num_tel ?> /></td>
-            </tr>
+            </tr> -->
             <tr>
                 <td>Ville :</td>
-                <td><input type="text" name="ville" pattern="[a-zA-Z]{2,}" size="40" maxlength="50" value=<?= $ville ?> /></td>
+                <td><input type="text" name="ville" pattern="[a-zA-Z]{,}" size="40" maxlength="50" value=<?= $ville ?>></td>
             </tr>
             <tr>
                 <td>Age :</td>
                 <td><input type="text" name="age" size="40" pattern="[0-9]{2}" maxlength="50" value=<?= $age ?> /></td>
+            </tr>
+            <!-- <tr>
+                <td>Précedent mot de passe :</td>
+                <td><input type="password" name="mdpprece" size="40" placeholder="Précédent mdp" maxlength="50" required /></td>
+            </tr> -->
+            <tr>
+                <td>Mot de passe :</td>
+                <td style="display: block ruby">
+                    <input type="password" id="motdepasse" name="mdp" size="40" placeholder="Entrer un mdp" maxlength="50" required />
+                    <input type="checkbox" onclick="Afficher()">
+                </td>
+            </tr>
+            <!--faire un carre pour faire afficher le mdp-->
+            <tr>
+                <td>Confirmer le mot de passe :</td>
+                <td><input type="password" name="mdpconfirm" size="40" placeholder="Confirmer le mdp" maxlength="50" required /></td>
             </tr>
             <tr>
                 <div class="btn">
@@ -77,7 +93,6 @@ foreach ($tableau as $item) :
 <?php endforeach ?>
 <?php
 if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['tel']) && !empty($_POST['age'])) {
-    echo ("dans le if");
     try {
         $nom = $pdo->quote($_POST['nom']);
         $prenom = $pdo->quote($_POST['prenom']);
@@ -86,27 +101,34 @@ if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['tel']) &
         $pseudo = $pdo->quote($_POST['pseudo']);
         $ville = $pdo->quote($_POST['ville']);
 
-        $sql = "
-    INSERT INTO annonces(Prenom, Nom, Pseudo, Age, Num_Tel, Ville) 
-    VALUES (:prenom, :nom, :pseudo, :age, :num_tel, :ville)
-    ";
-        $rqt = $pdo->prepare($sql);
-        $tableau = [
-            'prenom' => $_POST['prenom'],
-            'nom' => $_POST['nom'],
-            'pseudo' => $_POST['pseudo'] === "vide" ? NULL : $_POST['pseudo'],
-            'age' => $_POST['age'],
-            'num_tel' => $_POST['tel'],
-            'ville' => $_POST['ville'] === "not" ? NULL : $_POST['ville'],
-        ];
+        // $mdpp = $pdo->quote($_POST['mdpprece']);
+        $mdpn = $pdo->quote($_POST['mdp']);
+        $mdpconfirm = $pdo->quote($_POST['mdpconfirm']);
 
-        echo "<pre>";
-        var_dump($tableau);
-        echo "</pre>";
+        // echo ($mdp);
+        // echo ($mdpp);
+        // echo($mdpconfirm);
 
-        // $rqt -> execute($tableau);
+        // if ($mdp != $mdpp) {
+        //     alert("Erreur : Le mot de passe précédent ne correspond pas ! ");
+        //     return;
+        // }
+
+        if ($mdpn != $mdpconfirm) {
+            alert("Erreur : Le mot de passe ne correspond pas ! ");
+            return;
+        }
 
 
+        $sql = "UPDATE utilisateurs SET Prenom=$prenom, Nom=$nom, Pseudo=$pseudo, Age=$age, Ville=$ville, Mdp=$mdpn WHERE Num_Tel=$utilisateur";
+
+
+    
+        $reponse = $pdo->query($sql);
+        $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+
+        header("Refresh:0.5; url=infoPerso.php");
+        alert("Vos informations on bien été modifiées ! ");
     } catch (PDOException $e) {
         // header("Refresh:0.5; url=infoPerso.php");
         alert("Le formulaire a mal été remplie ! Reccomnencez");

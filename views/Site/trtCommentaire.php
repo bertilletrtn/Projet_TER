@@ -9,8 +9,6 @@ if ($_SESSION['Num_Tel'] !== "") {
     $connecter = $_SESSION['Num_Tel'];
 }
 
-echo "$connecter";
-
 $url = $_SERVER['REQUEST_URI'];
 $theid = substr($url, strrpos($url, "?"), strlen($url));
 

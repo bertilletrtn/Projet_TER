@@ -61,88 +61,82 @@ $liste = $result->fetchAll(PDO::FETCH_OBJ);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="siteannonce.css">
     <link rel="stylesheet" href="../layouts/header.css">
-    
+
     <title>Annonce</title>
 </head>
 
 <body>
     <!-- <form action="trtCommentaire.php" method="post" enctype="application/x-www-form-urlencoded"> -->
-        <div style="flex:center" class='elementannonce'>
+    <div style="flex:center" class='elementannonce'>
 
-            <div id='gauche'>
-                <h1><?php echo "$item->Ville" ?></h1>
-                <p1><?php echo "$item->Lieu" ?> </p1>
-                <p2><?php echo "$item->Titre" ?></p2>
-                <p3>Le <?php echo "$item->Date" ?> à <?php echo "$heure_debut" ?> et finir vers <?php echo "$heure_fin" ?></p3>
-                <h3><?php echo "$item->Info_sup" ?></h3>
-            </div>
+        <div id='gauche'>
+            <h1><?php echo "$item->Ville" ?></h1>
+            <p1><?php echo "$item->Lieu" ?> </p1>
+            <p2><?php echo "$item->Titre" ?></p2>
+            <p3>Le <?php echo "$item->Date" ?> à <?php echo "$heure_debut" ?> et finir vers <?php echo "$heure_fin" ?></p3>
+            <h3><?php echo "$item->Info_sup" ?></h3>
+        </div>
 
 
-            <div id='droite'>
-                <img src='../../Ressource/<?php echo "$item->theme" ?>.webp' alt='theme' width='250px' height='auto' />
-                <div id='bouton'>
-                    <p> <a href='trtParticipation.php?<?= $id ?>'> Participation </a></p><br>
+        <div id='droite'>
+            <img src='../../Ressource/<?php echo "$item->theme" ?>.webp' alt='theme' width='250px' height='auto' />
+            <div id='bouton'>
+                <p> <a href='trtParticipation.php?<?= $id ?>'> Participation </a></p><br>
 
-                    <!-- <p><a href='trtCommentaire.php?<?= $id ?>'> Commentaires </a></p> -->
+                <!-- <p><a href='trtCommentaire.php?<?= $id ?>'> Commentaires </a></p> -->
 
-                </div>
             </div>
         </div>
-        <div style="flex:center" class='commentaires'>
-            <form action='trtCommentaire.php?<?= $id ?>' method="post" enctype="application/x-www-form-urlencoded">
+    </div>
+    <div style="flex:center" class='commentaires'>
+        <form action='trtCommentaire.php?<?= $id ?>' method="post" enctype="application/x-www-form-urlencoded">
 
-                <div class='postercommentaire'>
-                    <textarea  style="resize: none"  maxlength="499" name="commentaire"   cols=80 rows=3 placeholder="Ecrire un commentaire"> </textarea>
-                    <input type='submit' name='submit' value='Poster' />
+            <div class='postercommentaire'>
+                <textarea style="resize: none" maxlength="499" name="commentaire" cols=80 rows=3 placeholder="Ecrire un commentaire"> </textarea>
+                <input type='submit' name='submit' value='Poster' />
+            </div>
+
+            <div class='listecommentaire'>
+                <div class="event">
+                    <div class="eventechange"> Les commentaires déjà en ligne : </div>
                 </div>
 
-                <div class='listecommentaire'>
-                    <div class="event">
-                        <div class="eventechange"> Les commentaires déjà en ligne :  </div>
-                    </div>
-
-                    <?php
-                    try {
-                        foreach ($liste as $elem) : ?>
+                <?php
+                try {
+                    foreach ($liste as $elem) : ?>
 
                         <?php
 
-                            $num_annonce = $elem->num_annonce;
+                        $num_annonce = $elem->num_annonce;
 
-                            $commentaire = $elem->commentaire;
+                        $commentaire = $elem->commentaire;
 
-                            $trtdate = explode(" ", $elem->date);
-                            $date = $trtdate[0];
+                        $trtdate = explode(" ", $elem->date);
+                        $date = $trtdate[0];
 
-                            $trttime = explode(":", $trtdate[1]);
-                            $time = $trttime[0] . ":" . $trttime[1];
+                        $trttime = explode(":", $trtdate[1]);
+                        $time = $trttime[0] . ":" . $trttime[1];
 
+                        $prenom = $elem->Prenom;
 
-                            // $arr_date_debut = explode("-", $elem->date);
-                            // $datee = $arr_date_debut[1] . "-" . $arr_date_debut[2];
+                        ?>
 
-                            // $datee = $elem->date;
-
-                            // $id_commentaire = $elem->id_commentaire;
-
-                            $prenom = $elem->Prenom;
-
-                            ?>
-                        
                         <div style="flex:center" class='elementlistecommentaire'>
 
                             <div class='date_com'>Le <?= $date ?> à <?= $time ?> <?= $prenom ?> à dit : </div>
                             <div class='com'> <?= $commentaire ?> </div>
 
                         </div>
-                        <?php endforeach ?>
-                    <?php } catch (PDOException $e) {
-                        echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
-                    }
-                    ?>
-                </div>
+                    <?php endforeach ?>
+                <?php } catch (PDOException $e) {
+                    echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
+                }
+                ?>
+            </div>
             </from>
-        </div>
+    </div>
 
-        
+
 </body>
+
+</html>

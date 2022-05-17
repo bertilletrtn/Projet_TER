@@ -90,6 +90,10 @@ session_start();
                                 <input type="checkbox" id="music" name="loisirFiltre" value="loisir">
                                 <label for="music">Loisir</label>
                             </div>
+                            <div>
+                                <input type="checkbox" id="music" name="autreFiltre" value="autre">
+                                <label for="music">Autre</label>
+                            </div>
                         </fieldset>
 
                         <fieldset>

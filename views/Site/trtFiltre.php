@@ -1,26 +1,27 @@
 <?php
+echo("test");
+
+
 //session_start(); deja active
 require_once("Connexion.php");
 require_once("Conf.php");
 $pdo = Connexion::getPDO();
 //Conf::show_tables();
 
+$titre = $pdo->quote($_POST['titre']);
+$ville = $pdo->quote($_POST['ville']);
+$lieu = $pdo->quote($_POST['lieu']);
+$date = $pdo->quote($_POST['dateFiltre']);
 
 
-if (isset($_GET['titreFiltre']) AND isset($_GET['villeFiltre']) AND isset($_GET['lieuFiltre']) AND isset($_GET['dateFiltre']) AND isset($_GET['time']) )
-{
-
-    $titre = htmlspecialchars($_GET['titreFiltre']);
-    $ville = htmlspecialchars($_GET['villeFiltre']);
-    $lieu = htmlspecialchars($_GET['lieuFiltre']);
-    $date = htmlspecialchars($_GET['dateFiltre']);
-    $time = htmlspecialchars($_GET['time']);
-
-    $reponse = $bdd->query ('select *
-         from annonces
-         where titreFiltre like "%'.$titre.'%"  and villeFiltre like "%'.$ville.'%" and lieuFiltre like "%'.$lieu.'%" and dateFiltre like "%'.$date );
-
-$rqt -> execute($reponse);
+if(!empty($_POST['product_check'])){
+    foreach($_POST['product_check'] as $value){
+        echo $value;
+    }
 }
+
+$heure = $pdo->quote($_POST['appt-time']);
+
+
 
 ?>

@@ -63,7 +63,7 @@ $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
 
 
 <body>
-<form action="trtCompte.php" method="post" enctype="application/x-www-form-urlencoded">
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="application/x-www-form-urlencoded">
 
         <main>
 
@@ -93,40 +93,44 @@ $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
                         <fieldset>
                             <legend>Quels thèmes :</legend>
                             <div>
-                                <input type="checkbox" id="musique" name="musiqueFiltre" value="product_check">
+                                <input type="checkbox" id="musique" name="product_check[]" value="musique">
                                 <label for="coding">Musique</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="cinema" name="cinemaFiltre" value="product_check">
+                                <input type="checkbox" id="cinema" name="product_check[]" value="cinéma">
                                 <label for="music">Cinéma</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="sport" name="sportFiltre" value="product_check">
+                                <input type="checkbox" id="sport" name="product_check[]" value="sport">
                                 <label for="music">Sport</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="travail" name="travailFiltre" value="product_check">
+                                <input type="checkbox" id="travail" name="product_check[]" value="travail">
                                 <label for="music">Travail</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="alimentation" name="alimentationFiltre" value="product_check">
+                                <input type="checkbox" id="alimentation" name="product_check[]" value="alimentation">
                                 <label for="music">Alimentation</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="culture" name="cultureFiltre" value="product_check">
+                                <input type="checkbox" id="culture" name="product_check[]" value="culture">
                                 <label for="music">Culture</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="bar" name="barFiltre" value="product_check">
+                                <input type="checkbox" id="bar" name="product_check[]" value="bar">
                                 <label for="music">Bar</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="festival" name="festivalFiltre" value="product_check">
+                                <input type="checkbox" id="festival" name="product_check[]" value="festival">
                                 <label for="music">Festival</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="loisir" name="loisirFiltre" value="product_check">
+                                <input type="checkbox" id="loisir" name="product_check[]" value="loisir">
                                 <label for="music">Loisir</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="autre" name="product_check[]" value="autres">
+                                <label for="music">Autre</label>
                             </div>
                         </fieldset>
 
@@ -138,10 +142,56 @@ $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
                         </fieldset>
 
                         <input type="reset" value="Oups je veux recommencer">
-                        <input type="submit" value="Zzeee partyyy">
+                        <input type="submit" name="filtre" value="Zzeee partyyy">
 
                     </div>
                 </form>
+
+
+
+
+                <?php
+
+                if (isset($_POST['filtre'])) {
+
+                    $titre = $pdo->quote($_POST['titre']);
+                    $ville = $pdo->quote($_POST['ville']);
+                    $lieu = $pdo->quote($_POST['lieu']);
+                    $date = $pdo->quote($_POST['dateFiltre']);
+                    $heure = $pdo->quote($_POST['appt-time']);
+
+                    $listeTheme = array();
+                    $i = 0;
+
+                    if (!empty($_POST['product_check'])) {
+                        foreach ($_POST['product_check'] as $value) {
+
+                            // if($value = 'musique'){
+                            //     array_push($listeTheme,'musique');
+                            // }
+                            // array_push($listeTheme,$value);
+                            print_r($listeTheme[0]);
+                            // echo("    ");
+                            // print_r($listeTheme[1]);
+
+                        }
+                    }
+                            $sql = ("SELECT * FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel WHERE Titre=$titre OR a.Ville=$ville OR Lieu=$lieu OR Date=$date OR HeureDebut=$heure OR theme='$value' OR theme2='$value' OR theme3='$value'");
+                            $reponse = $pdo->query($sql);
+
+                            $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+
+                }
+
+
+
+                ?>
+
+
+
+
+
+
 
 
             </div>
