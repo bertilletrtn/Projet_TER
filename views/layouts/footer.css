@@ -1,6 +1,6 @@
 footer p {
-    background-color: rgb(169, 228, 169);
-    color: brown;    
+    background-color: #467099;
+    color: white;    
     text-align: center;
 
 }
@@ -9,4 +9,5 @@ footer{
     width: 100%;
     margin-top: 0px;   
     height: 100%;
+    margin-top: -17px;
 }

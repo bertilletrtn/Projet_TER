@@ -17,6 +17,11 @@ session_start();
         @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
     </style>
 
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
+    </style>
+
     <title>Annonces</title>
 </head>
 
@@ -32,167 +37,39 @@ session_start();
             </div>
 
             <div id="annonces">
-                <div id="annonces-gauche">
-                    <h3>Mes annonces : </h3>
-
-                    <?php
-
-                    // session_start();
-
-
-                    try {
-                        require_once("../Site/connexpdo.inc.php");
-
-                        $pdo = connexpdo("Projet");
-
-                        if ($_SESSION['Num_Tel'] !== "") {
-                            $proprietaire = $_SESSION['Num_Tel'];
-                        }
-
-                        $sql = "SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel WHERE u.num_tel='$proprietaire' ORDER BY date DESC";
-                        $reponse = $pdo->query($sql);
-
-                        $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
-
-
-                        foreach ($tableau as $item) {
-                            /*
-                    echo "<pre>";
-                    var_dump($item);
-                    echo "</pre>";
-                    */
-
-                            $arr_heure_debut = explode(":", $item->HeureDebut);
-                            $heure_debut = $arr_heure_debut[0] . ":" . $arr_heure_debut[1];
-
-                            $theme = $item->theme;
-
-                            $Pseudo = $item->Pseudo;
-                            if ($item->Pseudo === "") {
-                                $Pseudo = $item->Prenom;
-                            }
-
-                            echo "<div class='elementannonce'>
-                    <div id='gauche'>
-                            <h1>{$item->Titre}</h1>
-                            <p1>{$Pseudo} propose </p1>
-                            <p2>{$item->villeannonce} {$item->Lieu}</p2>
-                            <p3>Le {$item->Date} à {$heure_debut}</p3>
-                            <h5>{$item->Info_sup}</h5>
-                    </div>
-            
-
-                    <div id='droite'>
-                       
-                        <img src='../../Ressource/$item->theme.webp' id='image' alt='theme' width='250px' height='auto' />
-                        <div id='bouton'>
-                            <a href='../Site/siteannonce.php?$item->id' > commentaire </a>
-                            </div>
-                    </div>
-        </div>";
-                        }
-                    } catch (PDOException $e) {
-                        echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
-                    }
-                    ?>
-                </div>
-                <div id="annonces-droite">
-                    <div id="particicpantannonce">
-                        <h3>Les participations à mes annonces : </h3>
-                    </div>
-                    <?php
-
-                    try {
-
-                        $sql = "SELECT * FROM participation p JOIN utilisateurs u ON u.num_tel = p.Participant JOIN annonces a ON a.id = p.Annonce WHERE p.Participant='$proprietaire'";
-                        $reponse = $pdo->query($sql);
-
-                        $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
-
-                        // foreach ($tableau as $item) {
-
-                        // $sql = "SELECT * FROM participation p JOIN annonces a ON a.id = p.Annonce JOIN utilisateurs u ON u.num_tel = a.Proprietaire WHERE a.Proprietaire='$proprietaire'";
-
-
-                        $sql = "SELECT p.Participant FROM participation p JOIN annonces a ON a.id = p.Annonce JOIN utilisateurs u ON u.num_tel = a.Proprietaire WHERE a.Proprietaire='$proprietaire'";
-
-
-                        $reponse = $pdo->query($sql);
-
-
-                        $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
-
-
-                        $liste_id = array();
-
-                        $result = $pdo->query("SELECT id FROM annonces WHERE Proprietaire='$proprietaire'");
-                        while (list($id) = $result->fetch(PDO::FETCH_NUM)) {
-                            // echo "id: $id \n";
-
-
-                            array_push($liste_id, $id);
-                        }
-
-
-                        $taille_liste = (count($liste_id));
-
-                        $i = 0;
-
-
-                        while ($i < $taille_liste) {
-
-                            $liste_participant = array();
-
-                            echo "
-                            <table>
-                            <thead>
-                                <tr>
-                                    <th>Les participants à l'annonce $liste_id[$i] </th>
-                                </tr>
-                            </thead>";
-
-                            $requette =  $pdo->query("SELECT u.Prenom FROM participation p JOIN annonces a ON a.id = p.Annonce JOIN utilisateurs u ON p.Participant = u.Num_Tel WHERE a.Proprietaire='$proprietaire' and p.Annonce='$liste_id[$i]'");
-
-                            while (list($participant) = $requette->fetch(PDO::FETCH_NUM)) {
-
-                                echo "
-                            <tbody>
-                                <tr>
-                                    <td>$participant</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        ";
-                            }
-                            $i = $i + 1;
-                        }
-                        //}
-                    } catch (PDOException $e) {
-                        echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
-                    }
-
-                    ?>
-
-                </div>
-
-            </div>
-
-            <div id="participation">
-                <h3>Mes participations : </h3>
+                <h3>Mes annonces : </h3>
 
                 <?php
 
+                // session_start();
+
+
                 try {
+                    require_once("../Site/connexpdo.inc.php");
 
-                    $sql = "SELECT *, a.ville AS villeannonce  FROM participation p JOIN utilisateurs u ON u.num_tel = p.Participant JOIN annonces a ON a.id = p.Annonce WHERE p.Participant='$proprietaire'";
+                    $pdo = connexpdo("Projet");
+
+                    if ($_SESSION['Num_Tel'] !== "") {
+                        $proprietaire = $_SESSION['Num_Tel'];
+                    }
+
+                    $sql = "SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel WHERE u.num_tel='$proprietaire' ORDER BY date DESC";
                     $reponse = $pdo->query($sql);
-
 
                     $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
 
 
                     foreach ($tableau as $item) {
+                        /*
+                    echo "<pre>";
+                    var_dump($item);
+                    echo "</pre>";
+                    */
+
+                        $arr_heure_debut = explode(":", $item->HeureDebut);
+                        $heure_debut = $arr_heure_debut[0] . ":" . $arr_heure_debut[1];
+
+                        $theme = $item->theme;
 
                         $Pseudo = $item->Pseudo;
                         if ($item->Pseudo === "") {
@@ -200,13 +77,147 @@ session_start();
                         }
 
 
-                        $_SESSION['id'] = $id;
-
-
                         echo "<div class='elementParticipation'>
                     <div id='gauche2'>
+                    <h1>{$item->Titre}</h1>
+                    
+                    <p2>{$item->villeannonce} {$item->Lieu}</p2>
+                    <p3>Le {$item->Date} à {$heure_debut}</p3>
+                    <h5>{$item->Info_sup}</h5>
+                    </div>
+            
+
+                    <div id='droite2'>
+                       
+                        <img src='../../Ressource/$item->theme.webp' id='image' alt='theme' width='250px' height='auto' />
+                        <div id='bouton'>
+                        <div id='boutonp'>
+                            <a href='../Site/siteannonce.php?$item->id' > commentaire </a>
+                            </div>
+                            </div>
+                    </div>
+        </div>";
+                    }
+                } catch (PDOException $e) {
+                    echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
+                }
+                ?>
+            </div>
+            <div id="annonces-droite">
+                <div id="particicpantannonce">
+                    <h3>Les participations à mes annonces : </h3>
+                </div>
+                <?php
+
+                try {
+
+                    $sql = "SELECT * FROM participation p JOIN utilisateurs u ON u.num_tel = p.Participant JOIN annonces a ON a.id = p.Annonce WHERE p.Participant='$proprietaire'";
+                    $reponse = $pdo->query($sql);
+
+                    $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+
+                    // foreach ($tableau as $item) {
+
+                    // $sql = "SELECT * FROM participation p JOIN annonces a ON a.id = p.Annonce JOIN utilisateurs u ON u.num_tel = a.Proprietaire WHERE a.Proprietaire='$proprietaire'";
+
+
+                    $sql = "SELECT p.Participant FROM participation p JOIN annonces a ON a.id = p.Annonce JOIN utilisateurs u ON u.num_tel = a.Proprietaire WHERE a.Proprietaire='$proprietaire'";
+
+
+                    $reponse = $pdo->query($sql);
+
+
+                    $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+
+
+                    $liste_id = array();
+
+                    $result = $pdo->query("SELECT id FROM annonces WHERE Proprietaire='$proprietaire'");
+                    while (list($id) = $result->fetch(PDO::FETCH_NUM)) {
+                        // echo "id: $id \n";
+
+
+                        array_push($liste_id, $id);
+                    }
+
+
+                    $taille_liste = (count($liste_id));
+
+                    $i = 0;
+
+
+                    while ($i < $taille_liste) {
+
+                        $liste_participant = array();
+
+                        echo "
+                            <div class='participants'>
+                            <table>
+                            <thead>
+                                <tr>
+                                    <th>Les participants à l'annonce $liste_id[$i] </th>
+                                </tr>
+                            </thead>";
+
+                        $requette =  $pdo->query("SELECT u.Prenom FROM participation p JOIN annonces a ON a.id = p.Annonce JOIN utilisateurs u ON p.Participant = u.Num_Tel WHERE a.Proprietaire='$proprietaire' and p.Annonce='$liste_id[$i]'");
+
+                        while (list($participant) = $requette->fetch(PDO::FETCH_NUM)) {
+
+                            echo "
+                            <tbody>
+                                <div class='bodyp'>
+                                <tr>
+                                    <td>$participant</td>
+                                </tr>
+                                 </div>
+                            </tbody>
+                        </table>
+                       
+                        </div>
+                        ";
+                        }
+                        $i = $i + 1;
+                    }
+                    //}
+                } catch (PDOException $e) {
+                    echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
+                }
+
+                ?>
+
+            </div>
+
+        </div>
+
+        <div id="participation">
+            <h3>Mes participations : </h3>
+
+            <?php
+
+            try {
+
+                $sql = "SELECT *, a.ville AS villeannonce  FROM participation p JOIN utilisateurs u ON u.num_tel = p.Participant JOIN annonces a ON a.id = p.Annonce WHERE p.Participant='$proprietaire'";
+                $reponse = $pdo->query($sql);
+
+
+                $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+
+
+                foreach ($tableau as $item) {
+
+                    $Pseudo = $item->Pseudo;
+                    if ($item->Pseudo === "") {
+                        $Pseudo = $item->Prenom;
+                    }
+
+
+                    $_SESSION['id'] = $id;
+
+
+                    echo "<div class='elementParticipation'>
+                    <div id='gauche2'>
                     <h1>{$Pseudo} participe </h1>
-                    <h3>{$item->Titre}</h3>
+                    <h2>{$item->Titre}</h2>
                     
                     <p2>{$item->villeannonce} {$item->Lieu}</p2>
                     <p3>Le {$item->Date} à {$heure_debut}</p3>
@@ -223,14 +234,14 @@ session_start();
                         </div>
                     </div>
         </div>";
-                    }
-                } catch (PDOException $e) {
-                    echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
                 }
+            } catch (PDOException $e) {
+                echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
+            }
 
-                ?>
-            </div>
-            <a href="#top" id="scrollUp"><img src="../../Ressource/to_top.png" /></a>
+            ?>
+        </div>
+        <a href="#top" id="scrollUp"><img src="../../Ressource/to_top.png" /></a>
 
 
         </div>

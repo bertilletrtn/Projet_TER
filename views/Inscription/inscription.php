@@ -57,7 +57,6 @@
                             <input type="checkbox" onclick="Afficher()">
                         </td>
                     </tr>
-                    <!--faire un carre pour faire afficher le mdp-->
                     <tr>
                         <td>Confirmer le mot de passe :</td>
                         <td><input type="password" name="mdpconfirm" size="40" placeholder="Confirmer le mdp" maxlength="50" required /></td>

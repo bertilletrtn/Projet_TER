@@ -56,7 +56,7 @@
                 <a href='siteannonce.php?<?= $id ?>'> <?= htmlentities(Text::excerpt($tableau['titre'])) ?> </a>
 
             </div>
-            <div class='event_nbr_participant'> <?=  $tableau['theme'] ?> </div>
+            <div class='event_nbr_participant'> <?=  $tableau['ville'] ?> </div>
             <div class='event_organisateur'> <?= $tableau['pseudo']  ?> </div>
         </div>
 

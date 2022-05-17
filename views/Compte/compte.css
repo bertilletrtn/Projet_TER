@@ -8,29 +8,32 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0;
-    width: 100%
+    width: 100%;
+    background-image: url("../../Ressource/triangles.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
 
 main {
     display: flex;
     flex-direction: row;
-    background-color: #E7B1CC;
+    background-color: transparent;
 }
 
 #menu-list {
     margin-right: 50px;
     display: flex;
-    flex-direction: row;
     align-items: baseline;
     text-decoration: none;
-    justify-content: space-evenly;
+    justify-content: space-between;
 
 }
 
 #annonces {
     width: 100%;
-    background-color: #BDC6EF;
-    display: flex;
+    background-color: transparent;
+    /* display: flex; */
 
 }
 
@@ -55,10 +58,11 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    font-size: 18px;
 }
 
 #menu-list a:hover {
-    color: red;
+    color: #E139C5;
     text-decoration: none;
 }
 
@@ -90,7 +94,7 @@ main {
 
 #participation {
     width: 100%;
-    background-color: #BDC6EF;
+    background-color: transparent;
 }
 
 .elementParticipation {
@@ -184,6 +188,10 @@ input[type=button]:hover {
     margin: auto;
 }
 
+h3{
+    font-family: 'Oleo Script Swash Caps', cursive;
+    font-size: 40px;
+}
 
 
 #scrollUp {
@@ -199,7 +207,7 @@ input[type=button]:hover {
     text-align: center;
     align-content: center;
     align-items: center;
-    margin-left: 9px;
+    margin-left: 37px;
 }
 
 #boutonp a {

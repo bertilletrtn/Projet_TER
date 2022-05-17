@@ -29,6 +29,19 @@
   --bleuf: #2980B9;
 }
 
+#logo a {
+  text-decoration: none;
+  font-size: 32px;
+  font-weight: bold;
+  color: black;
+  font-family: 'Oleo Script Swash Caps', cursive;
+  z-index: 3;
+}
+
+
+#logo{
+
+}
 
 html {
   background-image: url("../../Ressource/triangles.png");
@@ -39,6 +52,7 @@ html {
   justify-content: center;
   align-items: center;
   right: 100px;
+  flex-direction: column;
 }
 
 body {
