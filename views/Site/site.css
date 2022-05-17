@@ -297,3 +297,18 @@ path.two {
         fill: white;
     }
 }
+
+
+
+
+/*MISE EN PAGE DE CSS POUR LES FILTRES*/
+
+input[type="checkbox"]:checked {
+    box-shadow: 0 0 0 3px hotpink;
+  }
+  
+  /* Éléments options sélectionnés */
+  option:checked {
+    box-shadow: 0 0 0 3px lime;
+    color: red;
+  }

@@ -13,6 +13,9 @@ session_start();
     <link rel="stylesheet" href="../layouts/header.css">
     <link rel="stylesheet" href="../Compte/compte.css">
 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
+    </style>
 
     <title>Annonces</title>
 </head>
@@ -83,8 +86,6 @@ session_start();
                        
                         <img src='../../Ressource/$item->theme.webp' id='image' alt='theme' width='250px' height='auto' />
                         <div id='bouton'>
-
-                            <input type='button' name='bouton-participer' value='participations' />
                             <a href='../Site/siteannonce.php?$item->id' > commentaire </a>
                             </div>
                     </div>
@@ -215,8 +216,10 @@ session_start();
                     <div id='droite2'>
                     <img src='../../Ressource/$item->theme.webp' alt='theme' width='250px' height='auto' />
                     <div id='bouton'>
-                        <a href='trtCompte.php?$item->id' > annuler participation </a>
-                        <a href='../Site/siteannonce.php?$item->id' > commentaire </a>
+                        <div id='boutonp'>
+                            <a href='trtCompte.php?$item->id' > annuler participation </a>
+                            <a href='../Site/siteannonce.php?$item->id' > commentaire </a>
+                        </div id='boutonp'>
                         </div>
                     </div>
         </div>";

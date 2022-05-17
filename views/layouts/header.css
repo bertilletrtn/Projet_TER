@@ -48,9 +48,10 @@ nav li {
 
 nav a {
     color: black;
-    font-size: 18px;
+    font-size: 22px;
     text-transform: uppercase;
     border: 1px solid transparent;
+    font-weight:bold;
     padding: 20px 14px;
     border-radius: 13px;
     position: relative;
@@ -63,6 +64,7 @@ nav a:hover {
     z-index: 0;
     border-radius: 7px;
     transition: all .5s ease 0;
+    color: #E139C5;
 }
 
 nav a::before {
@@ -71,6 +73,7 @@ nav a::before {
     left: 0;
     top: -30px;
     bottom: 60px;
+    font-weight:bold;
     width: 100%;
     height: 100%;
     z-index: -1;
@@ -111,7 +114,7 @@ nav #icon {
     }
 
     nav a {
-        font-size: 17px;
+        font-size: 22px;
     }
 }
 
@@ -148,7 +151,7 @@ nav #icon {
 
     li a:hover {
         border: none;
-        color: red
+        color: #E139C5;
     }
 
     nav ul.show {
