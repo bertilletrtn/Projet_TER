@@ -35,3 +35,5 @@ echo "</pre>";
 $rqt -> execute($tableau);
 header("Location:site.php");
 ?>
+
+/opt/lampp/htdocs/Dev/Projet_TER/views/Site/trtAnnonces.php
