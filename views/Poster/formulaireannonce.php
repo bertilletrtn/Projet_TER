@@ -1,18 +1,32 @@
 <html lang="fr">
 
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="formulaireannonce.css" />
+    <link rel="stylesheet" href="../layouts/header.css">
+    <link rel="stylesheet" href="../layouts/footer.css">
     <title>Poster une annonce</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
     </style>
+
+    <!-- pour le titre logo -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
+    </style>
+
 </head>
 
 
 <body>
+    <div id="logo">
+        <a href="../Site/site.php">Join and Enjoy</a>
+    </div>
+
     <div id="contenu">
         <form action="../Site/trtAnnonces.php" method="post" enctype="application/x-www-form-urlencoded">
             <h1>Poster une annonce : </h1>
@@ -98,8 +112,7 @@
 
                 <tr>
                     <td>Informations supplémentaires :</td>
-                    <td><textarea name="infosup" rows="" placeholder="Des infos supplémentaires ? " cols="50"
-                            style="resize: none;"></textarea></td>
+                    <td><textarea name="infosup" rows="" placeholder="Des infos supplémentaires ? " cols="50" style="resize: none;"></textarea></td>
                 </tr>
                 <tr>
                     <div class="btn">

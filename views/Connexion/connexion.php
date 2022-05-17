@@ -4,9 +4,20 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="connexion.css" media="screen" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- /*STYLE CSS POUR CONNEXION  */ -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
     </style>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
+    </style>
+    <!-- pour intérieur bouton -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
+    </style>
+
+
     <title>Connexion</title>
 </head>
 

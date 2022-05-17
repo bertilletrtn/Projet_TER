@@ -14,7 +14,6 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0;
-
 }
 
 main {
@@ -32,6 +31,7 @@ main {
     margin: 25px;
     border-radius: 8%;
     justify-content: space-between;
+    justify-content: center;
 }
 
 
@@ -48,6 +48,7 @@ main {
 #bouton {
     justify-content: right;
     display: flex;
+    justify-content: center;
 }
 
 #bouton input:hover {
@@ -71,19 +72,27 @@ main {
 .commentaires {
     margin-top: 0px;
     background-color: transparent;
+    display: flex;
+    position: center;
+    justify-content: center;
 
 }
 
 .postercommentaire {
-    background-color:#dba181;
+    background-color: transparent;
     padding: 10px 10px;
-    padding-left: 25px;
+    padding-left: 10px;
     border-radius: 10%;
+    display: flex;
+    flex-direction: inherit;
+    align-content: center;
+    align-items: center;
+
 }
 
 .listecommentaire {
     margin-top: 25px;
-    background-color: #dba181;
+    background-color: transparent;
     padding: 30px 30px;
     border-radius: 10%;
 
@@ -100,7 +109,9 @@ main {
 }
 
 .eventechange {
-    width: 300px;
+    width: 321px;
+    display: flex;
+    font-size: 24px;
 }
 
 /* .event {
@@ -121,6 +132,3 @@ main {
     background-color: #e139c5;
     width: 300px;
 }
-
-
-
