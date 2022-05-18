@@ -92,7 +92,6 @@ foreach ($tableau as $item) :
 <?php endforeach ?>
 <?php
 if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['age'])) {
-    echo("dans le if");
     try {
         $nom = $pdo->quote($_POST['nom']);
         $prenom = $pdo->quote($_POST['prenom']);
