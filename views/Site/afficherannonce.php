@@ -53,11 +53,11 @@
 
             <div class='event_date'> <?= $tableau['date'] ?> à <?= $tableau['heuredebut'] ?></div>
             <div class='event_titre'>
-                <a href='siteannonce.php?<?= $id ?>'> <?= htmlentities(Text::excerpt($tableau['titre'])) ?> </a>
+                <a href='siteannonce.php?<?= $id ?>'> <?= htmlentities(Text::excerpt(ucfirst(strtolower($tableau['titre'])))) ?> </a>
 
             </div>
-            <div class='event_nbr_participant'> <?=  $tableau['ville'] ?> </div>
-            <div class='event_organisateur'> <?= $tableau['pseudo']  ?> </div>
+            <div class='event_nbr_participant'> <?=  ucfirst(strtolower($tableau['ville'])) ?> </div>
+            <div class='event_organisateur'> <?= ucfirst(strtolower($tableau['pseudo']))  ?> </div>
         </div>
 
     <?php endforeach ?>

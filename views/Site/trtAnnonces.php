@@ -15,17 +15,17 @@ $sql = "
     ";
 $rqt = $pdo -> prepare($sql);
 $tableau = [
-    'ville' => $_POST['ville'],
-    'lieu' => $_POST['lieu'],
-    'date' => $_POST['date'],
+    'ville' => ucfirst(strtolower($_POST['ville'])),
+    'lieu' => ucfirst(strtolower($_POST['lieu'])),
+    'date' => ucfirst(strtolower($_POST['date'])),
     'hdebut' => $_POST['hdebut'],
     'hfin' => $_POST['hfin'],
     'theme1' => $_POST['theme1'],
     'theme2' => $_POST['theme2'] === "not" ? NULL : $_POST['theme2'],
     'theme3' => $_POST['theme3'] === "not" ? NULL : $_POST['theme3'],
-    'infosup' => empty($_POST['infosup']) ? '' : $_POST['infosup'],
+    'infosup' => ucfirst(strtolower(empty($_POST['infosup']))) ? '' : ucfirst(strtolower($_POST['infosup'])),
     'proprietaire' => $_SESSION['Num_Tel'],
-    'titre' => $_POST['titre'],
+    'titre' => ucfirst(strtolower($_POST['titre'])),
 ];
 echo "<pre>";
 var_dump($tableau);
@@ -36,4 +36,3 @@ $rqt -> execute($tableau);
 header("Location:site.php");
 ?>
 
-/opt/lampp/htdocs/Dev/Projet_TER/views/Site/trtAnnonces.php

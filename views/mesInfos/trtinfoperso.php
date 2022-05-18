@@ -119,7 +119,6 @@ if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['age'])) 
         alert("Le formulaire a mal été remplie ! Reccomnencez");
     }
 }else{
-    echo("dans le else");
 }
 
 ?>

@@ -39,10 +39,18 @@ if ($currentPage > $pages) {
 }
 
 $offset = $perPage * ($currentPage - 1);
+// $date = date("Y-m-d");
+// $sql = ("DELETE FROM annonces WHERE date < '".$date."'");
+// $delete = $pdo->query($sql);
+// $tableau = $delete->fetchAll(PDO::FETCH_OBJ);
 
 
 $sql = ("SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel ORDER BY date DESC LIMIT $perPage OFFSET $offset");
 $reponse = $pdo->query($sql);
+
+
+
+
 
 
 $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
@@ -151,101 +159,100 @@ $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
 
 
 
-                <?php
-
-                if (isset($_POST['filtre'])) {
-
-                    $titre = $pdo->quote($_POST['titre']);
-                    $ville = $pdo->quote($_POST['ville']);
-                    $lieu = $pdo->quote($_POST['lieu']);
-                    $date = $pdo->quote($_POST['dateFiltre']);
-                    $heure = $pdo->quote($_POST['appt-time']);
-
-                    if (!empty($_POST['musique'])) {
-                        $musique = 'musique';
-                    }else{
-                        $musique = NULL;
-                    }
-    
-                    if (!empty($_POST['cinema'])) {
-                        $cinema = 'cinéma';
-                    }else{
-                        $cinema = NULL;
-                    }
-                   
-                    if (!empty($_POST['sport'])) {
-                        $sport = 'sport';
-                    }else{
-                        $sport = NULL;
-                    }
-                    
-                    if (!empty($_POST['travail'])) {
-                        $travail = 'travail';
-                    }else{
-                        $travail = NULL;
-                    }
-                                       
-                    if (!empty($_POST['alimentation'])) {
-                        $alimentation = 'alimentation';
-                    }else{
-                        $alimentation = NULL;
-                    }
-                                       
-                    if (!empty($_POST['culture'])) {
-                        $culture = 'culture';
-                    }else{
-                        $culture = NULL;
-                    }
-                                       
-                    if (!empty($_POST['bar'])) {
-                        $bar = 'bar';
-                    }else{
-                        $bar = NULL;
-                    }
-                                       
-                    if (!empty($_POST['festival'])) {
-                        $festival = 'festival';
-                    }else{
-                        $festival = NULL;
-                    }
-                                       
-                    if (!empty($_POST['loisir'])) {
-                        $loisir = 'loisir';
-                    }else{
-                        $loisir = NULL;
-                    }
-                                       
-                    if (!empty($_POST['autres'])) {
-                        $autres = 'autres';
-                    }else{
-                        $autres = NULL;
-                    }
-                    
-
-
-
-                    // $test1 = 'loisir';
-                    // $test2 = 'autres';
-                    // $test3 = NULL;
-
-                    $sql = ("SELECT * FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel WHERE Titre=$titre OR a.Ville=$ville OR Lieu=$lieu OR Date=$date OR HeureDebut=$heure OR theme IN ('$musique', '$cinema', '$sport', '$travail', '$alimentation', '$culture', '$bar', '$festival', '$loisir', '$autres') OR theme2 IN ('$musique', '$cinema', '$sport', '$travail', '$alimentation', '$culture', '$bar', '$festival', '$loisir', '$autres') OR theme3 IN ('$musique', '$cinema', '$sport', '$travail', '$alimentation', '$culture', '$bar', '$festival', '$loisir', '$autres') ORDER BY date DESC LIMIT $perPage OFFSET $offset");
-                    $reponse = $pdo->query($sql);
-                    $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
-                    }
-                
-
-
-
-                ?>
-
-
-
-
 
 
 
 
             </div>
+
+
+            <?php
+
+            if (isset($_POST['filtre'])) {
+
+                $titre = $pdo->quote(strtolower($_POST['titre']));
+                $ville = $pdo->quote(strtolower($_POST['ville']));
+                $lieu = $pdo->quote(strtolower($_POST['lieu']));
+                $date = $pdo->quote($_POST['dateFiltre']);
+                $heure = $pdo->quote($_POST['appt-time']);
+
+                if (!empty($_POST['musique'])) {
+                    $musique = 'musique';
+                } else {
+                    $musique = NULL;
+                }
+
+                if (!empty($_POST['cinema'])) {
+                    $cinema = 'cinéma';
+                } else {
+                    $cinema = NULL;
+                }
+
+                if (!empty($_POST['sport'])) {
+                    $sport = 'sport';
+                } else {
+                    $sport = NULL;
+                }
+
+                if (!empty($_POST['travail'])) {
+                    $travail = 'travail';
+                } else {
+                    $travail = NULL;
+                }
+
+                if (!empty($_POST['alimentation'])) {
+                    $alimentation = 'alimentation';
+                } else {
+                    $alimentation = NULL;
+                }
+
+                if (!empty($_POST['culture'])) {
+                    $culture = 'culture';
+                } else {
+                    $culture = NULL;
+                }
+
+                if (!empty($_POST['bar'])) {
+                    $bar = 'bar';
+                } else {
+                    $bar = NULL;
+                }
+
+                if (!empty($_POST['festival'])) {
+                    $festival = 'festival';
+                } else {
+                    $festival = NULL;
+                }
+
+                if (!empty($_POST['loisir'])) {
+                    $loisir = 'loisir';
+                } else {
+                    $loisir = NULL;
+                }
+
+                if (!empty($_POST['autres'])) {
+                    $autres = 'autres';
+                } else {
+                    $autres = NULL;
+                }
+
+
+
+
+                // $test1 = 'loisir';
+                // $test2 = 'autres';
+                // $test3 = NULL;
+
+                $sql = ("SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel WHERE Titre=$titre OR a.Ville=$ville OR Lieu=$lieu OR Date=$date OR HeureDebut=$heure OR theme IN ('$musique', '$cinema', '$sport', '$travail', '$alimentation', '$culture', '$bar', '$festival', '$loisir', '$autres') OR theme2 IN ('$musique', '$cinema', '$sport', '$travail', '$alimentation', '$culture', '$bar', '$festival', '$loisir', '$autres') OR theme3 IN ('$musique', '$cinema', '$sport', '$travail', '$alimentation', '$culture', '$bar', '$festival', '$loisir', '$autres') ORDER BY date DESC LIMIT $perPage OFFSET $offset");
+                $reponse = $pdo->query($sql);
+                $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+            }
+
+
+
+
+            ?>
+
 
             <div id="annonces">
                 <div class="event">

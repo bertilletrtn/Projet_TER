@@ -61,6 +61,7 @@ main {
     flex-direction: column;
     margin: 32px;
     align-items: center;
+    font-size: 24px;
 }
 
 #droite {
