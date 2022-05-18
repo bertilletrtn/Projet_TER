@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="trtinfoperso.css" media="screen" type="text/css" />
+    <title>Modifier mes informations</title>
+</head>
+
+<body>
+
 <?php
 
 require_once("../Site/connexpdo.inc.php");
@@ -27,14 +38,6 @@ foreach ($tableau as $item) :
     $ville = $item->Ville;
     $mdp = $item->Mdp;
 
-    // if (($pseudo == "")) {
-    //     $pseudo = "";
-    // }
-
-    // if (($ville == "")) {
-    //     $ville = "vide";
-    // }
-
 ?>
 
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="application/x-www-form-urlencoded">
@@ -53,10 +56,6 @@ foreach ($tableau as $item) :
                 <td>Pseudo :</td>
                 <td><input type="text" name="pseudo" pattern="[a-zA-Z]{3,}" size="40" maxlength="50" value=<?= $pseudo ?>></td>
             </tr>
-            <!-- <tr>
-                <td>Téléphone :</td>
-                <td><input type="tel" pattern="[0-9]{10}"" maxlength=" 10" name="tel" value=<?= $num_tel ?> /></td>
-            </tr> -->
             <tr>
                 <td>Ville :</td>
                 <td><input type="text" name="ville" pattern="[a-zA-Z]{,}" size="40" maxlength="50" value=<?= $ville ?>></td>
@@ -65,10 +64,6 @@ foreach ($tableau as $item) :
                 <td>Age :</td>
                 <td><input type="text" name="age" size="40" pattern="[0-9]{2}" maxlength="50" value=<?= $age ?> /></td>
             </tr>
-            <!-- <tr>
-                <td>Précedent mot de passe :</td>
-                <td><input type="password" name="mdpprece" size="40" placeholder="Précédent mdp" maxlength="50" required /></td>
-            </tr> -->
             <tr>
                 <td>Mot de passe :</td>
                 <td style="display: block ruby">
@@ -92,27 +87,17 @@ foreach ($tableau as $item) :
 
 <?php endforeach ?>
 <?php
-if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['tel']) && !empty($_POST['age'])) {
+if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['age'])) {
+    echo("dans le if");
     try {
         $nom = $pdo->quote($_POST['nom']);
         $prenom = $pdo->quote($_POST['prenom']);
-        $tel = $pdo->quote($_POST['tel']);
         $age = $pdo->quote($_POST['age']);
         $pseudo = $pdo->quote($_POST['pseudo']);
         $ville = $pdo->quote($_POST['ville']);
 
-        // $mdpp = $pdo->quote($_POST['mdpprece']);
         $mdpn = $pdo->quote($_POST['mdp']);
         $mdpconfirm = $pdo->quote($_POST['mdpconfirm']);
-
-        // echo ($mdp);
-        // echo ($mdpp);
-        // echo($mdpconfirm);
-
-        // if ($mdp != $mdpp) {
-        //     alert("Erreur : Le mot de passe précédent ne correspond pas ! ");
-        //     return;
-        // }
 
         if ($mdpn != $mdpconfirm) {
             alert("Erreur : Le mot de passe ne correspond pas ! ");
@@ -133,6 +118,16 @@ if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['tel']) &
         // header("Refresh:0.5; url=infoPerso.php");
         alert("Le formulaire a mal été remplie ! Reccomnencez");
     }
+}else{
+    echo("dans le else");
 }
 
 ?>
+
+
+<script src="affichermdp.js"></script>
+
+
+</body>
+
+</html>

@@ -93,43 +93,43 @@ $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
                         <fieldset>
                             <legend>Quels thèmes :</legend>
                             <div>
-                                <input type="checkbox" id="musique" name="product_check[]" value="musique">
+                                <input type="checkbox" name="musique" id="product_check[]" value="musique">
                                 <label for="coding">Musique</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="cinema" name="product_check[]" value="cinéma">
+                                <input type="checkbox" name="cinema" id="product_check[]" value="cinéma">
                                 <label for="music">Cinéma</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="sport" name="product_check[]" value="sport">
+                                <input type="checkbox" name="sport" id="product_check[]" value="sport">
                                 <label for="music">Sport</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="travail" name="product_check[]" value="travail">
+                                <input type="checkbox" name="travail" id="product_check[]" value="travail">
                                 <label for="music">Travail</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="alimentation" name="product_check[]" value="alimentation">
+                                <input type="checkbox" name="alimentation" id="product_check[]" value="alimentation">
                                 <label for="music">Alimentation</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="culture" name="product_check[]" value="culture">
+                                <input type="checkbox" name="culture" id="product_check[]" value="culture">
                                 <label for="music">Culture</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="bar" name="product_check[]" value="bar">
+                                <input type="checkbox" name="bar" id="product_check[]" value="bar">
                                 <label for="music">Bar</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="festival" name="product_check[]" value="festival">
+                                <input type="checkbox" name="festival" id="product_check[]" value="festival">
                                 <label for="music">Festival</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="loisir" name="product_check[]" value="loisir">
+                                <input type="checkbox" name="loisir" id="product_check[]" value="loisir">
                                 <label for="music">Loisir</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="autre" name="product_check[]" value="autres">
+                                <input type="checkbox" name="autres" id="product_check[]" value="autres">
                                 <label for="music">Autre</label>
                             </div>
                         </fieldset>
@@ -160,28 +160,78 @@ $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
                     $date = $pdo->quote($_POST['dateFiltre']);
                     $heure = $pdo->quote($_POST['appt-time']);
 
-                    $listeTheme = array();
-                    $i = 0;
-
-                    if (!empty($_POST['product_check'])) {
-                        foreach ($_POST['product_check'] as $value) {
-
-                            // if($value = 'musique'){
-                            //     array_push($listeTheme,'musique');
-                            // }
-                            // array_push($listeTheme,$value);
-                            print_r($listeTheme[0]);
-                            // echo("    ");
-                            // print_r($listeTheme[1]);
-
-                        }
+                    if (!empty($_POST['musique'])) {
+                        $musique = 'musique';
+                    }else{
+                        $musique = NULL;
                     }
-                            $sql = ("SELECT * FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel WHERE Titre=$titre OR a.Ville=$ville OR Lieu=$lieu OR Date=$date OR HeureDebut=$heure OR theme='$value' OR theme2='$value' OR theme3='$value'");
-                            $reponse = $pdo->query($sql);
+    
+                    if (!empty($_POST['cinema'])) {
+                        $cinema = 'cinéma';
+                    }else{
+                        $cinema = NULL;
+                    }
+                   
+                    if (!empty($_POST['sport'])) {
+                        $sport = 'sport';
+                    }else{
+                        $sport = NULL;
+                    }
+                    
+                    if (!empty($_POST['travail'])) {
+                        $travail = 'travail';
+                    }else{
+                        $travail = NULL;
+                    }
+                                       
+                    if (!empty($_POST['alimentation'])) {
+                        $alimentation = 'alimentation';
+                    }else{
+                        $alimentation = NULL;
+                    }
+                                       
+                    if (!empty($_POST['culture'])) {
+                        $culture = 'culture';
+                    }else{
+                        $culture = NULL;
+                    }
+                                       
+                    if (!empty($_POST['bar'])) {
+                        $bar = 'bar';
+                    }else{
+                        $bar = NULL;
+                    }
+                                       
+                    if (!empty($_POST['festival'])) {
+                        $festival = 'festival';
+                    }else{
+                        $festival = NULL;
+                    }
+                                       
+                    if (!empty($_POST['loisir'])) {
+                        $loisir = 'loisir';
+                    }else{
+                        $loisir = NULL;
+                    }
+                                       
+                    if (!empty($_POST['autres'])) {
+                        $autres = 'autres';
+                    }else{
+                        $autres = NULL;
+                    }
+                    
 
-                            $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
 
-                }
+
+                    // $test1 = 'loisir';
+                    // $test2 = 'autres';
+                    // $test3 = NULL;
+
+                    $sql = ("SELECT * FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel WHERE Titre=$titre OR a.Ville=$ville OR Lieu=$lieu OR Date=$date OR HeureDebut=$heure OR theme IN ('$musique', '$cinema', '$sport', '$travail', '$alimentation', '$culture', '$bar', '$festival', '$loisir', '$autres') OR theme2 IN ('$musique', '$cinema', '$sport', '$travail', '$alimentation', '$culture', '$bar', '$festival', '$loisir', '$autres') OR theme3 IN ('$musique', '$cinema', '$sport', '$travail', '$alimentation', '$culture', '$bar', '$festival', '$loisir', '$autres') ORDER BY date DESC LIMIT $perPage OFFSET $offset");
+                    $reponse = $pdo->query($sql);
+                    $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
+                    }
+                
 
 
 
