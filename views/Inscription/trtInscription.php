@@ -22,7 +22,7 @@ if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['tel']) &
         //     return;
         // }
 
-        $query = "INSERT INTO utilisateurs VALUES($nom,$prenom,$pseudo,$age,$tel,$ville,$mdp)";
+        $query = "INSERT INTO utilisateurs VALUES($prenom,$nom,$pseudo,$age,$tel,$ville,$mdp)";
         $nb = $idcom->exec($query);
         if ($nb != 1) {
             alert("Erreur : \"$idcom->errorCode()\"");
