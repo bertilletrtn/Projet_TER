@@ -1,6 +1,5 @@
 <?php
 require("../layouts/header.html");
-require("../layouts/footer.html");
 
 require_once("../Site/connexpdo.inc.php");
 
@@ -36,31 +35,27 @@ foreach ($tableau as $item) :
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../layouts/header.css">
         <link rel="stylesheet" href="../layouts/footer.css">
-        <title>Mon compte</title>
+        <link rel="stylesheet" href="../mesInfos/infoPerso.css">
     </head>
 
     <body>
-    <form action='trtinfoperso.php' method="post" enctype="application/x-www-form-urlencoded">
+        <form action='trtinfoperso.php' method="post" enctype="application/x-www-form-urlencoded">
 
 
             <div style="flex:center" class='elementmesinfos'>
-                Nom : <?= $nom ?>
-                <br>
-                Prénom : <?= $prenom ?>
-                <br>
-                Pseudo : <?= $pseudo ?>
-                <br>
-                Age : <?= $age ?>
-                <br>
-                Numéro de téléphone : <?= $num_tel ?>
-                <br>
-                Ville : <?= $ville ?>
+                <h1>Mes informations :</h1>
+                    <p>Nom : <?= $nom ?> </p>
+                    <p>Prénom : <?= $prenom ?></p>
+                    <p>Pseudo : <?= $pseudo ?></p> 
+                    <p>Age : <?= $age ?> </p>
+                    <p>Numéro de téléphone : 0<?= $num_tel ?></p>
+                    <p>Ville : <?= $ville ?> </p>
             </div>
 
             <!-- <div style="flex:center" class='modifieinfo'> -->
-                <input type="submit" name="modifinfo" value="Modifier mes informations">
+            <input type="submit" name="modifinfo" value="Modifier mes informations">
             <!-- </div> -->
-        </from>
+            </from>
 
     </body>
 

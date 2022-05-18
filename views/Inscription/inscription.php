@@ -44,7 +44,7 @@
                     </tr>
                     <tr>
                         <td>Ville :</td>
-                        <td><input type="text" name="ville" pattern="[a-zA-Z]{2,}" placeholder="Entrer un Ville" size="40" maxlength="50" /></td>
+                        <td><input type="text" name="ville" pattern="^[[:alpha:]]([-' ]?[[:alpha:]])*$" placeholder="Entrer un Ville" size="40" maxlength="50" /></td>
                     </tr>
                     <tr>
                         <td>Age :</td>
