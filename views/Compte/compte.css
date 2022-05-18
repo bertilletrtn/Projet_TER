@@ -239,9 +239,10 @@ h3{
     margin: 25px;
     border-radius: 8%;
     justify-content: space-between;
-    padding-left: 206px;
+    padding-left: 26px;
+    margin-right: 42%;
 }
 
 p {
-    padding-left:206px ;
+    padding-left:26px ;
 }

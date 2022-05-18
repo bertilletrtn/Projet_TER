@@ -31,8 +31,8 @@ session_start();
         <div id="menu">
             <div id="menu-list">
                 <a href="#annonces">Mes annonces </a>
-                <a href="#participation">Mes participations </a>
                 <a href="#particicpantannonce">Participants de mes annonces </a>
+                <a href="#participation">Mes participations </a>
 
             </div>
 
@@ -148,7 +148,7 @@ session_start();
                         <?php
 
                         echo"
-                        <h4> Les participants à l'annonce $Titre </h4>
+                        <h4> Annonce : $Titre </h4>
                         ";
 
                         $requette =  $pdo->query("SELECT u.Prenom FROM participation p JOIN annonces a ON a.id = p.Annonce JOIN utilisateurs u ON p.Participant = u.Num_Tel WHERE a.Proprietaire='$proprietaire' and p.Annonce='$liste_id[$i]'");
