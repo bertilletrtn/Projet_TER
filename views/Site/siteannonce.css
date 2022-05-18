@@ -132,3 +132,31 @@ main {
     background-color: #e139c5;
     width: 300px;
 }
+
+
+.btn-first:hover {
+    transition: all 0.s ease-in-out;
+    background: #3498DB;
+        background-color: rgb(52, 152, 219);
+    color: #3498DB;
+    background-color: white;
+    border-bottom: 5px solid #3498DB;
+    text-shadow: 0px -2px #3498DB;
+}
+
+.btn-first {
+    padding: 10px 40px;
+    float: left;
+    border-radius: 10px;
+    font-family: 'Pacifico', cursive;
+    font-size: 26px;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #3498DB;
+    border-bottom: 5px solid #2980B9;
+    text-shadow: 0px -2px #2980B9;
+    transition: all 0.1s;
+    -webkit-transition: all 0.1s;
+    cursor: pointer;
+    box-shadow: 0 0 20px 0 black, 0 5px 5px 0 black;
+}

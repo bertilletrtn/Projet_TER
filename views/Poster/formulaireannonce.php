@@ -38,7 +38,7 @@
                 </tr>
                 <tr>
                     <td>La ville : </td>
-                    <td> <input type="text" placeholder="Entrer une ville" maxlength="50" name="ville" size="20" /></td>
+                    <td> <input type="text" placeholder="Entrer une ville" maxlength="50" pattern="^[[:alpha:]]([-' ]?[[:alpha:]])*$" name="ville" size="20" /></td>
                 </tr>
                 <tr>
                     <td>Le lieu : </td>

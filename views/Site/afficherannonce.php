@@ -17,7 +17,7 @@
         $theme2 = $item->theme3;
         $theme3 = $item->theme2;
 
-        $ville = $item->Ville;
+        $ville = $item->villeannonce;
 
         $lieu = $item->Lieu;
 

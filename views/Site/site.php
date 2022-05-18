@@ -44,6 +44,7 @@ $offset = $perPage * ($currentPage - 1);
 $sql = ("SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel ORDER BY date DESC LIMIT $perPage OFFSET $offset");
 $reponse = $pdo->query($sql);
 
+
 $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
 
 ?>

@@ -81,7 +81,7 @@ $liste = $result->fetchAll(PDO::FETCH_OBJ);
         <div id='droite'>
             <img src='../../Ressource/<?php echo "$item->theme" ?>.webp' alt='theme' width='250px' height='auto' />
             <div id='bouton'>
-                <p> <a href='trtParticipation.php?<?= $id ?>'> Participation </a></p><br>
+                <p> <a class="btn-first" href='trtParticipation.php?<?= $id ?>'> Participation </a></p><br>
 
                 <!-- <p><a href='trtCommentaire.php?<?= $id ?>'> Commentaires </a></p> -->
 
