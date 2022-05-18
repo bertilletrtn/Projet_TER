@@ -22,8 +22,6 @@ ul {
 main {
     height: 100%;
     padding: 10px;
-    margin-top: -20px;
-    ;
     display: flex;
     flex-direction: row;
     background-image: url("../../Ressource/triangles.png");
@@ -33,7 +31,7 @@ main {
 
 #filtres {
     width: 300px;
-    background-color: rgb(43, 167, 199) ;
+    background-color: rgb(43, 167, 199);
 
 }
 
@@ -304,11 +302,17 @@ path.two {
 /*MISE EN PAGE DE CSS POUR LES FILTRES*/
 
 input[type="checkbox"]:checked {
-    box-shadow: 0 0 0 3px hotpink;
-  }
-  
-  /* Éléments options sélectionnés */
-  option:checked {
+    box-shadow: 0 0 0 2px hotpink;
+}
+
+/* Éléments options sélectionnés */
+option:checked {
     box-shadow: 0 0 0 3px lime;
     color: red;
-  }
+
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}

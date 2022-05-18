@@ -250,7 +250,7 @@ $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
                 <div class="event">
                     <div class="eventDate"> Date </div>
                     <div class="eventTitre"> Titre </div>
-                    <div class="eventParticipant"> Participant </div>
+                    <div class="eventParticipant"> Ville </div>
                     <div class="eventOrganisateur"> Organisateur </div>
                 </div>
 
