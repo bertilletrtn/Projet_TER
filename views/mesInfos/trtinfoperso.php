@@ -9,6 +9,10 @@
 
 <body>
 
+    <div id="logo">
+        <a href="../Site/site.php">Join and Enjoy</a>
+    </div>
+
 <?php
 
 require_once("../Site/connexpdo.inc.php");

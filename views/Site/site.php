@@ -40,6 +40,11 @@ if ($currentPage > $pages) {
 
 $offset = $perPage * ($currentPage - 1);
 
+$date = date("Y-m-d");
+$requette = "DELETE FROM annonces WHERE Date<NOW()";
+$reponse = $pdo->query($requette);
+
+
 
 $sql = ("SELECT *, a.ville AS villeannonce FROM annonces a JOIN utilisateurs u ON a.proprietaire = u.num_tel ORDER BY date DESC LIMIT $perPage OFFSET $offset");
 $reponse = $pdo->query($sql);

@@ -37,19 +37,10 @@ main {
 
 }
 
-
-#annonces-gauche {
-    display: flex;
-    flex-direction: column;
-    margin: 32px;
-    align-items: left;
-    width: 50%;
-}
-
-#annonces-droite {
-    display: flex;
-    flex-direction: column;
-    margin: 32px;
+#particicpantannonce{
+    width: 100%;
+    background-color: transparent;
+    /* display: flex; */
 }
 
 #menu-list a {
@@ -69,7 +60,7 @@ main {
 
 
 .elementannonce {
-    background-color: #E7C689;
+    background-color: #dba180;
     display: flex;
     flex-direction: row;
     border-radius: 8%;
@@ -98,7 +89,7 @@ main {
 }
 
 .elementParticipation {
-    background-color: #E7C689;
+    background-color: #dba180;
     display: flex;
     flex-direction: row;
     margin: 25px;
@@ -239,4 +230,18 @@ h3{
     background-color: white;
     border-bottom: 5px solid white;
     text-shadow: 0px -2px #3498DB;
+}
+
+.tableau{
+    background-color: #dba180;
+    /* display: flex; */
+    flex-direction: row;
+    margin: 25px;
+    border-radius: 8%;
+    justify-content: space-between;
+    padding-left: 206px;
+}
+
+p {
+    padding-left:206px ;
 }

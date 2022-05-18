@@ -41,9 +41,6 @@ session_start();
 
                 <?php
 
-                // session_start();
-
-
                 try {
                     require_once("../Site/connexpdo.inc.php");
 
@@ -60,11 +57,6 @@ session_start();
 
 
                     foreach ($tableau as $item) {
-                        /*
-                    echo "<pre>";
-                    var_dump($item);
-                    echo "</pre>";
-                    */
 
                         $arr_heure_debut = explode(":", $item->HeureDebut);
                         $heure_debut = $arr_heure_debut[0] . ":" . $arr_heure_debut[1];
@@ -103,10 +95,8 @@ session_start();
                 }
                 ?>
             </div>
-            <div id="annonces-droite">
                 <div id="particicpantannonce">
                     <h3>Les participations à mes annonces : </h3>
-                </div>
                 <?php
 
                 try {
@@ -115,10 +105,6 @@ session_start();
                     $reponse = $pdo->query($sql);
 
                     $tableau = $reponse->fetchAll(PDO::FETCH_OBJ);
-
-                    // foreach ($tableau as $item) {
-
-                    // $sql = "SELECT * FROM participation p JOIN annonces a ON a.id = p.Annonce JOIN utilisateurs u ON u.num_tel = a.Proprietaire WHERE a.Proprietaire='$proprietaire'";
 
 
                     $sql = "SELECT p.Participant FROM participation p JOIN annonces a ON a.id = p.Annonce JOIN utilisateurs u ON u.num_tel = a.Proprietaire WHERE a.Proprietaire='$proprietaire'";
@@ -145,40 +131,41 @@ session_start();
 
                     $i = 0;
 
-
                     while ($i < $taille_liste) {
 
-                        $liste_participant = array();
+                        $Titre;
+                        $resultbis = $pdo->query("SELECT Titre FROM annonces WHERE id=$liste_id[$i]");
+                        while (list($titre) = $resultbis->fetch(PDO::FETCH_NUM)) {
+                            // echo "titre: $titre \n";
+                            $Titre = $titre;
+                        
+                        }
 
-                        echo "
-                            <div class='participants'>
-                            <table>
-                            <thead>
-                                <tr>
-                                    <th>Les participants à l'annonce $liste_id[$i] </th>
-                                </tr>
-                            </thead>";
+                        $liste_participant = array();
+                        ?>
+                        <div class="tableau">
+
+                        <?php
+
+                        echo"
+                        <h4> Les participants à l'annonce $Titre </h4>
+                        ";
 
                         $requette =  $pdo->query("SELECT u.Prenom FROM participation p JOIN annonces a ON a.id = p.Annonce JOIN utilisateurs u ON p.Participant = u.Num_Tel WHERE a.Proprietaire='$proprietaire' and p.Annonce='$liste_id[$i]'");
 
                         while (list($participant) = $requette->fetch(PDO::FETCH_NUM)) {
 
-                            echo "
-                            <tbody>
-                                <div class='bodyp'>
-                                <tr>
-                                    <td>$participant</td>
-                                </tr>
-                                 </div>
-                            </tbody>
-                        </table>
-                       
-                        </div>
+                        echo "
+                        <p>$participant</p>
                         ";
                         }
+
+                        ?>
+                        </div>
+                        <?php
+
                         $i = $i + 1;
                     }
-                    //}
                 } catch (PDOException $e) {
                     echo 'Impossible de traiter les données. Erreur : ' . $e->getMessage();
                 }
@@ -187,7 +174,6 @@ session_start();
 
             </div>
 
-        </div>
 
         <div id="participation">
             <h3>Mes participations : </h3>
