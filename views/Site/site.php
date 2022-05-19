@@ -38,15 +38,39 @@ if ($currentPage > $pages) {
     throw new Exception('Cett page n\'existe pas');
 }
 
+
+
 $offset = $perPage * ($currentPage - 1);
 // $date = date("Y-m-d");
 // $sql = ("DELETE FROM annonces WHERE date < '".$date."'");
 // $delete = $pdo->query($sql);
 // $tableau = $delete->fetchAll(PDO::FETCH_OBJ);
 
-$date = date("Y-m-d");
-$requette = "DELETE FROM annonces WHERE Date<NOW()";
+$liste_id = array();
+
+$date = date('d-m-y');
+
+
+$result = $pdo->query("SELECT id FROM annonces WHERE date<'$date'");
+while (list($id) = $result->fetch(PDO::FETCH_NUM)) {
+    // echo "id: $id \n";
+    array_push($liste_id, $id);
+}
+
+$taille = (count($liste_id));
+
+for ($i=0; $i<$taille; $i++){
+
+$requette = "DELETE FROM commentaires WHERE num_annonce=$liste_id[$i]";
 $reponse = $pdo->query($requette);
+}
+
+$requette = "DELETE FROM annonces WHERE Date<date";
+$reponse = $pdo->query($requette);
+
+
+// $requette = "DELETE FROM annonces WHERE Date<NOW()";
+// $reponse = $pdo->query($requette);
 
 
 
