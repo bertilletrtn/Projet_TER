@@ -111,6 +111,8 @@ $liste = $result->fetchAll(PDO::FETCH_OBJ);
 
                         $commentaire = $elem->commentaire;
 
+                        $commentaire = stripslashes($commentaire);
+
                         $trtdate = explode(" ", $elem->date);
                         $date = $trtdate[0];
 
