@@ -73,7 +73,7 @@ $liste = $result->fetchAll(PDO::FETCH_OBJ);
             <h1><?php echo "$item->Titre" ?></h1>
             <p1><?php echo "$item->Ville" ?> </p1>
             <p2><?php echo "$item->Lieu" ?></p2>
-            <p3>Le <?php echo "$item->Date" ?> à <?php echo "$heure_debut" ?> et finir vers <?php echo "$heure_fin" ?></p3>
+            <p3>Le <?php echo "$item->Date" ?> à <?php echo "$heure_debut" ?> jusqu'a <?php echo "$heure_fin" ?></p3>
             <h3><?php echo "$item->Info_sup" ?></h3>
         </div>
 
